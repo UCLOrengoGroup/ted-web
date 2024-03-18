@@ -1,7 +1,7 @@
 import random
 
 
-def random_cath_code(depth=4) -> str:
+def random_cath_code(depth: int=4) -> str:
     cath_parts = [
         random.randint(1, 4), 
         10 * random.randint(1, 3),

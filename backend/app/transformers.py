@@ -12,7 +12,7 @@ from .models.beacons import (
 
 def convert_domain_summary_to_uniprot_structure_summary_items(
         domain_summary: DomainSummary, 
-        host="https://www.ted.org") -> UniprotSummary:
+        host="https://www.ted.org") -> SummaryItems:
     
     provider = "AlphaFold DB"
     date_created = "2022-06-01" # AF v4
@@ -27,24 +27,24 @@ def convert_domain_summary_to_uniprot_structure_summary_items(
 
     summary_item = SummaryItems(
         model_identifier=domain_summary.ted_id,
-        model_category=ModelCategory.TEMPLATE_BASED.value,
+        model_category=ModelCategory.TEMPLATE_BASED,
         model_url=f"{host}/files/{domain_summary.ted_id}.pdb",
-        model_format=ModelFormat.PDB.value,
-        model_type=ModelType.ATOMIC.value,
+        model_format=ModelFormat.PDB,
+        model_type=ModelType.ATOMIC,
         model_page_url=f"{host}/domain/{domain_summary.ted_id}",
         provider=provider,
         created=date_created,
         sequence_identity=1,
-        uniprot_start=first_res,
-        uniprot_end=last_res,
+        uniprot_start=int(first_res),
+        uniprot_end=int(last_res),
         coverage=coverage,
-        confidence_type=ConfidenceType.pLDDT.value,
+        confidence_type=ConfidenceType.pLDDT,
         confidence_avg_local_score=domain_summary.plddt,
         entities=[Entity(
-            entity_type=EntityType.POLYMER.value,
-            entity_poly_type=EntityPolyType.POLYPEPTIDE_L_.value,
+            entity_type=EntityType.POLYMER,
+            entity_poly_type=EntityPolyType.POLYPEPTIDE_L_,
             identifier=domain_summary.uniprot_acc,
-            identifier_category=IdentifierCategory.UNIPROT.value,
+            identifier_category=IdentifierCategory.UNIPROT,
             chain_ids=["A"],
             description=description,
         )]

@@ -11,7 +11,7 @@ logger = getLogger(__name__)
 def test_read_domain_pdb(
     client: TestClient, 
     db: Session,
-    mock_af_pdb
+    mock_af_pdb: None
 ) -> None:
     
     uniprot_acc = "P12345"

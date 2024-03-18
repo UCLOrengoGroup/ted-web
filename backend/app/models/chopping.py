@@ -17,10 +17,10 @@ class SegmentNum(BaseModel):
 
 class ChoppingBase(BaseModel):
     domain_id: str
-    segments: List
+    segments: Union[List[SegmentNum], List[SegmentResLabel]]
 
     @classmethod
-    def from_chopping_str(cls, domain_id: str, chopping_str: str) -> None:
+    def from_chopping_str(cls, domain_id: str, chopping_str: str) -> 'ChoppingBase':
         seg_strs = chopping_str.split('_')
 
         segments = []
@@ -54,26 +54,26 @@ class ChoppingBase(BaseModel):
             segments=[seg]
         )
 
-    def get_first_res(self):
+    def get_first_res(self) -> Union[int, str]:
         return self.segments[0].start
 
-    def get_last_res(self):
+    def get_last_res(self) -> Union[int, str]:
         return self.segments[-1].stop
 
-    def to_str(self):
+    def to_str(self) -> str:
         return "_".join([f"{seg.start}-{seg.stop}" for seg in self.segments])
 
-    def count_residues(self):
+    def count_residues(self) -> int:
         return sum([seg.stop - seg.start + 1 for seg in self.segments])
 
-    def to_selres_str(self):
+    def to_selres_str(self) -> str:
         return ",".join([f"{seg.start}:{seg.stop}" for seg in self.segments])
 
 
 class ChoppingResLabel(ChoppingBase):
     segments: List[SegmentResLabel]
 
-    def count_residues(self):
+    def count_residues(self) -> None:
         raise NotImplementedError("Cannot get residue count from PDB residue labels (without more jiggery pokery)")
 
 
