@@ -36,8 +36,8 @@ def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
     Retrieve users.
     """
 
-    count_statement = select(func.count()).select_from(User)
-    count = session.exec(count_statement).one()
+    statment = select(func.count()).select_from(User)
+    count = session.exec(statment).one()
 
     statement = select(User).offset(skip).limit(limit)
     users = session.exec(statement).all()
@@ -138,7 +138,7 @@ def create_user_open(session: SessionDep, user_in: UserCreateOpen) -> Any:
             status_code=400,
             detail="The user with this email already exists in the system",
         )
-    user_create = UserCreate.from_orm(user_in)
+    user_create = UserCreate.model_validate(user_in)
     user = crud.create_user(session=session, user_create=user_create)
     return user
 

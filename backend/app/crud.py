@@ -4,6 +4,7 @@ from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
 from app.models.db import Item, ItemCreate, User, UserCreate, UserUpdate
+from app.models.db import DomainSummary
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
@@ -51,3 +52,11 @@ def create_item(*, session: Session, item_in: ItemCreate, owner_id: int) -> Item
     session.commit()
     session.refresh(db_item)
     return db_item
+
+
+def create_domain_summary(*, session: Session, domain_summary: DomainSummary) -> DomainSummary:
+    db_obj = DomainSummary.model_validate(domain_summary)
+    session.add(db_obj)
+    session.commit()
+    session.refresh(db_obj)
+    return db_obj

@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "app"
+name = "ted-web"
 version = "0.1.0"
-description = ""
-authors = ["Admin <admin@example.com>"]
+description = "TED: Consensus Domain Parsing of AlphaFold Models"
+authors = ["Ian Sillitoe <i.sillitoe@ucl.ac.uk>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -10,6 +10,7 @@ uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
 fastapi = "^0.109.1"
 python-multipart = "^0.0.7"
 email-validator = "^2.1.0.post1"
+celery = "^5.3.5"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 tenacity = "^8.2.3"
 pydantic = ">2.0"
@@ -26,15 +27,20 @@ sqlmodel = "^0.0.16"
 bcrypt = "4.0.1"
 pydantic-settings = "^2.2.1"
 sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
+requests = "^2.31.0"
+pdb-tools = "^2.5.0"
+
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
 mypy = "^1.8.0"
 ruff = "^0.2.2"
 pre-commit = "^3.6.2"
+pytest-mock = "^3.12.0"
 types-python-jose = "^3.3.4.20240106"
 types-passlib = "^1.7.7.20240106"
-coverage = "^7.4.3"
+datamodel-code-generator = "^0.25.4"
 
 [tool.isort]
 multi_line_output = 3
