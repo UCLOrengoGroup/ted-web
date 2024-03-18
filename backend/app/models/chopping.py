@@ -1,7 +1,6 @@
 import re
-from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel
 
 SEGMENT_PDB_RES_LABEL_RE = re.compile(r'(?P<start>-?\d+[A-Z]?)-(?P<stop>-?\d+[A-Z]?)$')
 SEGMENT_NUM_RE = re.compile(r'(?P<start>\d+)-(?P<stop>\d+)$')
@@ -17,7 +16,7 @@ class SegmentNum(BaseModel):
 
 class ChoppingBase(BaseModel):
     domain_id: str
-    segments: Union[List[SegmentNum], List[SegmentResLabel]]
+    segments: list[SegmentNum] | list[SegmentResLabel]
 
     @classmethod
     def from_chopping_str(cls, domain_id: str, chopping_str: str) -> 'ChoppingBase':
@@ -44,7 +43,7 @@ class ChoppingBase(BaseModel):
             if m is None:
                 raise ValueError(f"Invalid segment string: {seg_str} (did not match {seg_re})")
             seg = seg_class(
-                start=seg_cast(m.group('start')), 
+                start=seg_cast(m.group('start')),
                 stop=seg_cast(m.group('stop')),
             )
             segments.append(seg)
@@ -54,10 +53,10 @@ class ChoppingBase(BaseModel):
             segments=[seg]
         )
 
-    def get_first_res(self) -> Union[int, str]:
+    def get_first_res(self) -> int | str:
         return self.segments[0].start
 
-    def get_last_res(self) -> Union[int, str]:
+    def get_last_res(self) -> int | str:
         return self.segments[-1].stop
 
     def to_str(self) -> str:
@@ -71,11 +70,11 @@ class ChoppingBase(BaseModel):
 
 
 class ChoppingResLabel(ChoppingBase):
-    segments: List[SegmentResLabel]
+    segments: list[SegmentResLabel]
 
     def count_residues(self) -> None:
         raise NotImplementedError("Cannot get residue count from PDB residue labels (without more jiggery pokery)")
 
 
 class ChoppingNumeric(ChoppingBase):
-    segments: List[SegmentNum]
+    segments: list[SegmentNum]

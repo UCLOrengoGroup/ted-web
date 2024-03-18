@@ -2,6 +2,7 @@ from sqlmodel import Field, Relationship, SQLModel
 
 from .utils import ted_id_to_af_id
 
+
 # Shared properties
 # TODO replace email str with EmailStr when sqlmodel supports it
 class UserBase(SQLModel):

@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 from pytest_mock import MockerFixture
 
 from app.core.config import settings
-from app.utils import generate_password_reset_token
 
 
 def test_get_access_token(client: TestClient) -> None:

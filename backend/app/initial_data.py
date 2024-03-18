@@ -1,6 +1,6 @@
-from pathlib import Path
 import logging
 import re
+from pathlib import Path
 
 from sqlmodel import Session
 
@@ -10,20 +10,20 @@ from app.models.db import DomainSummary
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-ROOT_DIR = Path(__file__).parent / '..' 
+ROOT_DIR = Path(__file__).parent / '..'
 INITIAL_DATA_FILE = ROOT_DIR / 'data' / 'test100.domain_summary.tsv'
 
-PROTEOME_ID_RE = re.compile('proteome-tax_id-(?P<proteome_id>\d+)-(\d+)_v(\d+).consensus_domains')
+PROTEOME_ID_RE = re.compile(r'proteome-tax_id-(?P<proteome_id>\d+)-(\d+)_v(\d+).consensus_domains')
 AF_ID_RE = re.compile('AF-(?P<uniprot_acc>[A-Z0-9]+)-(?P<frag_num>F[0-9]+)-model_v(?P<af_version>[0-9]+)_(?P<ted_dom_num>TED[0-9]+)')
 
 def load_domain_summary(session: Session) -> None:
-    with open(INITIAL_DATA_FILE, 'r') as f:
+    with open(INITIAL_DATA_FILE) as f:
         for line in f:
             cols = line.strip().split('\t')
             if len(cols) != 21:
                 msg = f"Invalid line: {line} (expected 21 columns, got {len(cols)}"
                 raise ValueError(msg)
-            
+
             proteome_id_raw = cols[12]
             m = PROTEOME_ID_RE.match(proteome_id_raw)
             if m is None:

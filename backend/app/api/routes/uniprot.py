@@ -1,14 +1,13 @@
 import logging
-from typing import Any, Annotated
+from typing import Any
 
-from fastapi import APIRouter, HTTPException, Body
-from sqlmodel import func, select
+from fastapi import APIRouter, HTTPException
+from sqlmodel import select
 
 from app.api.deps import SessionDep
-from app.models.db import DomainSummary
 from app.models.beacons import UniprotSummary
+from app.models.db import DomainSummary
 from app.transformers import create_uniprot_summary
-
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +16,7 @@ router = APIRouter()
 
 @router.get("/summary/{uniprot_acc}", response_model=UniprotSummary)
 def read_uniprot_summary(
-    session: SessionDep, 
+    session: SessionDep,
     uniprot_acc: str,
     skip: int = 0, limit: int = 100
 ) -> Any:

@@ -1,24 +1,31 @@
-from typing import List
 
-from .models.db import DomainSummary
-from .models.chopping import ChoppingResLabel, ChoppingNumeric
 from .models.beacons import (
-    UniprotSummary, UniprotEntry, SummaryItems, 
-    ModelCategory, ModelFormat, ModelType, 
-    ConfidenceType, Overview,
-    Entity, EntityType, EntityPolyType, IdentifierCategory
+    ConfidenceType,
+    Entity,
+    EntityPolyType,
+    EntityType,
+    IdentifierCategory,
+    ModelCategory,
+    ModelFormat,
+    ModelType,
+    Overview,
+    SummaryItems,
+    UniprotEntry,
+    UniprotSummary,
 )
+from .models.chopping import ChoppingNumeric
+from .models.db import DomainSummary
 
 
 def convert_domain_summary_to_uniprot_structure_summary_items(
-        domain_summary: DomainSummary, 
+        domain_summary: DomainSummary,
         host="https://www.ted.org") -> SummaryItems:
-    
+
     provider = "AlphaFold DB"
     date_created = "2022-06-01" # AF v4
 
     chopping = ChoppingNumeric.from_chopping_str(
-        domain_id=domain_summary.ted_id, 
+        domain_id=domain_summary.ted_id,
         chopping_str=domain_summary.chopping)
     first_res = chopping.get_first_res()
     last_res = chopping.get_last_res()
@@ -54,7 +61,7 @@ def convert_domain_summary_to_uniprot_structure_summary_items(
 
 
 
-def create_uniprot_summary(uniprot_acc: str, domain_summary_items: List[DomainSummary]) -> UniprotSummary:
+def create_uniprot_summary(uniprot_acc: str, domain_summary_items: list[DomainSummary]) -> UniprotSummary:
 
     summary_items_entries = []
     for domain_summary in domain_summary_items:

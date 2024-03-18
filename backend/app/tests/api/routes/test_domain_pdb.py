@@ -1,19 +1,22 @@
+from logging import getLogger
+
 from fastapi.testclient import TestClient
 from sqlmodel import Session
 
 from app.core.config import settings
-from app.tests.utils.uniprot_summary import create_random_domain_summary
-from app.tests.utils.uniprot_summary import create_ted_id_string
-from logging import getLogger
+from app.tests.utils.uniprot_summary import (
+    create_random_domain_summary,
+    create_ted_id_string,
+)
 
 logger = getLogger(__name__)
 
 def test_read_domain_pdb(
-    client: TestClient, 
+    client: TestClient,
     db: Session,
     mock_af_pdb: None
 ) -> None:
-    
+
     uniprot_acc = "P12345"
     chopping = "1-100_200-250"
 
@@ -33,7 +36,7 @@ def test_read_domain_pdb(
     content = response.content.decode("utf-8")
 
     assert content is not None
-        
+
     assert "ATOM" in content
 
 

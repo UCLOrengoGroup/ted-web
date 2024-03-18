@@ -1,11 +1,11 @@
 import logging
-from tempfile import NamedTemporaryFile
 import subprocess
+from tempfile import NamedTemporaryFile
 
 import requests
 
-from app.models.db import DomainSummary
 from app.models.chopping import ChoppingNumeric
+from app.models.db import DomainSummary
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ def fetch_pdb_for_ted_domain(ted_domain: DomainSummary) -> str:
     ted_id = ted_domain.ted_id
     af_id = ted_domain.af_id
     chopping = ChoppingNumeric.from_chopping_str(
-        domain_id=ted_id, 
+        domain_id=ted_id,
         chopping_str=ted_domain.chopping)
 
     logger.info(f"Fetching PDB data for TED domain {ted_id} from AlphaFold")
@@ -44,9 +44,9 @@ def fetch_pdb_for_ted_domain(ted_domain: DomainSummary) -> str:
     logger.info(f"Running CMD: {' '.join(args)}")
 
     process = subprocess.run(
-        args, 
+        args,
         stdout=subprocess.PIPE,
         text=True,
         check=True)
-    
+
     return process.stdout

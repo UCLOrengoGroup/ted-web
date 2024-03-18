@@ -1,23 +1,19 @@
-import random
 import logging
-from typing import Union, List, Optional
+import random
 
 from sqlmodel import Session
 
-from app import crud
-from app.models.db import Item, ItemCreate
-from app.tests.utils.user import create_random_user
-from app.tests.utils.utils import random_lower_string, random_md5_string
-from app.tests.utils.cath import random_cath_code
-from app.models.db import DomainSummary
 from app.models.chopping import ChoppingNumeric, SegmentNum
+from app.models.db import DomainSummary
+from app.tests.utils.cath import random_cath_code
+from app.tests.utils.utils import random_lower_string, random_md5_string
 
 logger = logging.getLogger(__name__)
 
 def create_random_uniprot_acc() -> str:
     return f"P{random.randint(0, 99999):05}"
 
-def create_random_chopping_numeric(dom_id: Optional[str] = None, is_multi: Optional[bool] = None) -> ChoppingNumeric:
+def create_random_chopping_numeric(dom_id: str | None = None, is_multi: bool | None = None) -> ChoppingNumeric:
     if dom_id is None:
         dom_id = random_lower_string()
 
@@ -50,14 +46,14 @@ def create_ted_id_string(uniprot_acc: str, domain_num: int) -> str:
     return f"AF-{uniprot_acc}-F1-model_v4_TED{domain_num:02}"
 
 
-def create_random_domain_summary(uniprot_acc: str, 
-                                 domain_num: int = 1, 
-                                 ted_id: Optional[str] = None,
-                                 is_multi: Optional[bool] = None, 
-                                 cath_code: Optional[str] = None, 
-                                 plddt: Optional[float] = None,
-                                 chopping: Optional[Union[str, ChoppingNumeric]] = None,
-                                 md5: Optional[str] = None) -> DomainSummary:
+def create_random_domain_summary(uniprot_acc: str,
+                                 domain_num: int = 1,
+                                 ted_id: str | None = None,
+                                 is_multi: bool | None = None,
+                                 cath_code: str | None = None,
+                                 plddt: float | None = None,
+                                 chopping: str | ChoppingNumeric | None = None,
+                                 md5: str | None = None) -> DomainSummary:
 
     if ted_id is None:
         ted_id=create_ted_id_string(uniprot_acc=uniprot_acc, domain_num=domain_num)
@@ -68,7 +64,7 @@ def create_random_domain_summary(uniprot_acc: str,
         plddt = 50 + 50 * random.random()
     if md5 is None:
         md5 = random_md5_string()
-    
+
     chopping_obj: ChoppingNumeric = None
     if chopping is None:
         chopping_obj = create_random_chopping_numeric(is_multi=is_multi)
@@ -105,7 +101,7 @@ def create_random_domain_summary(uniprot_acc: str,
     )
     return dom_summary
 
-def create_random_domain_summary_entries(db: Session, uniprot_acc: Optional[str] = None) -> List[DomainSummary]:
+def create_random_domain_summary_entries(db: Session, uniprot_acc: str | None = None) -> list[DomainSummary]:
     if uniprot_acc is None:
         uniprot_acc = "P12345"
 

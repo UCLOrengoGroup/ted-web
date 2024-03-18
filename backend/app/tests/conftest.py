@@ -1,6 +1,6 @@
-from collections.abc import Generator
 import gzip
 import logging
+from collections.abc import Generator
 from pathlib import Path
 
 import pytest
@@ -11,7 +11,7 @@ from app import structure
 from app.core.config import settings
 from app.core.db import engine, init_db
 from app.main import app as app_singleton
-from app.models.db import Item, User, DomainSummary
+from app.models.db import DomainSummary, Item, User
 from app.tests.utils.user import authentication_token_from_email
 from app.tests.utils.utils import get_superuser_token_headers
 
