@@ -1,5 +1,6 @@
 from sqlmodel import Field, Relationship, SQLModel
 
+from .utils import ted_id_to_af_id
 
 # Shared properties
 # TODO replace email str with EmailStr when sqlmodel supports it
@@ -25,7 +26,7 @@ class UserCreateOpen(SQLModel):
 # Properties to receive via API on update, all are optional
 # TODO replace email str with EmailStr when sqlmodel supports it
 class UserUpdate(UserBase):
-    email: str | None = None  # type: ignore
+    email: str | None = None
     password: str | None = None
 
 
@@ -70,7 +71,7 @@ class ItemCreate(ItemBase):
 
 # Properties to receive on item update
 class ItemUpdate(ItemBase):
-    title: str | None = None  # type: ignore
+    title: str | None = None
 
 
 # Database model, database table inferred from class name
@@ -111,3 +112,32 @@ class TokenPayload(SQLModel):
 class NewPassword(SQLModel):
     token: str
     new_password: str
+
+
+class DomainSummary(SQLModel, table=True):
+    ted_id: str = Field(nullable=False, primary_key=True)
+    uniprot_acc: str = Field(nullable=False, index=True)
+    md5_domain: str = Field(nullable=False, index=True)
+    consensus_level: str = Field(nullable=False, index=True)
+    chopping: str = Field(nullable=False)
+    nres_domain: int = Field(nullable=False)
+    num_segments: int = Field(nullable=False)
+    plddt: float = Field(nullable=False)
+    num_helix_strand_turn: int = Field(nullable=False)
+    num_helix: int = Field(nullable=False)
+    num_strand: int = Field(nullable=False)
+    num_helix_strand: int = Field(nullable=False)
+    num_turn: int = Field(nullable=False)
+    proteome_id: int = Field(nullable=False, index=True)
+    cath_label: str = Field(nullable=False)
+    cath_assignment_level: str = Field(nullable=False)
+    cath_assignment_method: str = Field(nullable=False)
+    packing_density: float = Field(nullable=False)
+    norm_rg: float = Field(nullable=False)
+    tax_common_name: str = Field(nullable=False)
+    tax_scientific_name: str = Field(nullable=False, index=True)
+    tax_lineage: str = Field(nullable=False)
+
+    @property
+    def af_id(self):
+        return ted_id_to_af_id(self.ted_id)
