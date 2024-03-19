@@ -13,619 +13,633 @@ from pydantic import ConfigDict, Field, confloat
 class BaseModel(PyBaseModel):
     model_config = ConfigDict(
         protected_namespaces=(),
-        extra='forbid',
+        extra="forbid",
     )
+
 
 class AccessionListRequest(BaseModel):
     accessions: list[str] = Field(
         ...,
-        description='A list of UniProt accessions',
+        description="A list of UniProt accessions",
         json_schema_extra=dict(
-            examples=['P00734', 'P38398'],
-            title='Accessions',
-        )
+            examples=["P00734", "P38398"],
+            title="Accessions",
+        ),
     )
     provider: str | None = Field(
         None,
-        description='Name of the model provider',
+        description="Name of the model provider",
         json_schema_extra=dict(
-            examples=['swissmodel'],
-            title='Provider',
-        )
+            examples=["swissmodel"],
+            title="Provider",
+        ),
     )
     exclude_provider: str | None = Field(
         None,
-        description='Provider to exclude.',
+        description="Provider to exclude.",
         json_schema_extra=dict(
-            examples=['pdbe'],
-            title='Exclude Provider',
-        )
+            examples=["pdbe"],
+            title="Exclude Provider",
+        ),
     )
 
 
 class ConfidenceType(Enum):
-    pLDDT = 'pLDDT'
-    QMEANDisCo = 'QMEANDisCo'
-    ipTM_pTM = 'ipTM+pTM'
+    pLDDT = "pLDDT"
+    QMEANDisCo = "QMEANDisCo"
+    ipTM_pTM = "ipTM+pTM"
 
 
 class EnsemblTranscript(BaseModel):
     transcript_id: str = Field(
-        ..., description='Transcript identifier',
-        json_schema_extra=dict(title='Transcript Id'),
+        ...,
+        description="Transcript identifier",
+        json_schema_extra=dict(title="Transcript Id"),
     )
     seqRegionStart: int = Field(
-        ..., description='Start position of the transcript',
-        json_schema_extra=dict(title='Seqregionstart'),
+        ...,
+        description="Start position of the transcript",
+        json_schema_extra=dict(title="Seqregionstart"),
     )
     seqRegionEnd: int = Field(
-        ..., description='End position of the transcript',
-        json_schema_extra=dict(title='Seqregionend'),
+        ...,
+        description="End position of the transcript",
+        json_schema_extra=dict(title="Seqregionend"),
     )
     alignment_difference: confloat(ge=0.0, le=1.0) | None = Field(
         None,
-        description='Fraction of alignment difference (0 to 1)',
+        description="Fraction of alignment difference (0 to 1)",
         json_schema_extra=dict(
-            title='Alignment Difference',
-        )
+            title="Alignment Difference",
+        ),
     )
 
 
 class EnsembleSampleFormat(Enum):
-    PDB = 'PDB'
-    MMCIF = 'MMCIF'
-    BCIF = 'BCIF'
+    PDB = "PDB"
+    MMCIF = "MMCIF"
+    BCIF = "BCIF"
 
 
 class EntityPolyType(Enum):
-    CYCLIC_PSEUDO_PEPTIDE = 'CYCLIC-PSEUDO-PEPTIDE'
-    PEPTIDE_NUCLEIC_ACID = 'PEPTIDE NUCLEIC ACID'
-    POLYDEOXYRIBONUCLEOTIDE = 'POLYDEOXYRIBONUCLEOTIDE'
+    CYCLIC_PSEUDO_PEPTIDE = "CYCLIC-PSEUDO-PEPTIDE"
+    PEPTIDE_NUCLEIC_ACID = "PEPTIDE NUCLEIC ACID"
+    POLYDEOXYRIBONUCLEOTIDE = "POLYDEOXYRIBONUCLEOTIDE"
     POLYDEOXYRIBONUCLEOTIDE_POLYRIBONUCLEOTIDE_HYBRID = (
-        'POLYDEOXYRIBONUCLEOTIDE/POLYRIBONUCLEOTIDE HYBRID'
+        "POLYDEOXYRIBONUCLEOTIDE/POLYRIBONUCLEOTIDE HYBRID"
     )
-    POLYPEPTIDE_D_ = 'POLYPEPTIDE(D)'
-    POLYPEPTIDE_L_ = 'POLYPEPTIDE(L)'
-    POLYRIBONUCLEOTIDE = 'POLYRIBONUCLEOTIDE'
-    OTHER = 'OTHER'
+    POLYPEPTIDE_D_ = "POLYPEPTIDE(D)"
+    POLYPEPTIDE_L_ = "POLYPEPTIDE(L)"
+    POLYRIBONUCLEOTIDE = "POLYRIBONUCLEOTIDE"
+    OTHER = "OTHER"
 
 
 class EntityType(Enum):
-    BRANCHED = 'BRANCHED'
-    MACROLIDE = 'MACROLIDE'
-    NON_POLYMER = 'NON-POLYMER'
-    POLYMER = 'POLYMER'
-    WATER = 'WATER'
+    BRANCHED = "BRANCHED"
+    MACROLIDE = "MACROLIDE"
+    NON_POLYMER = "NON-POLYMER"
+    POLYMER = "POLYMER"
+    WATER = "WATER"
 
 
 class Evidence(Enum):
-    EXPERIMENTALLY_DETERMINED = 'EXPERIMENTALLY DETERMINED'
-    COMPUTATIONAL_PREDICTED = 'COMPUTATIONAL/PREDICTED'
-    FROM_LITERATURE = 'FROM LITERATURE'
+    EXPERIMENTALLY_DETERMINED = "EXPERIMENTALLY DETERMINED"
+    COMPUTATIONAL_PREDICTED = "COMPUTATIONAL/PREDICTED"
+    FROM_LITERATURE = "FROM LITERATURE"
 
 
 class ExperimentalMethod(Enum):
-    ELECTRON_CRYSTALLOGRAPHY = 'ELECTRON CRYSTALLOGRAPHY'
-    ELECTRON_MICROSCOPY = 'ELECTRON MICROSCOPY'
-    EPR = 'EPR'
-    FIBER_DIFFRACTION = 'FIBER DIFFRACTION'
-    FLUORESCENCE_TRANSFER = 'FLUORESCENCE TRANSFER'
-    INFRARED_SPECTROSCOPY = 'INFRARED SPECTROSCOPY'
-    NEUTRON_DIFFRACTION = 'NEUTRON DIFFRACTION'
-    X_RAY_POWDER_DIFFRACTION = 'X-RAY POWDER DIFFRACTION'
-    SOLID_STATE_NMR = 'SOLID-STATE NMR'
-    SOLUTION_NMR = 'SOLUTION NMR'
-    X_RAY_SOLUTION_SCATTERING = 'X-RAY SOLUTION SCATTERING'
-    THEORETICAL_MODEL = 'THEORETICAL MODEL'
-    X_RAY_DIFFRACTION = 'X-RAY DIFFRACTION'
-    HYBRID = 'HYBRID'
+    ELECTRON_CRYSTALLOGRAPHY = "ELECTRON CRYSTALLOGRAPHY"
+    ELECTRON_MICROSCOPY = "ELECTRON MICROSCOPY"
+    EPR = "EPR"
+    FIBER_DIFFRACTION = "FIBER DIFFRACTION"
+    FLUORESCENCE_TRANSFER = "FLUORESCENCE TRANSFER"
+    INFRARED_SPECTROSCOPY = "INFRARED SPECTROSCOPY"
+    NEUTRON_DIFFRACTION = "NEUTRON DIFFRACTION"
+    X_RAY_POWDER_DIFFRACTION = "X-RAY POWDER DIFFRACTION"
+    SOLID_STATE_NMR = "SOLID-STATE NMR"
+    SOLUTION_NMR = "SOLUTION NMR"
+    X_RAY_SOLUTION_SCATTERING = "X-RAY SOLUTION SCATTERING"
+    THEORETICAL_MODEL = "THEORETICAL MODEL"
+    X_RAY_DIFFRACTION = "X-RAY DIFFRACTION"
+    HYBRID = "HYBRID"
 
 
 class ExperimentalMethod1(Enum):
-    ELECTRON_CRYSTALLOGRAPHY = 'ELECTRON CRYSTALLOGRAPHY'
-    ELECTRON_MICROSCOPY = 'ELECTRON MICROSCOPY'
-    EPR = 'EPR'
-    FIBER_DIFFRACTION = 'FIBER DIFFRACTION'
-    FLUORESCENCE_TRANSFER = 'FLUORESCENCE TRANSFER'
-    INFRARED_SPECTROSCOPY = 'INFRARED SPECTROSCOPY'
-    NEUTRON_DIFFRACTION = 'NEUTRON DIFFRACTION'
-    POWDER_DIFFRACTION = 'POWDER DIFFRACTION'
-    SOLID_STATE_NMR = 'SOLID-STATE NMR'
-    SOLUTION_NMR = 'SOLUTION NMR'
-    SOLUTION_SCATTERING = 'SOLUTION SCATTERING'
-    THEORETICAL_MODEL = 'THEORETICAL MODEL'
-    X_RAY_DIFFRACTION = 'X-RAY DIFFRACTION'
-    HYBRID = 'HYBRID'
+    ELECTRON_CRYSTALLOGRAPHY = "ELECTRON CRYSTALLOGRAPHY"
+    ELECTRON_MICROSCOPY = "ELECTRON MICROSCOPY"
+    EPR = "EPR"
+    FIBER_DIFFRACTION = "FIBER DIFFRACTION"
+    FLUORESCENCE_TRANSFER = "FLUORESCENCE TRANSFER"
+    INFRARED_SPECTROSCOPY = "INFRARED SPECTROSCOPY"
+    NEUTRON_DIFFRACTION = "NEUTRON DIFFRACTION"
+    POWDER_DIFFRACTION = "POWDER DIFFRACTION"
+    SOLID_STATE_NMR = "SOLID-STATE NMR"
+    SOLUTION_NMR = "SOLUTION NMR"
+    SOLUTION_SCATTERING = "SOLUTION SCATTERING"
+    THEORETICAL_MODEL = "THEORETICAL MODEL"
+    X_RAY_DIFFRACTION = "X-RAY DIFFRACTION"
+    HYBRID = "HYBRID"
 
 
 class FeatureType(Enum):
-    CARBOHYD = 'CARBOHYD'
-    DOMAIN = 'DOMAIN'
-    ACT_SITE = 'ACT_SITE'
-    METAL = 'METAL'
-    BINDING = 'BINDING'
-    NON_STD = 'NON_STD'
-    MOD_RES = 'MOD_RES'
-    DISULFID = 'DISULFID'
-    MUTAGEN = 'MUTAGEN'
-    HELIX = 'HELIX'
-    STRAND = 'STRAND'
-    DISORDERED = 'DISORDERED'
-    INTERFACE = 'INTERFACE'
-    CHANNEL = 'CHANNEL'
+    CARBOHYD = "CARBOHYD"
+    DOMAIN = "DOMAIN"
+    ACT_SITE = "ACT_SITE"
+    METAL = "METAL"
+    BINDING = "BINDING"
+    NON_STD = "NON_STD"
+    MOD_RES = "MOD_RES"
+    DISULFID = "DISULFID"
+    MUTAGEN = "MUTAGEN"
+    HELIX = "HELIX"
+    STRAND = "STRAND"
+    DISORDERED = "DISORDERED"
+    INTERFACE = "INTERFACE"
+    CHANNEL = "CHANNEL"
 
 
 class HSPS(BaseModel):
-    hsp_score: float = Field(..., title='Hsp Score')
-    hsp_bit_score: float = Field(..., title='Hsp Bit Score')
-    hsp_align_len: int = Field(..., title='Hsp Align Len')
-    hsp_identity: float = Field(..., title='Hsp Identity')
-    hsp_positive: float = Field(..., title='Hsp Positive')
-    hsp_qseq: str = Field(..., title='Hsp Qseq')
-    hsp_hseq: str = Field(..., title='Hsp Hseq')
-    hsp_mseq: str = Field(..., title='Hsp Mseq')
-    hsp_expect: float = Field(..., title='Hsp Expect')
+    hsp_score: float = Field(..., title="Hsp Score")
+    hsp_bit_score: float = Field(..., title="Hsp Bit Score")
+    hsp_align_len: int = Field(..., title="Hsp Align Len")
+    hsp_identity: float = Field(..., title="Hsp Identity")
+    hsp_positive: float = Field(..., title="Hsp Positive")
+    hsp_qseq: str = Field(..., title="Hsp Qseq")
+    hsp_hseq: str = Field(..., title="Hsp Hseq")
+    hsp_mseq: str = Field(..., title="Hsp Mseq")
+    hsp_expect: float = Field(..., title="Hsp Expect")
 
 
 class IdentifierCategory(Enum):
-    UNIPROT = 'UNIPROT'
-    RFAM = 'RFAM'
-    CCD = 'CCD'
-    SMILES = 'SMILES'
-    INCHI = 'INCHI'
-    INCHIKEY = 'INCHIKEY'
+    UNIPROT = "UNIPROT"
+    RFAM = "RFAM"
+    CCD = "CCD"
+    SMILES = "SMILES"
+    INCHI = "INCHI"
+    INCHIKEY = "INCHIKEY"
 
 
 class JobSubmissionErrorMessage(BaseModel):
     message: str | None = Field(
-        'Error in submitting the job, please retry!', title='Message'
+        "Error in submitting the job, please retry!", title="Message"
     )
 
 
 class ModelCategory(Enum):
-    EXPERIMENTALLY_DETERMINED = 'EXPERIMENTALLY DETERMINED'
-    TEMPLATE_BASED = 'TEMPLATE-BASED'
-    AB_INITIO = 'AB-INITIO'
-    CONFORMATIONAL_ENSEMBLE = 'CONFORMATIONAL ENSEMBLE'
+    EXPERIMENTALLY_DETERMINED = "EXPERIMENTALLY DETERMINED"
+    TEMPLATE_BASED = "TEMPLATE-BASED"
+    AB_INITIO = "AB-INITIO"
+    CONFORMATIONAL_ENSEMBLE = "CONFORMATIONAL ENSEMBLE"
 
 
 class ModelFormat(Enum):
-    PDB = 'PDB'
-    MMCIF = 'MMCIF'
-    BCIF = 'BCIF'
+    PDB = "PDB"
+    MMCIF = "MMCIF"
+    BCIF = "BCIF"
 
 
 class ModelType(Enum):
-    ATOMIC = 'ATOMIC'
-    DUMMY = 'DUMMY'
-    MIX = 'MIX'
+    ATOMIC = "ATOMIC"
+    DUMMY = "DUMMY"
+    MIX = "MIX"
 
 
 class NoJobFoundMessage(BaseModel):
     message: str | None = Field(
-        'No search job found for the given sequence, please submit the job again!',
-        json_schema_extra=dict(title='Message'),
+        "No search job found for the given sequence, please submit the job again!",
+        json_schema_extra=dict(title="Message"),
     )
 
 
 class OligomericState(Enum):
-    MONOMER = 'MONOMER'
-    HOMODIMER = 'HOMODIMER'
-    HETERODIMER = 'HETERODIMER'
-    HOMO_OLIGOMER = 'HOMO-OLIGOMER'
-    HETERO_OLIGOMER = 'HETERO-OLIGOMER'
+    MONOMER = "MONOMER"
+    HOMODIMER = "HOMODIMER"
+    HETERODIMER = "HETERODIMER"
+    HOMO_OLIGOMER = "HOMO-OLIGOMER"
+    HETERO_OLIGOMER = "HETERO-OLIGOMER"
 
 
 class Region(BaseModel):
     start: int = Field(
         ...,
-        description='The first position of the annotation',
-        json_schema_extra=dict(examples=[23], title='Start'),
+        description="The first position of the annotation",
+        json_schema_extra=dict(examples=[23], title="Start"),
     )
     end: int = Field(
-        ..., description='The last position of the annotation',
-        json_schema_extra=dict(examples=[42], title='End'),
+        ...,
+        description="The last position of the annotation",
+        json_schema_extra=dict(examples=[42], title="End"),
     )
 
 
 class Residue(BaseModel):
     confidence: float | None = Field(
         None,
-        description='Confidence score in the range of [0,1]',
-        json_schema_extra=dict(examples=[0.99], title='Confidence'),
+        description="Confidence score in the range of [0,1]",
+        json_schema_extra=dict(examples=[0.99], title="Confidence"),
     )
     model_residue_label: int = Field(
-        ..., description='Model residue index',
-        json_schema_extra=dict(examples=[1], title='Model Residue Label')
+        ...,
+        description="Model residue index",
+        json_schema_extra=dict(examples=[1], title="Model Residue Label"),
     )
     uniprot_residue_number: int = Field(
         ...,
-        description='UniProt residue index',
-        json_schema_extra=dict(examples=[1], title='Uniprot Residue Number')
+        description="UniProt residue index",
+        json_schema_extra=dict(examples=[1], title="Uniprot Residue Number"),
     )
 
 
 class SearchInProgressMessage(BaseModel):
     message: str | None = Field(
-        'Search in progress, please try after sometime!',
-        json_schema_extra=dict(title='Message'),
+        "Search in progress, please try after sometime!",
+        json_schema_extra=dict(title="Message"),
     )
 
 
 class SearchSuccessMessage(BaseModel):
-    job_id: str = Field(..., title='Job Id')
+    job_id: str = Field(..., title="Job Id")
 
 
 class Seqres(BaseModel):
     aligned_sequence: str = Field(
         ...,
-        description='Sequence of the model',
+        description="Sequence of the model",
         json_schema_extra=dict(
-            examples=['AAGTGHLKKKYT...'],
-            title='Aligned Sequence',
-        )
+            examples=["AAGTGHLKKKYT..."],
+            title="Aligned Sequence",
+        ),
     )
     from_: int = Field(
         ...,
-        alias='from',
-        description='1-indexed first residue',
+        alias="from",
+        description="1-indexed first residue",
         json_schema_extra=dict(
             examples=[32],
-            title='From',
+            title="From",
         ),
     )
     to: int = Field(
         ...,
-        description='1-indexed last residue',
-        json_schema_extra=dict(examples=[976], title='To')
+        description="1-indexed last residue",
+        json_schema_extra=dict(examples=[976], title="To"),
     )
 
 
 class Sequence(BaseModel):
-    sequence: str = Field(..., title='Sequence')
+    sequence: str = Field(..., title="Sequence")
 
 
 class Template(BaseModel):
     template_id: str = Field(
         ...,
-        description='Identifier of the template',
-        examples=['2aqa'],
-        title='Template Id',
+        description="Identifier of the template",
+        examples=["2aqa"],
+        title="Template Id",
     )
     chain_id: str = Field(
         ...,
-        description='Identifier of the chain of the template; this is label_asym_id in mmCIF',
-        examples=['C'],
-        title='Chain Id',
+        description="Identifier of the chain of the template; this is label_asym_id in mmCIF",
+        examples=["C"],
+        title="Chain Id",
     )
     template_sequence_identity: float = Field(
         ...,
-        description='Sequence identity of the template with the  UniProt accession, in the range of [0,1]\n',
+        description="Sequence identity of the template with the  UniProt accession, in the range of [0,1]\n",
         examples=[0.97],
-        title='Template Sequence Identity',
+        title="Template Sequence Identity",
     )
     last_updated: str = Field(
         ...,
-        description='Date of release of the last update in  the format of YYYY-MM-DD\n',
-        examples=['2021-08-06'],
-        title='Last Updated',
+        description="Date of release of the last update in  the format of YYYY-MM-DD\n",
+        examples=["2021-08-06"],
+        title="Last Updated",
     )
     provider: str = Field(
-        ..., description='Provider of the template', examples=['PDB'], title='Provider'
+        ..., description="Provider of the template", examples=["PDB"], title="Provider"
     )
     experimental_method: ExperimentalMethod1 = Field(
         ...,
-        description='Experimental method used to determine the template',
-        examples=['HYBRID'],
+        description="Experimental method used to determine the template",
+        examples=["HYBRID"],
     )
     resolution: float = Field(
         ...,
-        description='Resolution of the template, in Angstrom',
+        description="Resolution of the template, in Angstrom",
         examples=[2.1],
-        title='Resolution',
+        title="Resolution",
     )
     preferred_assembly_id: str | None = Field(
         None,
-        description='Identifier of the preferred assembly of the template',
-        examples=['1'],
-        title='Preferred Assembly Id',
+        description="Identifier of the preferred assembly of the template",
+        examples=["1"],
+        title="Preferred Assembly Id",
     )
 
 
 class Uniprot(BaseModel):
     aligned_sequence: str = Field(
         ...,
-        description='Sequence of the UniProt accession',
-        examples=['AAGTGHLKKKYTAAGTGHLKKKYT...'],
-        title='Aligned Sequence',
+        description="Sequence of the UniProt accession",
+        examples=["AAGTGHLKKKYTAAGTGHLKKKYT..."],
+        title="Aligned Sequence",
     )
     from_: int = Field(
         ...,
-        alias='from',
-        description='1-indexed first residue',
+        alias="from",
+        description="1-indexed first residue",
         examples=[23],
-        title='From',
+        title="From",
     )
-    to: int = Field(..., description='1-indexed last residue', examples=[868], title='To')
+    to: int = Field(
+        ..., description="1-indexed last residue", examples=[868], title="To"
+    )
 
 
 class UniprotEntry(BaseModel):
-    ac: str = Field(..., description='UniProt accession', examples=['P00520'], title='Ac')
+    ac: str = Field(
+        ..., description="UniProt accession", examples=["P00520"], title="Ac"
+    )
     id: str | None = Field(
-        None, description='UniProt identifier', examples=['ABL1_MOUSE'], title='Id'
+        None, description="UniProt identifier", examples=["ABL1_MOUSE"], title="Id"
     )
     uniprot_checksum: str | None = Field(
         None,
-        description='CRC64 checksum of the UniProt sequence',
-        examples=['5F9BA1D4C7DE6925'],
-        title='Uniprot Checksum',
+        description="CRC64 checksum of the UniProt sequence",
+        examples=["5F9BA1D4C7DE6925"],
+        title="Uniprot Checksum",
     )
     sequence_length: int | None = Field(
         None,
-        description='Length of the UniProt sequence',
+        description="Length of the UniProt sequence",
         examples=[76],
-        title='Sequence Length',
+        title="Sequence Length",
     )
     segment_start: int | None = Field(
         None,
-        description='1-indexed first residue of the UniProt sequence segment',
+        description="1-indexed first residue of the UniProt sequence segment",
         examples=[1],
-        title='Segment Start',
+        title="Segment Start",
     )
     segment_end: int | None = Field(
         None,
-        description='1-indexed last residue of the UniProt sequence segment',
+        description="1-indexed last residue of the UniProt sequence segment",
         examples=[86],
-        title='Segment End',
+        title="Segment End",
     )
     description: str | None = Field(
         None,
-        description='Description of the UniProt entry',
-        examples=['Proto-oncogene tyrosine-protein kinase ABL1'],
-        title='Description',
+        description="Description of the UniProt entry",
+        examples=["Proto-oncogene tyrosine-protein kinase ABL1"],
+        title="Description",
     )
 
 
 class ValidationError(BaseModel):
-    loc: list[str | int] = Field(..., title='Location')
-    msg: str = Field(..., title='Message')
-    type: str = Field(..., title='Error Type')
+    loc: list[str | int] = Field(..., title="Location")
+    msg: str = Field(..., title="Message")
+    type: str = Field(..., title="Error Type")
 
 
 class Entity(BaseModel):
     entity_type: EntityType = Field(
         ...,
-        description='The type of the molecular entity; similar to _entity.type in mmCIF',
-        examples=['POLYMER'],
+        description="The type of the molecular entity; similar to _entity.type in mmCIF",
+        examples=["POLYMER"],
     )
     entity_poly_type: EntityPolyType | None = Field(
         None,
-        description='The type of the molecular entity; similar to _entity_poly.type in mmCIF',
-        examples=['PEPTIDE NUCLEIC ACID'],
+        description="The type of the molecular entity; similar to _entity_poly.type in mmCIF",
+        examples=["PEPTIDE NUCLEIC ACID"],
     )
     identifier: str | None = Field(
         None,
-        description='Identifier of the molecule',
-        examples=['Q13033'],
-        title='Identifier',
+        description="Identifier of the molecule",
+        examples=["Q13033"],
+        title="Identifier",
     )
     identifier_category: IdentifierCategory | None = Field(
-        None, description='Category of the identifier', examples='UNIPROT',
+        None,
+        description="Category of the identifier",
+        examples=["UNIPROT"],
     )
     description: str = Field(
         ...,
-        description='A textual label of the molecule',
-        examples=['Striatin-3'],
-        title='Description',
+        description="A textual label of the molecule",
+        examples=["Striatin-3"],
+        title="Description",
     )
     chain_ids: list[str] = Field(
         ...,
-        description='A list of label_asym identifiers ( chain_id in the case of PDB format) of the molecule',
-        examples=['A', 'B'],
-        title='Chain Ids',
+        description="A list of label_asym identifiers ( chain_id in the case of PDB format) of the molecule",
+        examples=["A", "B"],
+        title="Chain Ids",
     )
 
 
 class FeatureItem(BaseModel):
     type: FeatureType = Field(
-        ..., description='Type of the annotation', examples='ACT_SITE'
+        ..., description="Type of the annotation", examples=["ACT_SITE"]
     )
     description: str = Field(
         ...,
-        description='Description/Label of the annotation',
-        examples=['Pfam N1221 (PF07923)'],
-        title='Description',
+        description="Description/Label of the annotation",
+        examples=["Pfam N1221 (PF07923)"],
+        title="Description",
     )
     source_name: str | None = Field(
         None,
-        description='Name of the source of the annotations, i.e. where is the data from',
-        title='Source Name',
+        description="Name of the source of the annotations, i.e. where is the data from",
+        title="Source Name",
     )
     source_url: str | None = Field(
         None,
-        description='URL of the source of the annotation, i.e. where to find more data',
-        title='Source Url',
+        description="URL of the source of the annotation, i.e. where to find more data",
+        title="Source Url",
     )
     evidence: Evidence | None = Field(
-        None, description='Evidence category of the annotation'
+        None, description="Evidence category of the annotation"
     )
     residues: list[int] | None = Field(
-        None, description='An array of residue indices', title='Residues'
+        None, description="An array of residue indices", title="Residues"
     )
-    regions: list[Region] | None = Field(None, title='Regions')
+    regions: list[Region] | None = Field(None, title="Regions")
 
 
 class HTTPValidationError(BaseModel):
-    detail: list[ValidationError] | None = Field(None, title='Detail')
+    detail: list[ValidationError] | None = Field(None, title="Detail")
 
 
 class Segment(BaseModel):
     templates: list[Template] | None = Field(
         None,
-        description='Information on the template(s) used for the model',
-        title='Templates',
+        description="Information on the template(s) used for the model",
+        title="Templates",
     )
     seqres: Seqres = Field(
-        ..., description='Information on the sequence of the model', title='Seqres'
+        ..., description="Information on the sequence of the model", title="Seqres"
     )
     uniprot: Uniprot
-    residues: list[Residue] = Field(..., title='Residues')
+    residues: list[Residue] = Field(..., title="Residues")
 
 
 class SummaryItems(BaseModel):
     model_identifier: str = Field(
         ...,
-        description='Identifier of the model, such as PDB id',
-        examples=['8kfa'],
-        title='Model Identifier',
+        description="Identifier of the model, such as PDB id",
+        examples=["8kfa"],
+        title="Model Identifier",
     )
     model_category: ModelCategory = Field(
-        ..., description='Category of the model', examples='TEMPLATE-BASED'
+        ..., description="Category of the model", examples=["TEMPLATE-BASED"]
     )
     model_url: str = Field(
         ...,
-        description='URL of the model coordinates',
-        examples=['https://www.ebi.ac.uk/pdbe/static/entry/1t29_updated.cif'],
-        title='Model Url',
+        description="URL of the model coordinates",
+        examples=["https://www.ebi.ac.uk/pdbe/static/entry/1t29_updated.cif"],
+        title="Model Url",
     )
     model_format: ModelFormat = Field(
-        ..., description='File format of the coordinates', examples='MMCIF'
+        ..., description="File format of the coordinates", examples=["MMCIF"]
     )
     model_type: ModelType | None = Field(
         None,
-        description='Defines if the coordinates are atomic-level or contains dummy atoms (e.g. SAXS models), or a mix of both (e.g. hybrid models)\n',
-        examples=['ATOMIC'],
+        description="Defines if the coordinates are atomic-level or contains dummy atoms (e.g. SAXS models), or a mix of both (e.g. hybrid models)\n",
+        examples=["ATOMIC"],
     )
     model_page_url: str | None = Field(
         None,
-        description='URL of a web page of the data provider that show the model',
-        examples=['https://alphafold.ebi.ac.uk/entry/Q5VSL9'],
-        title='Model Page Url',
+        description="URL of a web page of the data provider that show the model",
+        examples=["https://alphafold.ebi.ac.uk/entry/Q5VSL9"],
+        title="Model Page Url",
     )
     provider: str = Field(
         ...,
-        description='Name of the model provider',
-        examples=['SWISS-MODEL'],
-        title='Provider',
+        description="Name of the model provider",
+        examples=["SWISS-MODEL"],
+        title="Provider",
     )
     number_of_conformers: float | None = Field(
         None,
-        description='The number of conformers in a conformational ensemble',
+        description="The number of conformers in a conformational ensemble",
         examples=[42],
-        title='Number Of Conformers',
+        title="Number Of Conformers",
     )
     ensemble_sample_url: str | None = Field(
         None,
-        description='URL of a sample of conformations from a conformational ensemble',
-        examples=['https://proteinensemble.org/api/ensemble_sample/PED00001e001'],
-        title='Ensemble Sample Url',
+        description="URL of a sample of conformations from a conformational ensemble",
+        examples=["https://proteinensemble.org/api/ensemble_sample/PED00001e001"],
+        title="Ensemble Sample Url",
     )
     ensemble_sample_format: EnsembleSampleFormat | None = Field(
         None,
-        description='File format of the sample coordinates, e.g. PDB',
-        examples=['PDB'],
+        description="File format of the sample coordinates, e.g. PDB",
+        examples=["PDB"],
     )
     created: str = Field(
         ...,
-        description='Date of release of model generation in the format of YYYY-MM-DD',
-        examples=['2021-12-21'],
-        title='Created',
+        description="Date of release of model generation in the format of YYYY-MM-DD",
+        examples=["2021-12-21"],
+        title="Created",
     )
     sequence_identity: float = Field(
         ...,
-        description='Sequence identity in the range of [0,1] of the model to the UniProt sequence\n',
+        description="Sequence identity in the range of [0,1] of the model to the UniProt sequence\n",
         examples=[0.97],
-        title='Sequence Identity',
+        title="Sequence Identity",
     )
     uniprot_start: int = Field(
         ...,
-        description='1-indexed first residue of the model according to UniProt sequence numbering\n',
+        description="1-indexed first residue of the model according to UniProt sequence numbering\n",
         examples=[1],
-        title='Uniprot Start',
+        title="Uniprot Start",
     )
     uniprot_end: int = Field(
         ...,
-        description='1-indexed last residue of the model according to UniProt sequence numbering\n',
+        description="1-indexed last residue of the model according to UniProt sequence numbering\n",
         examples=[142],
-        title='Uniprot End',
+        title="Uniprot End",
     )
     coverage: float = Field(
         ...,
-        description='Fraction in range of [0, 1] of the UniProt sequence covered by the model.  This is calculated as (uniprot_end - uniprot_start + 1) / uniprot_sequence_length\n',
+        description="Fraction in range of [0, 1] of the UniProt sequence covered by the model.  This is calculated as (uniprot_end - uniprot_start + 1) / uniprot_sequence_length\n",
         examples=[0.4],
-        title='Coverage',
+        title="Coverage",
     )
     experimental_method: ExperimentalMethod | None = Field(
         None,
-        description='Experimental method used to determine the structure, if applicable',
+        description="Experimental method used to determine the structure, if applicable",
     )
     resolution: float | None = Field(
         None,
-        description='The resolution of the model in Angstrom, if applicable',
+        description="The resolution of the model in Angstrom, if applicable",
         examples=[1.4],
-        title='Resolution',
+        title="Resolution",
     )
     confidence_type: ConfidenceType | None = Field(
         None,
-        description='Type of the confidence measure. This is required for  theoretical models.\n',
-        examples=['QMEANDisCo'],
+        description="Type of the confidence measure. This is required for  theoretical models.\n",
+        examples=["QMEANDisCo"],
     )
     confidence_version: str | None = Field(
         None,
-        description='Version of confidence measure software used to calculate quality. This is required for theoretical models.\n',
-        examples=['v1.0.2'],
-        title='Confidence Version',
+        description="Version of confidence measure software used to calculate quality. This is required for theoretical models.\n",
+        examples=["v1.0.2"],
+        title="Confidence Version",
     )
     confidence_avg_local_score: float | None = Field(
         None,
-        description='Average of the confidence measures in the range of [0,1] for QMEANDisCo  and [0,100] for pLDDT. Please contact 3D-Beacons developers if other  estimates are to be added. This is required for theoretical models.\n',
+        description="Average of the confidence measures in the range of [0,1] for QMEANDisCo  and [0,100] for pLDDT. Please contact 3D-Beacons developers if other  estimates are to be added. This is required for theoretical models.\n",
         examples=[0.95],
-        title='Confidence Avg Local Score',
+        title="Confidence Avg Local Score",
     )
     oligomeric_state: OligomericState | None = Field(
-        None, description='Oligomeric state of the model', examples='MONOMER',
+        None,
+        description="Oligomeric state of the model",
+        examples=["MONOMER"],
     )
     oligomeric_state_confidence: float | None = Field(
         None,
-        description='Numerical value that describes the confidence in the oligomeric state of the predicted complex',
+        description="Numerical value that describes the confidence in the oligomeric state of the predicted complex",
         examples=[0.4603],
-        title='Oligomeric State Confidence',
+        title="Oligomeric State Confidence",
     )
     preferred_assembly_id: str | None = Field(
         None,
-        description='Identifier of the preferred assembly in the model',
-        examples=['1A'],
-        title='Preferred Assembly Id',
+        description="Identifier of the preferred assembly in the model",
+        examples=["1A"],
+        title="Preferred Assembly Id",
     )
     entities: list[Entity] = Field(
-        ..., description='A list of molecular entities in the model', title='Entities'
+        ..., description="A list of molecular entities in the model", title="Entities"
     )
 
 
 class Annotation(BaseModel):
     accession: str = Field(
-        ..., description='A UniProt accession', examples=['P00734'], title='Accession'
+        ..., description="A UniProt accession", examples=["P00734"], title="Accession"
     )
     id: str | None = Field(
-        None, description='A UniProt identifier', examples=['FGFR2_HUMAN'], title='Id'
+        None, description="A UniProt identifier", examples=["FGFR2_HUMAN"], title="Id"
     )
     sequence: str = Field(
         ...,
-        description='The sequence of the protein',
-        examples=['AFFGVAATRKL'],
-        title='Sequence',
+        description="The sequence of the protein",
+        examples=["AFFGVAATRKL"],
+        title="Sequence",
     )
-    annotation: list[FeatureItem] | None = Field(None, title='Annotation')
+    annotation: list[FeatureItem] | None = Field(None, title="Annotation")
 
 
 class Chain(BaseModel):
-    chain_id: str = Field(..., title='Chain Id')
-    segments: list[Segment] | None = Field(None, title='Segments')
+    chain_id: str = Field(..., title="Chain Id")
+    segments: list[Segment] | None = Field(None, title="Segments")
 
 
 class Detailed(BaseModel):
     summary: SummaryItems
-    chains: list[Chain] = Field(..., title='Chains')
+    chains: list[Chain] = Field(..., title="Chains")
 
 
 class Overview(BaseModel):
@@ -634,25 +648,25 @@ class Overview(BaseModel):
 
 class UniprotDetails(BaseModel):
     uniprot_entry: UniprotEntry | None = None
-    structures: list[Detailed] | None = Field(None, title='Structures')
+    structures: list[Detailed] | None = Field(None, title="Structures")
 
 
 class UniprotSummary(BaseModel):
     uniprot_entry: UniprotEntry | None = None
-    structures: list[Overview] | None = Field(None, title='Structures')
+    structures: list[Overview] | None = Field(None, title="Structures")
 
 
 class SearchAccession(BaseModel):
-    accession: str = Field(..., title='Accession')
-    id: str = Field(..., title='Id')
-    description: str = Field(..., title='Description')
-    hit_length: int = Field(..., title='Hit Length')
-    hit_hsps: list[HSPS] = Field(..., title='Hit Hsps')
+    accession: str = Field(..., title="Accession")
+    id: str = Field(..., title="Id")
+    description: str = Field(..., title="Description")
+    hit_length: int = Field(..., title="Hit Length")
+    hit_hsps: list[HSPS] = Field(..., title="Hit Hsps")
     summary: UniprotSummary | None = None
-    hit_uni_ox: int = Field(..., title='Hit Uni Ox')
-    hit_uni_os: str = Field(..., title='Hit Uni Os')
-    hit_com_os: str = Field(..., title='Hit Com Os')
-    title: str = Field(..., title='Title')
+    hit_uni_ox: int = Field(..., title="Hit Uni Ox")
+    hit_uni_os: str = Field(..., title="Hit Uni Os")
+    hit_com_os: str = Field(..., title="Hit Com Os")
+    title: str = Field(..., title="Title")
 
 
 class UniprotMapping(BaseModel):
@@ -662,14 +676,13 @@ class UniprotMapping(BaseModel):
 
 class EnsemblSummary(BaseModel):
     ensembl_id: str = Field(
-        ..., description='An Ensembl identifier', title='Ensembl Id'
+        ..., description="An Ensembl identifier", title="Ensembl Id"
     )
-    species: str = Field(..., description='Species name', title='Species')
-    taxid: str = Field(..., description='Taxonomy identifier', title='Taxid')
-    uniprot_mappings: list[UniprotMapping] = Field(..., title='Uniprot Mappings')
+    species: str = Field(..., description="Species name", title="Species")
+    taxid: str = Field(..., description="Taxonomy identifier", title="Taxid")
+    uniprot_mappings: list[UniprotMapping] = Field(..., title="Uniprot Mappings")
 
 
 class UniprotSummaryOut(BaseModel):
-    count: int = Field(..., title='Count')
-    data: UniprotSummary = Field(..., title='Data')
-
+    count: int = Field(..., title="Count")
+    data: UniprotSummary = Field(..., title="Data")
