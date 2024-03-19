@@ -1,11 +1,10 @@
+from logging import getLogger
+
 from fastapi.testclient import TestClient
 from sqlmodel import Session
-import logging
 
 from app.core.config import settings
 from app.tests.utils.uniprot_summary import create_random_domain_summary_entries
-
-from logging import getLogger
 
 logger = getLogger(__name__)
 

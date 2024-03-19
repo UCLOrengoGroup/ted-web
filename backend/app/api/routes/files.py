@@ -1,15 +1,12 @@
 import logging
-from typing import Any, Annotated
+from typing import Any
 
-from fastapi import APIRouter, HTTPException, Body, Response
-from sqlmodel import func, select
+from fastapi import APIRouter, HTTPException, Response
+from sqlmodel import select
 
 from app.api.deps import SessionDep
 from app.models.db import DomainSummary
-from app.models.beacons import UniprotSummary
-from app.transformers import create_uniprot_summary
 from app.structure import fetch_pdb_for_ted_domain
-
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +15,7 @@ router = APIRouter()
 
 @router.get("/{ted_id}.pdb", response_class=Response)
 def read_consensus_domain_pdb(
-    session: SessionDep, 
+    session: SessionDep,
     ted_id: str,
     responses = {
         200: {
@@ -48,10 +45,10 @@ def read_consensus_domain_pdb(
 
     pdb_fh = fetch_pdb_for_ted_domain(ted_domain)
 
-    pdb_lines = [] 
+    pdb_lines = []
     for lineno, line in enumerate(pdb_fh):
        pdb_lines.append(line)
-        
+
     pdb_bytes: bytes = "".join(pdb_lines).encode("utf-8")
 
     return Response(content=pdb_bytes, media_type="application/octet-stream")

@@ -1,6 +1,6 @@
-from collections.abc import Generator
 import gzip
 import logging
+from collections.abc import Generator
 from pathlib import Path
 
 import pytest
@@ -11,7 +11,7 @@ from app import structure
 from app.core.config import settings
 from app.core.db import engine, init_db
 from app.main import app as app_singleton
-from app.models.db import Item, User, DomainSummary
+from app.models.db import DomainSummary, Item, User
 from app.tests.utils.user import authentication_token_from_email
 from app.tests.utils.utils import get_superuser_token_headers
 
@@ -54,7 +54,7 @@ def normal_user_token_headers(client: TestClient, db: Session) -> dict[str, str]
 @pytest.fixture(scope="function")
 def mock_af_pdb(monkeypatch) -> str:
 
-    def get_pdb_content_from_file(_af_id: str):
+    def get_pdb_content_from_file(_af_id: str) -> str:
         pdb_file = FIXTURES_PDB_DIR / 'AF-P12345-F1-model_v4.pdb.gz'
         logger.info(f"MOCK fetch PDB from AF with file: {pdb_file}")
         with gzip.open(str(pdb_file), mode='rt') as fh:
