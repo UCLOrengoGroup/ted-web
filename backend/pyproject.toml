@@ -29,6 +29,7 @@ pydantic-settings = "^2.2.1"
 sentry-sdk = {extras = ["fastapi"], version = "^1.40.6"}
 requests = "^2.31.0"
 pdb-tools = "^2.5.0"
+typer = "^0.9.0"
 
 
 [tool.poetry.group.dev.dependencies]
