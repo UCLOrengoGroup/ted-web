@@ -1,6 +1,5 @@
 version: "3.3"
 services:
-
   proxy:
     image: traefik:v2.3
     volumes:
@@ -42,6 +41,9 @@ services:
     restart: "no"
     ports:
       - "5432:5432"
+    volumes:
+      - ./backend/data/:/data
+    command: postgres -c log_statement=all
 
   adminer:
     restart: "no"
