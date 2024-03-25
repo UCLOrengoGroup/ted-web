@@ -1,18 +1,39 @@
-# TED Web Server
+# TED Web Server
 
-## Overview
+## Getting started
 
-- Install docker ([docs](https://docs.docker.com/engine/install/))
-- Clone this repo
-- Create environment
-- Download data
-- Start docker compose
-- Load data
+Install docker ([docs](https://docs.docker.com/engine/install/))
 
-```
-https://docs.docker.com/engine/install/
-```
+Clone this repo
+
+Set up environment
 
 ```
-git clone git@github.com:UCLOrengoGroup/ted-web.git
+cp .env.template .env
+```
+
+Change secrets in `.env`
+
+```
+python3 -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Download data
+
+```
+https://zenodo.org/records/10848710
+```
+
+Start docker compose
+
+```
+docker compose build
+docker compose up -d
+```
+
+Load data
+
+```
+docker compose exec -d db psql -U postgres app -f data/load_domainsummary.sql
+docker compose exec -d db psql -U postgres app -c 'select tuples_processed from pg_stat_progress_copy'
 ```
