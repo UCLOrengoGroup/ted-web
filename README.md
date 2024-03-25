@@ -35,5 +35,5 @@ Load data
 
 ```
 docker compose exec -d db psql -U postgres app -f data/load_domainsummary.sql
-docker compose exec -d db psql -U postgres app -c 'select tuples_processed from pg_stat_progress_copy'
+docker compose exec db psql -U postgres app -c 'select tuples_processed from pg_stat_progress_copy'
 ```
