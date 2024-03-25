@@ -43,7 +43,8 @@ services:
       - "5432:5432"
     volumes:
       - ./backend/data/:/data
-    command: postgres -c log_statement=all
+      - ./db/:/etc/postgresql
+    command: postgres ${POSTGRES_CONFIG_FILENAME:+-c config_file=/etc/postgresql/$POSTGRES_CONFIG_FILENAME} -c log_statement=all
 
   adminer:
     restart: "no"
