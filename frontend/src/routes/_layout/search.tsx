@@ -3,7 +3,6 @@ import {
   Container,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   InputGroup,
   Flex,
@@ -49,7 +48,7 @@ function SearchBar() {
     },
   })
 
-  const [query, setQuery] = React.useState<string>("")
+  const [_query, setQuery] = React.useState<string>("")
 
   const onSubmit: SubmitHandler<SearchForm> = (data) => {
     console.log("data", data)
