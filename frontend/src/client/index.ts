@@ -9,6 +9,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Body_login_login_access_token } from './models/Body_login_login_access_token';
 export type { ConfidenceType } from './models/ConfidenceType';
+export type { DomainSummary } from './models/DomainSummary';
+export type { DomainSummaryItemsOut } from './models/DomainSummaryItemsOut';
 export type { EnsembleSampleFormat } from './models/EnsembleSampleFormat';
 export type { Entity } from './models/Entity';
 export type { EntityPolyType } from './models/EntityPolyType';
@@ -42,6 +44,8 @@ export type { ValidationError } from './models/ValidationError';
 
 export { $Body_login_login_access_token } from './schemas/$Body_login_login_access_token';
 export { $ConfidenceType } from './schemas/$ConfidenceType';
+export { $DomainSummary } from './schemas/$DomainSummary';
+export { $DomainSummaryItemsOut } from './schemas/$DomainSummaryItemsOut';
 export { $EnsembleSampleFormat } from './schemas/$EnsembleSampleFormat';
 export { $Entity } from './schemas/$Entity';
 export { $EntityPolyType } from './schemas/$EntityPolyType';

@@ -24,12 +24,13 @@ export const Route = createFileRoute("/_layout/search")({
 
 function Search() {
   const showToast = useCustomToast()
+  const { uniprotAcc } = { uniprotAcc: "A0A001" }
   const {
-    data: uniprot_summary_entries,
+    data: domain_summary_entries,
     isLoading,
     isError,
     error,
-  } = useQuery("items", () => UniprotService.readUniprotSummary({ uniprotAcc: "P12345", skip: 1, limit: 10 })
+  } = useQuery("domainsummary", () => UniprotService.readUniprotSummary({ uniprotAcc: uniprotAcc, skip: 1, limit: 50 }))
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -44,14 +45,14 @@ function Search() {
           <Spinner size="xl" color="ui.main" />
         </Flex>
       ) : (
-        uniprot_summary_entries && (
-          <Container>
+        domain_summary_entries && (
+          <Container maxWidth={"120ch"}>
             <Heading
               size="lg"
               textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
-              Search
+              UniProt: { uniprotAcc }
             </Heading>
             <Navbar type={"Item"} />
             <TableContainer>
@@ -59,17 +60,23 @@ function Search() {
                 <Thead>
                   <Tr>
                     <Th>ID</Th>
-                    <Th>Start</Th>
-                    <Th>End</Th>
+                    <Th>CATH</Th>
+                    <Th>Chopping</Th>
+                    <Th>Residues</Th>
+                    <Th>pLDDT</Th>
+                    <Th>Packing Density</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {uniprot_summary_entries.structures?.map((item) => (
+                  {domain_summary_entries.data.map((item) => (
 
-                    <Tr key={item.summary.model_identifier}>
-                      <Td>{item.summary.model_identifier}</Td>
-                      <Td>{item.summary.uniprot_start}</Td>
-                      <Td>{item.summary.uniprot_end}</Td>
+                    <Tr key={item.ted_id}>
+                      <Td>{item.ted_id}</Td>
+                      <Td>{item.cath_label}</Td>
+                      <Td>{item.chopping}</Td>
+                      <Td>{item.nres_domain}</Td>
+                      <Td>{item.plddt}</Td>
+                      <Td>{item.packing_density}</Td>
                     </Tr>
                   ))}
                 </Tbody>
