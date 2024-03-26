@@ -6,6 +6,7 @@ from sqlmodel import col, delete, func, select
 from app import crud
 from app.api.deps import (
     CurrentUser,
+    UnauthenticatedMockUser,
     SessionDep,
     get_current_active_superuser,
 )
@@ -115,7 +116,7 @@ def update_password_me(
 
 
 @router.get("/me", response_model=UserOut)
-def read_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
+def read_user_me(session: SessionDep, current_user: UnauthenticatedMockUser) -> Any:
     """
     Get current user.
     """

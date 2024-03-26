@@ -26,6 +26,14 @@ SessionDep = Annotated[Session, Depends(get_db)]
 TokenDep = Annotated[str, Depends(reusable_oauth2)]
 
 
+def get_unauthenticated_mock_user(session: SessionDep, token: TokenDep) -> User:
+    user = User(
+        id=1,
+        email="mockuser@test.com",
+    )
+    return user
+
+
 def get_current_user(session: SessionDep, token: TokenDep) -> User:
     try:
         payload = jwt.decode(
@@ -46,6 +54,8 @@ def get_current_user(session: SessionDep, token: TokenDep) -> User:
 
 
 CurrentUser = Annotated[User, Depends(get_current_user)]
+
+UnauthenticatedMockUser = Annotated[User, Depends(get_unauthenticated_mock_user)]
 
 
 def get_current_active_superuser(current_user: CurrentUser) -> User:
