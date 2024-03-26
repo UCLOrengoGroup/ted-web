@@ -1,8 +1,6 @@
 import logging
 import random
 
-from sqlmodel import Session
-
 from app.models.chopping import ChoppingNumeric, SegmentNum
 from app.models.db import DomainSummary
 from app.tests.utils.cath import random_cath_code
@@ -110,21 +108,3 @@ def create_random_domain_summary(
         tax_lineage="cellular_organisms,Bacteria,Terrabacteria_group,Actinomycetota,Actinomycetes,Kitasatosporales,Streptomycetaceae,Streptomyces",
     )
     return dom_summary
-
-
-def create_random_domain_summary_entries(
-    db: Session, uniprot_acc: str | None = None
-) -> list[DomainSummary]:
-    if uniprot_acc is None:
-        uniprot_acc = "P12345"
-
-    md5 = random_md5_string()
-
-    dom_summary_entries = []
-    for domain_num in range(2, 5):
-        dom_summary = create_random_domain_summary(uniprot_acc, domain_num, md5=md5)
-        db.add(dom_summary)
-        dom_summary_entries.append(dom_summary)
-
-    db.commit()
-    return dom_summary_entries
