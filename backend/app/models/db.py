@@ -142,3 +142,8 @@ class DomainSummary(SQLModel, table=True):
     @property
     def af_id(self):
         return ted_id_to_af_id(self.ted_id)
+
+
+class DomainSummaryItemsOut(SQLModel):
+    data: list[DomainSummary]
+    count: int

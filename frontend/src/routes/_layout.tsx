@@ -1,22 +1,14 @@
 import { Flex, Spinner, Stack } from "@chakra-ui/react"
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router"
+import { Outlet, createFileRoute } from "@tanstack/react-router"
 
 import Topbar from "../components/Common/Topbar"
-import useAuth, { isLoggedIn } from "../hooks/useAuth"
 
 export const Route = createFileRoute("/_layout")({
   component: Layout,
-  beforeLoad: async () => {
-    if (!isLoggedIn()) {
-      throw redirect({
-        to: "/login",
-      })
-    }
-  },
 })
 
 function Layout() {
-  const { isLoading } = useAuth()
+  const isLoading = false
 
   return (
     <Stack>
@@ -29,7 +21,6 @@ function Layout() {
         ) : (
           <Outlet />
         )}
-        {/* <UserMenu /> */}
       </Flex>
 
     </Stack>
