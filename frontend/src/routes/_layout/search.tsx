@@ -14,8 +14,7 @@ import {
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery } from "react-query"
 
-import { type ApiError, ItemsService } from "../../client"
-import ActionsMenu from "../../components/Common/ActionsMenu"
+import { type ApiError, UniprotService } from "../../client"
 import Navbar from "../../components/Common/Navbar"
 import useCustomToast from "../../hooks/useCustomToast"
 
@@ -26,11 +25,11 @@ export const Route = createFileRoute("/_layout/search")({
 function Search() {
   const showToast = useCustomToast()
   const {
-    data: items,
+    data: uniprot_summary_entries,
     isLoading,
     isError,
     error,
-  } = useQuery("items", () => ItemsService.readItems({}))
+  } = useQuery("items", () => UniprotService.readUniprotSummary({ uniprotAcc: "P12345", skip: 1, limit: 10 })
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -45,7 +44,7 @@ function Search() {
           <Spinner size="xl" color="ui.main" />
         </Flex>
       ) : (
-        items && (
+        uniprot_summary_entries && (
           <Container>
             <Heading
               size="lg"
@@ -60,22 +59,17 @@ function Search() {
                 <Thead>
                   <Tr>
                     <Th>ID</Th>
-                    <Th>Title</Th>
-                    <Th>Description</Th>
-                    <Th>Actions</Th>
+                    <Th>Start</Th>
+                    <Th>End</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {items.data.map((item) => (
-                    <Tr key={item.id}>
-                      <Td>{item.id}</Td>
-                      <Td>{item.title}</Td>
-                      <Td color={!item.description ? "gray.400" : "inherit"}>
-                        {item.description || "N/A"}
-                      </Td>
-                      <Td>
-                        <ActionsMenu type={"Item"} value={item} />
-                      </Td>
+                  {uniprot_summary_entries.structures?.map((item) => (
+
+                    <Tr key={item.summary.model_identifier}>
+                      <Td>{item.summary.model_identifier}</Td>
+                      <Td>{item.summary.uniprot_start}</Td>
+                      <Td>{item.summary.uniprot_end}</Td>
                     </Tr>
                   ))}
                 </Tbody>
