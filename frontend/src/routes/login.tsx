@@ -92,7 +92,7 @@ function Login() {
                 message: "Invalid email address",
               },
             })}
-            placeholder="Email"
+            placeholder="guest@ucl.ac.uk"
             type="email"
           />
           {errors.username && (
@@ -104,7 +104,7 @@ function Login() {
             <Input
               {...register("password")}
               type={show ? "text" : "password"}
-              placeholder="Password"
+              placeholder="guestuser"
             />
             <InputRightElement
               color="gray.400"

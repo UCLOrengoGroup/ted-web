@@ -106,10 +106,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutSearchImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/uniprot': {
-      preLoaderRoute: typeof LayoutUniprotImport
-      parentRoute: typeof LayoutImport
-    }
     '/_layout/settings': {
       preLoaderRoute: typeof LayoutSettingsImport
       parentRoute: typeof LayoutImport
