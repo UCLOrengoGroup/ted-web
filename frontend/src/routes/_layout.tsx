@@ -22,7 +22,6 @@ function Layout() {
           <Outlet />
         )}
       </Flex>
-
     </Stack>
   )
 }

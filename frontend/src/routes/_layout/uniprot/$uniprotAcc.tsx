@@ -18,18 +18,28 @@ import { type ApiError, UniprotService } from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
 export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
-    loader: ({ params }) => {
-        console.log("uniprot.loader: ", params.uniprotAcc)
-        const query = useQuery("domainsummary", () => UniprotService.readUniprotSummary({ uniprotAcc: params.uniprotAcc, limit: 50 }))
-        return query
-    },
-    component: UniprotAcc,
+  loader: ({ params }) => {
+    console.log("uniprot.loader: ", params.uniprotAcc)
+    const query = useQuery("domainsummary", () =>
+      UniprotService.readUniprotSummary({
+        uniprotAcc: params.uniprotAcc,
+        limit: 50,
+      }),
+    )
+    return query
+  },
+  component: UniprotAcc,
 })
 
 function UniprotAcc() {
   const showToast = useCustomToast()
   const { uniprotAcc } = Route.useParams()
-  const { data: domain_summary_entries, isLoading, isError, error } = Route.useLoaderData()
+  const {
+    data: domain_summary_entries,
+    isLoading,
+    isError,
+    error,
+  } = Route.useLoaderData()
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -51,7 +61,7 @@ function UniprotAcc() {
               textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
-              UniProt: { uniprotAcc }
+              UniProt: {uniprotAcc}
             </Heading>
             <TableContainer>
               <Table size={{ base: "sm", md: "md" }}>
@@ -67,7 +77,6 @@ function UniprotAcc() {
                 </Thead>
                 <Tbody>
                   {domain_summary_entries.data.map((item) => (
-
                     <Tr key={item.ted_id}>
                       <Td>{item.ted_id}</Td>
                       <Td>{item.cath_label}</Td>

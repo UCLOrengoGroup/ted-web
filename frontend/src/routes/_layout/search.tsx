@@ -1,13 +1,14 @@
 import {
   Button,
   Container,
+  Flex,
   FormControl,
   FormErrorMessage,
+  Heading,
   Input,
   InputGroup,
+  InputRightAddon,
   Link,
-  Flex,
-  Heading,
   Spinner,
   Stack,
   Table,
@@ -18,12 +19,11 @@ import {
   Th,
   Thead,
   Tr,
-  InputRightAddon
 } from "@chakra-ui/react"
-import React from "react"
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
-import { useQuery, useQueryClient } from "react-query"
+import React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { useQuery, useQueryClient } from "react-query"
 
 import { type ApiError, UniprotService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
@@ -36,7 +36,9 @@ interface SearchForm {
   query: string
 }
 
-function SearchBar( {onSubmitQuery}: {onSubmitQuery: (query: string) => void}){
+function SearchBar({
+  onSubmitQuery,
+}: { onSubmitQuery: (query: string) => void }) {
   const {
     register,
     handleSubmit,
@@ -72,7 +74,7 @@ function SearchBar( {onSubmitQuery}: {onSubmitQuery: (query: string) => void}){
                 Search
               </Button>
             </InputRightAddon>
-            <FormErrorMessage>{errors.query && errors.query.message}</FormErrorMessage>          
+            <FormErrorMessage>{errors.query?.message}</FormErrorMessage>
           </InputGroup>
         </FormControl>
       </form>
@@ -98,7 +100,12 @@ function Search() {
   const queryClient = useQueryClient()
   const query = useQuery("search", () => fetchDomainSummary(searchQuery))
 
-  const { data: domain_summary_entries, error, isError, isLoading } = query || {}
+  const {
+    data: domain_summary_entries,
+    error,
+    isError,
+    isLoading,
+  } = query || {}
 
   console.log("Search.data: ", domain_summary_entries)
 
@@ -107,14 +114,14 @@ function Search() {
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
 
-  function handleSearchSubmit( _search_query: string) {
+  function handleSearchSubmit(_search_query: string) {
     console.log("Search.handleSearchSubmit: ", _search_query)
     queryClient.invalidateQueries("search")
     setSearchQuery(_search_query)
   }
 
   function tedToAf(ted_id: string) {
-    return ted_id.substring(0, ted_id.lastIndexOf('_'))
+    return ted_id.substring(0, ted_id.lastIndexOf("_"))
   }
 
   const first_entry = domain_summary_entries?.data[0]
@@ -132,21 +139,24 @@ function Search() {
         </Flex>
       ) : (
         uniprot_items && (
-            <Container maxWidth={"100ch"}>
-              <Stack spacing={3}>
-              <SearchBar onSubmitQuery={(query) => {
-                console.log("SearchBar.onSubmitQuery", query)
-                return handleSearchSubmit(query)
-              }}/>
+          <Container maxWidth={"100ch"}>
+            <Stack spacing={3}>
+              <SearchBar
+                onSubmitQuery={(query) => {
+                  console.log("SearchBar.onSubmitQuery", query)
+                  return handleSearchSubmit(query)
+                }}
+              />
               <Heading
                 size="lg"
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
               >
-                Search { searchQuery }
+                Search {searchQuery}
               </Heading>
               <Text>
-                { uniprot_items.length } AlphaFold entries found ({ted_count} TED domains)
+                {uniprot_items.length} AlphaFold entries found ({ted_count} TED
+                domains)
               </Text>
               <TableContainer>
                 <Table size={{ base: "sm", md: "md" }}>
@@ -165,7 +175,14 @@ function Search() {
                         <Td>{uniprot_acc}</Td>
                         <Td>{ted_count}</Td>
                         <Td>
-                          <Button><Link as={RouterLink} to={`/uniprot/${uniprot_acc}`}>Go</Link></Button>
+                          <Button>
+                            <Link
+                              as={RouterLink}
+                              to={`/uniprot/${uniprot_acc}`}
+                            >
+                              Go
+                            </Link>
+                          </Button>
                         </Td>
                       </Tr>
                     ))}

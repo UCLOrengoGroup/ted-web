@@ -29,7 +29,13 @@ function Uniprot() {
     isLoading,
     isError,
     error,
-  } = useQuery("domainsummary", () => UniprotService.readUniprotSummary({ uniprotAcc: uniprotAcc, skip: 1, limit: 50 }))
+  } = useQuery("domainsummary", () =>
+    UniprotService.readUniprotSummary({
+      uniprotAcc: uniprotAcc,
+      skip: 1,
+      limit: 50,
+    }),
+  )
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -51,7 +57,7 @@ function Uniprot() {
               textAlign={{ base: "center", md: "left" }}
               pt={12}
             >
-              UniProt: { uniprotAcc }
+              UniProt: {uniprotAcc}
             </Heading>
             <TableContainer>
               <Table size={{ base: "sm", md: "md" }}>
@@ -67,7 +73,6 @@ function Uniprot() {
                 </Thead>
                 <Tbody>
                   {domain_summary_entries.data.map((item) => (
-
                     <Tr key={item.ted_id}>
                       <Td>{item.ted_id}</Td>
                       <Td>{item.cath_label}</Td>

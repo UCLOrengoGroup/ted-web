@@ -10,141 +10,141 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as ResetPasswordImport } from './routes/reset-password'
-import { Route as RecoverPasswordImport } from './routes/recover-password'
-import { Route as LoginImport } from './routes/login'
-import { Route as LayoutImport } from './routes/_layout'
-import { Route as LayoutIndexImport } from './routes/_layout/index'
-import { Route as LayoutUniprotImport } from './routes/_layout/uniprot'
-import { Route as LayoutSettingsImport } from './routes/_layout/settings'
-import { Route as LayoutSearchImport } from './routes/_layout/search'
-import { Route as LayoutItemsImport } from './routes/_layout/items'
-import { Route as LayoutDataImport } from './routes/_layout/data'
-import { Route as LayoutAdminImport } from './routes/_layout/admin'
-import { Route as LayoutAboutImport } from './routes/_layout/about'
-import { Route as LayoutUniprotUniprotAccImport } from './routes/_layout/uniprot/$uniprotAcc'
+import { Route as rootRoute } from "./routes/__root"
+import { Route as LayoutImport } from "./routes/_layout"
+import { Route as LayoutAboutImport } from "./routes/_layout/about"
+import { Route as LayoutAdminImport } from "./routes/_layout/admin"
+import { Route as LayoutDataImport } from "./routes/_layout/data"
+import { Route as LayoutIndexImport } from "./routes/_layout/index"
+import { Route as LayoutItemsImport } from "./routes/_layout/items"
+import { Route as LayoutSearchImport } from "./routes/_layout/search"
+import { Route as LayoutSettingsImport } from "./routes/_layout/settings"
+import { Route as LayoutUniprotImport } from "./routes/_layout/uniprot"
+import { Route as LayoutUniprotUniprotAccImport } from "./routes/_layout/uniprot/$uniprotAcc"
+import { Route as LoginImport } from "./routes/login"
+import { Route as RecoverPasswordImport } from "./routes/recover-password"
+import { Route as ResetPasswordImport } from "./routes/reset-password"
 
 // Create/Update Routes
 
 const ResetPasswordRoute = ResetPasswordImport.update({
-  path: '/reset-password',
+  path: "/reset-password",
   getParentRoute: () => rootRoute,
 } as any)
 
 const RecoverPasswordRoute = RecoverPasswordImport.update({
-  path: '/recover-password',
+  path: "/recover-password",
   getParentRoute: () => rootRoute,
 } as any)
 
 const LoginRoute = LoginImport.update({
-  path: '/login',
+  path: "/login",
   getParentRoute: () => rootRoute,
 } as any)
 
 const LayoutRoute = LayoutImport.update({
-  id: '/_layout',
+  id: "/_layout",
   getParentRoute: () => rootRoute,
 } as any)
 
 const LayoutIndexRoute = LayoutIndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutUniprotRoute = LayoutUniprotImport.update({
-  path: '/uniprot',
+  path: "/uniprot",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutSettingsRoute = LayoutSettingsImport.update({
-  path: '/settings',
+  path: "/settings",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutSearchRoute = LayoutSearchImport.update({
-  path: '/search',
+  path: "/search",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutItemsRoute = LayoutItemsImport.update({
-  path: '/items',
+  path: "/items",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutDataRoute = LayoutDataImport.update({
-  path: '/data',
+  path: "/data",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutAdminRoute = LayoutAdminImport.update({
-  path: '/admin',
+  path: "/admin",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutAboutRoute = LayoutAboutImport.update({
-  path: '/about',
+  path: "/about",
   getParentRoute: () => LayoutRoute,
 } as any)
 
 const LayoutUniprotUniprotAccRoute = LayoutUniprotUniprotAccImport.update({
-  path: '/$uniprotAcc',
+  path: "/$uniprotAcc",
   getParentRoute: () => LayoutUniprotRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_layout': {
+    "/_layout": {
       preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
-    '/login': {
+    "/login": {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/recover-password': {
+    "/recover-password": {
       preLoaderRoute: typeof RecoverPasswordImport
       parentRoute: typeof rootRoute
     }
-    '/reset-password': {
+    "/reset-password": {
       preLoaderRoute: typeof ResetPasswordImport
       parentRoute: typeof rootRoute
     }
-    '/_layout/about': {
+    "/_layout/about": {
       preLoaderRoute: typeof LayoutAboutImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/admin': {
+    "/_layout/admin": {
       preLoaderRoute: typeof LayoutAdminImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/data': {
+    "/_layout/data": {
       preLoaderRoute: typeof LayoutDataImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/items': {
+    "/_layout/items": {
       preLoaderRoute: typeof LayoutItemsImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/search': {
+    "/_layout/search": {
       preLoaderRoute: typeof LayoutSearchImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/settings': {
+    "/_layout/settings": {
       preLoaderRoute: typeof LayoutSettingsImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/uniprot': {
+    "/_layout/uniprot": {
       preLoaderRoute: typeof LayoutUniprotImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/': {
+    "/_layout/": {
       preLoaderRoute: typeof LayoutIndexImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/uniprot/$uniprotAcc': {
+    "/_layout/uniprot/$uniprotAcc": {
       preLoaderRoute: typeof LayoutUniprotUniprotAccImport
       parentRoute: typeof LayoutUniprotImport
     }
