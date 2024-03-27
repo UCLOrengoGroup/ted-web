@@ -1,6 +1,6 @@
 'use client'
 
-import { createFileRoute } from "@tanstack/react-router"
+import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 
 import Carousel from "../../components/Common/Carousel"
 import Citation from "../../components/Common/Citation"
@@ -84,7 +84,7 @@ function Dashboard() {
               fontWeight={'normal'}
               px={6}
               leftIcon={<PlayIcon h={4} w={4} color={'gray.300'} />}>
-              About
+                <Link as={RouterLink} to={`/about`}>About</Link>
             </Button>
           </Stack>
         </Stack>
@@ -105,10 +105,9 @@ function Dashboard() {
           />
           <Box
             position={'relative'}
-            height={'500px'}
             rounded={'2xl'}
             boxShadow={'2xl'}
-            width={'600px'}
+            width={'500px'}
             overflow={'hidden'}>
             <Carousel />
           </Box>
