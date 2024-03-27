@@ -54,22 +54,22 @@ export default function Carousel() {
     },
     {
       title: 'Domain classification using the CATH hierarchy',
-      text: "Top 100 CATH superfamilies in TED.",
+      text: "TED Domains have been annotated with evolutionary information from CATH superfamilies.",
       image: ImgFig2Url,
     },
     {
       title: 'High symmetry domains and repeats',
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat lobortis sapien eget posuere.",
+      text: "Domains with high internal symmetry are identified as part of the novel fold workflow.",
       image: ImgFig3Url,
     },
     {
       title: 'Novel domain clusters',
-      text: "Etiam sollicitudin lorem lectus, pellentesque tincidunt orci commodo quis. Cras sodales tincidunt bibendum.",
+      text: "TED domains are associated with a 'novelty' score",
       image: ImgFig4Url,
     },
     {
-      title: 'Interacting superfamily pairs',
-      text: "Curabitur malesuada nunc rhoncus, tincidunt eros non, congue libero. In vitae luctus magna.",
+      title: 'Interacting Superfamily Pairs',
+      text: "Analysis of the Enrichment of Interacting Superfamily Pairs common to the CATH and TED datasets",
       image: ImgFig5Url,
     },
   ]
@@ -132,7 +132,7 @@ export default function Carousel() {
                 top="50%"
                 // transform="translate(0, -10%)"
                 >
-                <Heading fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }} backdropFilter={"auto"} backdropBlur={"20px"}>
+                <Heading fontSize={{ base: '1xl', md: '2xl', lg: '3xl' }} backdropFilter={"auto"} backdropBlur={"20px"}>
                   {card.title}
                 </Heading>
                 <Text fontSize={{ base: 'md', lg: 'lg' }} backdropFilter={"auto"} backdropBlur={"20px"}>
