@@ -20,7 +20,6 @@ const TopbarItems = [
     { title: "Home", path: "/" },
     { title: "Search", path: "/search" },
     { title: "Data", path: "/data" },
-    { title: "API", path: "/api" },
     { title: "About", path: "/about" },
   ]
 
