@@ -20,7 +20,10 @@ import { Route as LayoutUniprotImport } from './routes/_layout/uniprot'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
 import { Route as LayoutSearchImport } from './routes/_layout/search'
 import { Route as LayoutItemsImport } from './routes/_layout/items'
+import { Route as LayoutDataImport } from './routes/_layout/data'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
+import { Route as LayoutAboutImport } from './routes/_layout/about'
+import { Route as LayoutUniprotUniprotAccImport } from './routes/_layout/uniprot/$uniprotAcc'
 
 // Create/Update Routes
 
@@ -69,9 +72,24 @@ const LayoutItemsRoute = LayoutItemsImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const LayoutDataRoute = LayoutDataImport.update({
+  path: '/data',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
 const LayoutAdminRoute = LayoutAdminImport.update({
   path: '/admin',
   getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAboutRoute = LayoutAboutImport.update({
+  path: '/about',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutUniprotUniprotAccRoute = LayoutUniprotUniprotAccImport.update({
+  path: '/$uniprotAcc',
+  getParentRoute: () => LayoutUniprotRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -94,8 +112,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordImport
       parentRoute: typeof rootRoute
     }
+    '/_layout/about': {
+      preLoaderRoute: typeof LayoutAboutImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/admin': {
       preLoaderRoute: typeof LayoutAdminImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/data': {
+      preLoaderRoute: typeof LayoutDataImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/items': {
@@ -118,6 +144,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/uniprot/$uniprotAcc': {
+      preLoaderRoute: typeof LayoutUniprotUniprotAccImport
+      parentRoute: typeof LayoutUniprotImport
+    }
   }
 }
 
@@ -125,11 +155,13 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   LayoutRoute.addChildren([
+    LayoutAboutRoute,
     LayoutAdminRoute,
+    LayoutDataRoute,
     LayoutItemsRoute,
     LayoutSearchRoute,
     LayoutSettingsRoute,
-    LayoutUniprotRoute,
+    LayoutUniprotRoute.addChildren([LayoutUniprotUniprotAccRoute]),
     LayoutIndexRoute,
   ]),
   LoginRoute,
