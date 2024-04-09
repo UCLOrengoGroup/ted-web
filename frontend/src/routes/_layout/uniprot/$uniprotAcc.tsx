@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   Flex,
   Heading,
@@ -17,29 +18,34 @@ import { useQuery } from "react-query"
 import { type ApiError, UniprotService } from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'pdbe-molstar': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
+
+
 export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
-  loader: ({ params }) => {
-    console.log("uniprot.loader: ", params.uniprotAcc)
-    const query = useQuery("domainsummary", () =>
-      UniprotService.readUniprotSummary({
-        uniprotAcc: params.uniprotAcc,
-        limit: 50,
-      }),
-    )
-    return query
-  },
   component: UniprotAcc,
 })
 
 function UniprotAcc() {
   const showToast = useCustomToast()
   const { uniprotAcc } = Route.useParams()
-  const {
-    data: domain_summary_entries,
-    isLoading,
-    isError,
-    error,
-  } = Route.useLoaderData()
+  const { data: domain_summary_entries, error, isLoading, isError } = useQuery("domainsummary", () => {
+      return UniprotService.readUniprotSummary({
+        uniprotAcc: uniprotAcc,
+        limit: 50,
+      })
+    })
+
+  const afId = `AF-${uniprotAcc}-F1-model_v4`
+  const afPdbUrl = afId ? `https://alphafold.ebi.ac.uk/files/${afId}.pdb` : null
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -63,6 +69,23 @@ function UniprotAcc() {
             >
               UniProt: {uniprotAcc}
             </Heading>
+
+            <Flex height="50vh" position="relative" margin="2em 0">
+              <Box maxW="lg" maxH="sm" id="molstar-view">
+                <pdbe-molstar
+                  id="molstar-container"
+                  molecule-id={uniprotAcc}
+                  alphafold-view
+                  sequence-panel
+                  hide-controls
+                  bg-color-r="255"
+                  bg-color-g="255"
+                  bg-color-b="255"
+                  custom-data-url={afPdbUrl} custom-data-format="pdb"
+                ></pdbe-molstar>
+              </Box>
+            </Flex>
+
             <TableContainer>
               <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
