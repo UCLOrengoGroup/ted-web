@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TED: The Encyclopedia of Domains</title>
     <link rel="icon" type="image/x-icon" href="./src/assets/images/favicon.png" />
+
+    <!-- PDBe MolStar: https://github.com/molstar/pdbe-molstar/wiki/2.-PDBe-Molstar-as-Web-component -->
+    <!-- Required for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <!-- Web component polyfill (only loads what it needs) -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+    <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js" charset="utf-8"></script>
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-3.1.3.css"> -->
+
+    <!-- For Light Theme include this css file instead of above -->
+    <link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-3.1.3.css">
+    <!--
+    Tip: Set background color to white for light theme
+    -->
+
+    <!-- JS -->
+    <script type="text/javascript" src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-component-3.1.3.js"></script>
+
+
   </head>
   <body>
     <div id="root"></div>
