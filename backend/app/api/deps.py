@@ -12,6 +12,8 @@ from app.core.config import settings
 from app.core.db import engine
 from app.models.db import TokenPayload, User
 
+UNAUTHENICATED_MOCK_USER_EMAIL = "mockuser@test.com"
+
 reusable_oauth2 = OAuth2PasswordBearer(
     tokenUrl=f"{settings.API_V1_STR}/login/access-token"
 )
@@ -29,7 +31,7 @@ TokenDep = Annotated[str, Depends(reusable_oauth2)]
 def get_unauthenticated_mock_user(session: SessionDep, token: TokenDep) -> User:
     user = User(
         id=1,
-        email="mockuser@test.com",
+        email=UNAUTHENICATED_MOCK_USER_EMAIL,
     )
     return user
 
