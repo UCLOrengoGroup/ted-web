@@ -21,14 +21,13 @@ import useCustomToast from "../../../hooks/useCustomToast"
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'pdbe-molstar': React.DetailedHTMLProps<
+      "pdbe-molstar": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
-      >;
+      >
     }
   }
 }
-
 
 export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
   component: UniprotAcc,
@@ -37,12 +36,17 @@ export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
 function UniprotAcc() {
   const showToast = useCustomToast()
   const { uniprotAcc } = Route.useParams()
-  const { data: domain_summary_entries, error, isLoading, isError } = useQuery("domainsummary", () => {
-      return UniprotService.readUniprotSummary({
-        uniprotAcc: uniprotAcc,
-        limit: 50,
-      })
+  const {
+    data: domain_summary_entries,
+    error,
+    isLoading,
+    isError,
+  } = useQuery("domainsummary", () => {
+    return UniprotService.readUniprotSummary({
+      uniprotAcc: uniprotAcc,
+      limit: 50,
     })
+  })
 
   const afId = `AF-${uniprotAcc}-F1-model_v4`
   const afPdbUrl = afId ? `https://alphafold.ebi.ac.uk/files/${afId}.pdb` : null
@@ -74,15 +78,16 @@ function UniprotAcc() {
               <Box maxW="lg" maxH="sm" id="molstar-view">
                 <pdbe-molstar
                   id="molstar-container"
-                  molecule-id={uniprotAcc}
+                  molecule-id={afId}
                   alphafold-view
                   sequence-panel
                   hide-controls
                   bg-color-r="255"
                   bg-color-g="255"
                   bg-color-b="255"
-                  custom-data-url={afPdbUrl} custom-data-format="pdb"
-                ></pdbe-molstar>
+                  custom-data-url={afPdbUrl}
+                  custom-data-format="pdb"
+                />
               </Box>
             </Flex>
 
