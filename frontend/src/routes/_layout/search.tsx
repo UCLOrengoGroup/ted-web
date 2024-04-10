@@ -126,8 +126,6 @@ function Search() {
 
   const first_entry = domain_summary_entries?.data[0]
   const uniprot_items = first_entry ? [first_entry] : []
-  const af_id = first_entry ? tedToAf(first_entry.ted_id) : null
-  const uniprot_acc = first_entry?.uniprot_acc
   const ted_count = domain_summary_entries ? domain_summary_entries.count : 0
 
   return (
@@ -162,23 +160,30 @@ function Search() {
                 <Table size={{ base: "sm", md: "md" }}>
                   <Thead>
                     <Tr>
-                      <Th>UniProt</Th>
                       <Th>AlphaFold ID</Th>
+                      <Th>UniProt</Th>
+                      <Th>Taxonomy</Th>
                       <Th>TED Domains</Th>
                       <Th>Link</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {uniprot_items.map((_item) => (
-                      <Tr key={uniprot_acc}>
-                        <Td>{af_id}</Td>
-                        <Td>{uniprot_acc}</Td>
+                    {uniprot_items.map((item) => (
+                      <Tr key={item.uniprot_acc}>
+                        <Td>{tedToAf(item.ted_id)}</Td>
+                        <Td>{item.uniprot_acc}</Td>
+                        <Td>
+                          <Stack>
+                            <Text>{item.tax_scientific_name}</Text>
+                            {/* <Text fontSize="xs">{item.tax_lineage.split(',').join(" > ")}</Text> */}
+                          </Stack>
+                        </Td>
                         <Td>{ted_count}</Td>
                         <Td>
                           <Button>
                             <Link
                               as={RouterLink}
-                              to={`/uniprot/${uniprot_acc}`}
+                              to={`/uniprot/${item.uniprot_acc}`}
                             >
                               Go
                             </Link>
