@@ -78,7 +78,7 @@ function UniprotAcc() {
               <Box maxW="lg" maxH="sm" id="molstar-view">
                 <pdbe-molstar
                   id="molstar-container"
-                  molecule-id={afId}
+                  molecule-id={uniprotAcc}
                   alphafold-view
                   sequence-panel
                   hide-controls
