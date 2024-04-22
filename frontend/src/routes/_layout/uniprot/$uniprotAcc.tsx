@@ -91,13 +91,20 @@ function UniprotAcc() {
               </Box>
             </Flex>
 
+            <Heading
+              size="md"
+              pt={12}
+            >
+              TED Consensus Domains ({domain_summary_entries.data.length})
+            </Heading>
+
             <TableContainer>
               <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
                     <Th>ID</Th>
                     <Th>CATH</Th>
-                    <Th>Chopping</Th>
+                    <Th>Boundaries</Th>
                     <Th>Residues</Th>
                     <Th>pLDDT</Th>
                     <Th>Packing Density</Th>
