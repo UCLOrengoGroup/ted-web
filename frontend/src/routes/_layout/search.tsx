@@ -52,9 +52,7 @@ function SearchBar({
   })
 
   const onSubmit: SubmitHandler<SearchForm> = (data) => {
-    console.log("SearchBar.onSubmit", data)
     onSubmitQuery(data.query)
-    console.log("SearchBar.onSubmitQuery", onSubmitQuery)
   }
 
   return (
@@ -83,7 +81,6 @@ function SearchBar({
 }
 
 function fetchDomainSummary(query: string) {
-  console.log("fetchDomainSummary.query: ", query)
   if (!query) {
     return null
   }
@@ -92,22 +89,14 @@ function fetchDomainSummary(query: string) {
 
 function Search() {
   const showToast = useCustomToast()
-
   const [searchQuery, setSearchQuery] = React.useState<string>("")
-
-  console.log("Search.searchQuery: ", searchQuery)
-
   const queryClient = useQueryClient()
-  const query = useQuery("search", () => fetchDomainSummary(searchQuery))
-
   const {
     data: domain_summary_entries,
     error,
     isError,
     isLoading,
-  } = query || {}
-
-  console.log("Search.data: ", domain_summary_entries)
+  } = useQuery(["search", searchQuery], () => fetchDomainSummary(searchQuery))
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -115,7 +104,6 @@ function Search() {
   }
 
   function handleSearchSubmit(_search_query: string) {
-    console.log("Search.handleSearchSubmit: ", _search_query)
     queryClient.invalidateQueries("search")
     setSearchQuery(_search_query)
   }
@@ -141,7 +129,6 @@ function Search() {
             <Stack spacing={3}>
               <SearchBar
                 onSubmitQuery={(query) => {
-                  console.log("SearchBar.onSubmitQuery", query)
                   return handleSearchSubmit(query)
                 }}
               />
@@ -150,7 +137,7 @@ function Search() {
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
               >
-                Search {searchQuery}
+                Search{searchQuery && ':'} {searchQuery}
               </Heading>
               <Text>
                 {uniprot_items.length} AlphaFold entries found ({ted_count} TED
@@ -180,7 +167,7 @@ function Search() {
                         </Td>
                         <Td>{ted_count}</Td>
                         <Td>
-                          <Button>
+                          <Button variant='primary'>
                             <Link
                               as={RouterLink}
                               to={`/uniprot/${item.uniprot_acc}`}
