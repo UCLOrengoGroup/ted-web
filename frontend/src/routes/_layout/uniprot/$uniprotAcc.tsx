@@ -18,16 +18,8 @@ import { useQuery } from "react-query"
 import { type ApiError, UniprotService } from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "pdbe-molstar": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-    }
-  }
-}
+// import MolStarWrapper from "../../../components/Common/MolStarWrapper"
+import PDBeMolStarWrapper from "../../../components/Common/PDBeMolStarWrapper"
 
 export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
   component: UniprotAcc,
@@ -76,25 +68,11 @@ function UniprotAcc() {
 
             <Flex height="50vh" position="relative" margin="2em 0">
               <Box maxW="lg" maxH="sm" id="molstar-view">
-                <pdbe-molstar
-                  id="molstar-container"
-                  molecule-id={uniprotAcc}
-                  alphafold-view
-                  sequence-panel
-                  hide-controls
-                  bg-color-r="255"
-                  bg-color-g="255"
-                  bg-color-b="255"
-                  custom-data-url={afPdbUrl}
-                  custom-data-format="pdb"
-                />
+                {afPdbUrl && <PDBeMolStarWrapper afdb={afId} />}
               </Box>
             </Flex>
 
-            <Heading
-              size="md"
-              pt={12}
-            >
+            <Heading size="md" pt={12}>
               TED Consensus Domains ({domain_summary_entries.data.length})
             </Heading>
 
