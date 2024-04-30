@@ -38,10 +38,10 @@ const PDBeMolStarWrapper: React.FC<PDBeMolStarWrapperProps> = ({ afdb }) => {
       viewerInstance.render(parent.current, options)
     }
     init()
-    return () => {
-      window.molstar?.dispose()
-      window.molstar = undefined
-    }
+    // return () => {
+    //   window.molstar?.dispose()
+    //   window.molstar = undefined
+    // }
   }, [])
 
   return <div ref={parent} style={{ width: 640, height: 480 }} />
