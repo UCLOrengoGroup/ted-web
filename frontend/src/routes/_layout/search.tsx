@@ -137,7 +137,7 @@ function Search() {
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
               >
-                Search{searchQuery && ':'} {searchQuery}
+                Search{searchQuery && ":"} {searchQuery}
               </Heading>
               <Text>
                 {uniprot_items.length} AlphaFold entries found ({ted_count} TED
@@ -167,7 +167,7 @@ function Search() {
                         </Td>
                         <Td>{ted_count}</Td>
                         <Td>
-                          <Button variant='primary'>
+                          <Button variant="primary">
                             <Link
                               as={RouterLink}
                               to={`/uniprot/${item.uniprot_acc}`}
