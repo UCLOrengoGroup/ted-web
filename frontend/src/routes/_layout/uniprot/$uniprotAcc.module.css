@@ -1,0 +1,13 @@
+
+.row {
+    border: 1px solid transparent;
+}
+
+.selected {
+    background-color: #ccc;
+}
+
+.highlighted {
+    border-color: black;
+}
+
