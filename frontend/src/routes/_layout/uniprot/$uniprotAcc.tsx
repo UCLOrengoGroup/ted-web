@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   Box,
   Container,
@@ -10,6 +10,7 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -21,7 +22,6 @@ import { useQuery } from "react-query"
 import { type ApiError, UniprotService, DomainSummary } from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
-// import MolStarWrapper from "../../../components/Common/MolStarWrapper"
 import PDBeMolStarWrapper from "../../../components/Common/PDBeMolStarWrapper"
 import { PDBeMolstarPlugin } from "pdbe-molstar/lib"
 
@@ -29,28 +29,11 @@ export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
   component: UniprotAcc,
 })
 
+import { getQueryParamsFromChoppingString, getDomainAnnotationFromDomainSummary } from "../../../components/Utils/DomainSummary"
+import UniprotEntryDataService from "../../../components/UniprotService/service"
+import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
-
-export const COLOURS = [
-  "#FF0000",
-  "#00FF00",
-  "#0000FF",
-  "#FFFF00",
-  "#FF00FF",
-  "#00FFFF",
-  "#FF8000",
-  "#FF0080",
-  "#80FF00",
-  "#80FF00",
-  "#0080FF",
-  "#8000FF",
-  "#FF8080",
-  "#80FF80",
-  "#8080FF",
-  "#FF80FF",
-  "#80FFFF",
-  "#FFFF80",
-]
+import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -58,6 +41,8 @@ function UniprotAcc() {
   const [ plugin, setPlugin ] = useState<PDBeMolstarPlugin | null>(null)
   const [ highlightedDomainId, setHighlightedDomainId ] = useState<string | null>(null)
   const [ selectedDomainId, setSelectedDomainId ] = useState<string | null>(null)
+  const [ uniprotEntry, setUniprotEntry ] = useState<UniprotData | null>(null)
+  const [ uniprotDidLoad, setUniprotDidLoad ] = useState<boolean>(false)
   const {
     data: domain_summary_entries,
     error,
@@ -78,26 +63,20 @@ function UniprotAcc() {
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
 
-  const getQueryParamsFromChopping = (chopping: string) => {
-    const segs_strs = chopping.split("_")
-    return segs_strs.map((seg_str) => {
-      const [start_str, end_str] = seg_str.split("-")
-      const start = parseInt(start_str)
-      const end = parseInt(end_str)
-      return { 
-        start: start, 
-        end: end,
-        start_residue_number: start,
-        end_residue_number: end,
-        start_uniprot_residue_number: start,
-        end_uniprot_residue_number: end,
-      }
-    })
-  }
+  useEffect(() => {
+    if (!uniprotDidLoad) {
+      console.log("useEffect.UPDATE: ", uniprotAcc)
+      UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
+        console.log("uniprot.data: ", up_entry);
+        setUniprotEntry(up_entry);
+      })
+      setUniprotDidLoad(true)
+    }
+  }, [uniprotAcc])
 
   const selectChopping = (dom: DomainSummary) => {
     if (!plugin) return
-    const params = getQueryParamsFromChopping(dom.chopping)
+    const params = getQueryParamsFromChoppingString(dom.chopping)
     setSelectedDomainId(dom.ted_id)
     plugin.visual.select({ data: params })
   }
@@ -110,7 +89,7 @@ function UniprotAcc() {
 
   const highlightChopping = (dom: DomainSummary) => {
     if (!plugin) return
-    const params = getQueryParamsFromChopping(dom.chopping)
+    const params = getQueryParamsFromChoppingString(dom.chopping)
     plugin.visual.highlight({ data: params })
     setHighlightedDomainId(dom.ted_id)
   }
@@ -130,6 +109,38 @@ function UniprotAcc() {
     setPlugin(instance)
   }
 
+  let summaryFigure = null;
+  if (uniprotEntry && domain_summary_entries) {
+    const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
+    const opts: ProteinSummaryFigureProps = {
+      width: 500,
+      height: 30,
+      totalResidues: uniprotEntry.sequence.length,
+      domainAnnotations: domain_annotations,
+    }
+    if (highlightedDomainId) {
+      opts.highlightedDomainId = highlightedDomainId
+    }
+    summaryFigure = <ProteinSummaryFigure {...opts} />
+  }
+
+  let infoTable = null
+  if (uniprotEntry) {
+    infoTable = <Box>
+      <dl>
+        <dt>Name</dt>
+        <dd>{uniprotEntry.proteinDescription.fullName}</dd>
+        <dt>Length</dt>
+        <dd>{uniprotEntry.sequence.length} Residues</dd>
+        <dt>Organism</dt>
+        <dd>{uniprotEntry.organism.scientificName}</dd>
+        <dt>Lineage</dt>
+        <dd><Text fontSize="sm">{uniprotEntry.organism.lineage.join(" > ")}</Text></dd>
+      </dl>
+    </Box>
+  }
+
+  // console.log("uniprotEntry: ", uniprotEntry)
   return (
     <>
       {isLoading ? (
@@ -148,7 +159,9 @@ function UniprotAcc() {
               UniProt: {uniprotAcc}
             </Heading>
 
-            <Flex height="50vh" position="relative" margin="2em 0">
+            {infoTable}
+
+            <Flex height="50vh" position="relative" margin="1em 0">
               <Box maxW="lg" maxH="sm" id="molstar-view">
                 {afPdbUrl && <PDBeMolStarWrapper 
                   afdb={afId} 
@@ -159,6 +172,10 @@ function UniprotAcc() {
             <Heading size="md" pt={12}>
               TED Consensus Domains ({domain_summary_entries.data.length})
             </Heading>
+            
+            <Box margin="1em 0">
+              {summaryFigure}
+            </Box>
 
             <TableContainer>
               <Table size={{ base: "sm", md: "md" }}>
