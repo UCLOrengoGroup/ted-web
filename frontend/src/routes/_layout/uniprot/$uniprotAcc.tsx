@@ -22,7 +22,6 @@ import { useQuery } from "react-query"
 import { type ApiError, UniprotService, DomainSummary } from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
-// import MolStarWrapper from "../../../components/Common/MolStarWrapper"
 import PDBeMolStarWrapper from "../../../components/Common/PDBeMolStarWrapper"
 import { PDBeMolstarPlugin } from "pdbe-molstar/lib"
 
