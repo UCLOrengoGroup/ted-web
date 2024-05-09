@@ -11,3 +11,20 @@
     border-color: black;
 }
 
+dl {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1em;
+}
+dt {
+    flex-basis: 20%;
+    padding: 0.25em 1em;
+    text-align: right;
+    font-weight: bold;
+}
+dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0.25em 1em;
+}
