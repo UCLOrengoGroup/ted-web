@@ -53,9 +53,9 @@ const PDBeMolStarWrapper: React.FC<PDBeMolStarWrapperProps> = ({ afdb, onInit, d
           binary: false,
         },
         alphafoldView: true,
-        bgColor: { r: 255, g: 255, b: 255 },
-        selectColor: { r: 0, g: 0, b: 0 },
         highlightColor: { r: 0, g: 0, b: 0 },
+        bgColor: { r: 235, g: 235, b: 235 },
+        selectColor: { r: 0, g: 0, b: 0 },
         hideControls: true,
         sequencePanel: true,
       }
