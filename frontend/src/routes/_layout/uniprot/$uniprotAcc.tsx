@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {
+  Center,
   Box,
   Container,
   Flex,
@@ -10,7 +11,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -34,6 +34,7 @@ import UniprotEntryDataService from "../../../components/UniprotService/service"
 import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
+import { getColourByIndex } from "../../../components/Common/DomainColors"
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -56,7 +57,6 @@ function UniprotAcc() {
   })
 
   const afId = `AF-${uniprotAcc}-F1-model_v4`
-  const afPdbUrl = afId ? `https://alphafold.ebi.ac.uk/files/${afId}.pdb` : null
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -65,9 +65,9 @@ function UniprotAcc() {
 
   useEffect(() => {
     if (!uniprotDidLoad) {
-      console.log("useEffect.UPDATE: ", uniprotAcc)
+      // console.log("useEffect.UPDATE: ", uniprotAcc)
       UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
-        console.log("uniprot.data: ", up_entry);
+        // console.log("uniprot.data: ", up_entry);
         setUniprotEntry(up_entry);
       })
       setUniprotDidLoad(true)
@@ -78,12 +78,12 @@ function UniprotAcc() {
     if (!plugin) return
     const params = getQueryParamsFromChoppingString(dom.chopping)
     setSelectedDomainId(dom.ted_id)
-    plugin.visual.select({ data: params })
+    plugin.visual.focus(params)
   }
   
   const unselectChopping = () => {
     if (!plugin) return
-    plugin.visual.clearSelection()
+    plugin.visual.reset({ camera: true })
     setSelectedDomainId(null)
   }
 
@@ -101,8 +101,12 @@ function UniprotAcc() {
   }
 
   const toggleSelectChopping = (dom: DomainSummary) => {
-    unselectChopping()
-    selectChopping(dom)
+    if (selectedDomainId === dom.ted_id) {
+      unselectChopping()
+    }
+    else{
+      selectChopping(dom)
+    }
   }
 
   const onInitPlugin = (instance: PDBeMolstarPlugin) => {
@@ -110,6 +114,7 @@ function UniprotAcc() {
   }
 
   let summaryFigure = null;
+  let structureFigure = null
   if (uniprotEntry && domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
     const opts: ProteinSummaryFigureProps = {
@@ -122,6 +127,11 @@ function UniprotAcc() {
       opts.highlightedDomainId = highlightedDomainId
     }
     summaryFigure = <ProteinSummaryFigure {...opts} />
+    structureFigure = <PDBeMolStarWrapper 
+      afdb={afId} 
+      onInit={onInitPlugin}
+      domainAnnotations={domain_annotations}
+    />
   }
 
   let infoTable = null
@@ -135,7 +145,7 @@ function UniprotAcc() {
         <dt>Organism</dt>
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
-        <dd><Text fontSize="sm">{uniprotEntry.organism.lineage.join(" > ")}</Text></dd>
+        <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
       </dl>
     </Box>
   }
@@ -161,54 +171,57 @@ function UniprotAcc() {
 
             {infoTable}
 
-            <Flex height="50vh" position="relative" margin="1em 0">
+            <Flex height="50vh" position="relative" margin="1em 0 0">
               <Box maxW="lg" maxH="sm" id="molstar-view">
-                {afPdbUrl && <PDBeMolStarWrapper 
-                  afdb={afId} 
-                  onInit={onInitPlugin} />}
+                {structureFigure}
               </Box>
             </Flex>
-
-            <Heading size="md" pt={12}>
-              TED Consensus Domains ({domain_summary_entries.data.length})
-            </Heading>
             
-            <Box margin="1em 0">
-              {summaryFigure}
+            <Box margin="1em 0 0">
+              <Center>
+                {summaryFigure}
+              </Center>
             </Box>
 
-            <TableContainer>
+            <Heading size="md" pt={12}>
+              Consensus Domains ({domain_summary_entries.data.length})
+            </Heading>
+
+            <TableContainer margin="1em 0 0" >
               <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
-                    <Th></Th>
+                    <Th>Domain</Th>
                     <Th>Boundaries</Th>
                     <Th>CATH</Th>
                     <Th>Residues</Th>
                     <Th>Av pLDDT</Th>
                     <Th>Packing Density</Th>
+                    <Th>Focus</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {domain_summary_entries.data.map((item) => (
+                  {domain_summary_entries.data.map((item, domain_idx) => (
                     <Tr key={item.ted_id} 
                         onMouseOver={() => highlightChopping(item)} 
                         onMouseOut={() => unhighlightChopping()}
                         onClick={() => toggleSelectChopping(item)}
                         className={
                           (selectedDomainId === item.ted_id ? classes.selected : "") + " " + 
-                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")}
+                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")} 
+                        style={{ borderWidth: "0 0 0 1em", borderStyle: "solid", borderColor: getColourByIndex(domain_idx)}}
                         >
-                      <Td><IconButton 
-                            aria-label="View Domain"
-                            colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
-                            onClick={(e) => {e.preventDefault()}}
-                            icon={<ViewIcon/>} /></Td>
+                      <Td>{domain_idx + 1}</Td>
                       <Td>{item.chopping}</Td>
                       <Td>{item.cath_label}</Td>
                       <Td>{item.nres_domain}</Td>
                       <Td>{item.plddt}</Td>
                       <Td>{item.packing_density}</Td>
+                      <Td><IconButton 
+                            aria-label="View Domain"
+                            colorScheme={selectedDomainId === item.ted_id ? "blue" : "gray"}
+                            onClick={(e) => {e.preventDefault()}}
+                            icon={<ViewIcon/>} /></Td>
                     </Tr>
                   ))}
                 </Tbody>
