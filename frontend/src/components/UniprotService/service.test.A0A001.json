@@ -1,0 +1,687 @@
+{
+    "accession": "A0A001",
+    "id": "A0A001_STRVD",
+    "proteinExistence": "Predicted",
+    "info": {
+        "type": "TrEMBL",
+        "created": "2006-11-14",
+        "modified": "2023-06-28",
+        "version": 71
+    },
+    "organism": {
+        "taxonomy": 67581,
+        "names": [
+            {
+                "type": "scientific",
+                "value": "Streptomyces viridosporus"
+            }
+        ],
+        "lineage": [
+            "Bacteria",
+            "Actinomycetota",
+            "Actinomycetes",
+            "Kitasatosporales",
+            "Streptomycetaceae",
+            "Streptomyces"
+        ]
+    },
+    "protein": {
+        "submittedName": [
+            {
+                "fullName": {
+                    "value": "MoeD5",
+                    "evidences": [
+                        {
+                            "code": "ECO:0000313",
+                            "source": {
+                                "name": "EMBL",
+                                "id": "ABJ90154.1",
+                                "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "gene": [
+        {
+            "name": {
+                "value": "moeD5",
+                "evidences": [
+                    {
+                        "code": "ECO:0000313",
+                        "source": {
+                            "name": "EMBL",
+                            "id": "ABJ90154.1",
+                            "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "comments": [
+        {
+            "type": "SUBCELLULAR_LOCATION",
+            "locations": [
+                {
+                    "location": {
+                        "value": "Membrane",
+                        "evidences": [
+                            {
+                                "code": "ECO:0000256",
+                                "source": {
+                                    "name": "ARBA",
+                                    "id": "ARBA00004141",
+                                    "url": ""
+                                }
+                            }
+                        ]
+                    },
+                    "topology": {
+                        "value": "Multi-pass membrane protein",
+                        "evidences": [
+                            {
+                                "code": "ECO:0000256",
+                                "source": {
+                                    "name": "ARBA",
+                                    "id": "ARBA00004141",
+                                    "url": ""
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "features": [
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "9",
+            "end": "30",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "42",
+            "end": "60",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "116",
+            "end": "138",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "144",
+            "end": "164",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "232",
+            "end": "251",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "TRANSMEM",
+            "category": "TOPOLOGY",
+            "description": "Helical",
+            "begin": "263",
+            "end": "285",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "DOMAIN",
+            "category": "DOMAINS_AND_SITES",
+            "description": "ABC transmembrane type-1",
+            "begin": "17",
+            "end": "289",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000259",
+                    "source": {
+                        "name": "PROSITE",
+                        "id": "PS50929",
+                        "url": "https://prosite.expasy.org/cgi-bin/prosite/get-prosite-raw.pl?PS50929"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "DOMAIN",
+            "category": "DOMAINS_AND_SITES",
+            "description": "ABC transporter",
+            "begin": "344",
+            "end": "573",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000259",
+                    "source": {
+                        "name": "PROSITE",
+                        "id": "PS50893",
+                        "url": "https://prosite.expasy.org/cgi-bin/prosite/get-prosite-raw.pl?PS50893"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "REGION",
+            "category": "DOMAINS_AND_SITES",
+            "description": "Disordered",
+            "begin": "312",
+            "end": "340",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "MobiDB-lite",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "REGION",
+            "category": "DOMAINS_AND_SITES",
+            "description": "Disordered",
+            "begin": "571",
+            "end": "591",
+            "molecule": "",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "MobiDB-lite",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        }
+    ],
+    "dbReferences": [
+        {
+            "type": "EMBL",
+            "id": "DQ988994",
+            "properties": {
+                "molecule type": "Genomic_DNA",
+                "protein sequence ID": "ABJ90154.1"
+            }
+        },
+        {
+            "type": "AlphaFoldDB",
+            "id": "A0A001"
+        },
+        {
+            "type": "SMR",
+            "id": "A0A001"
+        },
+        {
+            "type": "GO",
+            "id": "GO:0016020",
+            "properties": {
+                "term": "C:membrane",
+                "source": "IEA:UniProtKB-SubCell"
+            }
+        },
+        {
+            "type": "GO",
+            "id": "GO:0140359",
+            "properties": {
+                "term": "F:ABC-type transporter activity",
+                "source": "IEA:InterPro"
+            }
+        },
+        {
+            "type": "GO",
+            "id": "GO:0005524",
+            "properties": {
+                "term": "F:ATP binding",
+                "source": "IEA:UniProtKB-KW"
+            }
+        },
+        {
+            "type": "GO",
+            "id": "GO:0016887",
+            "properties": {
+                "term": "F:ATP hydrolysis activity",
+                "source": "IEA:InterPro"
+            }
+        },
+        {
+            "type": "CDD",
+            "id": "cd03228",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABCC_MRP_Like"
+            }
+        },
+        {
+            "type": "Gene3D",
+            "id": "1.20.1560.10",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC transporter type 1, transmembrane domain"
+            }
+        },
+        {
+            "type": "Gene3D",
+            "id": "3.40.50.300",
+            "properties": {
+                "match status": "1",
+                "entry name": "P-loop containing nucleotide triphosphate hydrolases"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR003593",
+            "properties": {
+                "entry name": "AAA+_ATPase"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR011527",
+            "properties": {
+                "entry name": "ABC1_TM_dom"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR036640",
+            "properties": {
+                "entry name": "ABC1_TM_sf"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR003439",
+            "properties": {
+                "entry name": "ABC_transporter-like_ATP-bd"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR017871",
+            "properties": {
+                "entry name": "ABC_transporter-like_CS"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR027417",
+            "properties": {
+                "entry name": "P-loop_NTPase"
+            }
+        },
+        {
+            "type": "InterPro",
+            "id": "IPR039421",
+            "properties": {
+                "entry name": "Type_1_exporter"
+            }
+        },
+        {
+            "type": "PANTHER",
+            "id": "PTHR24221:SF423",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC TRANSPORTER"
+            }
+        },
+        {
+            "type": "PANTHER",
+            "id": "PTHR24221",
+            "properties": {
+                "match status": "1",
+                "entry name": "ATP-BINDING CASSETTE SUB-FAMILY B"
+            }
+        },
+        {
+            "type": "Pfam",
+            "id": "PF00664",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC_membrane"
+            }
+        },
+        {
+            "type": "Pfam",
+            "id": "PF00005",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC_tran"
+            }
+        },
+        {
+            "type": "SMART",
+            "id": "SM00382",
+            "properties": {
+                "match status": "1",
+                "entry name": "AAA"
+            }
+        },
+        {
+            "type": "SUPFAM",
+            "id": "SSF90123",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC transporter transmembrane region"
+            }
+        },
+        {
+            "type": "SUPFAM",
+            "id": "SSF52540",
+            "properties": {
+                "match status": "1",
+                "entry name": "P-loop containing nucleoside triphosphate hydrolases"
+            }
+        },
+        {
+            "type": "PROSITE",
+            "id": "PS50929",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC_TM1F"
+            }
+        },
+        {
+            "type": "PROSITE",
+            "id": "PS00211",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC_TRANSPORTER_1"
+            }
+        },
+        {
+            "type": "PROSITE",
+            "id": "PS50893",
+            "properties": {
+                "match status": "1",
+                "entry name": "ABC_TRANSPORTER_2"
+            }
+        }
+    ],
+    "keywords": [
+        {
+            "value": "ATP-binding",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "ARBA",
+                        "id": "ARBA00022840",
+                        "url": ""
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Membrane",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "ARBA",
+                        "id": "ARBA00023136",
+                        "url": ""
+                    }
+                },
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Nucleotide-binding",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "ARBA",
+                        "id": "ARBA00022741",
+                        "url": ""
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Transmembrane",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "ARBA",
+                        "id": "ARBA00022692",
+                        "url": ""
+                    }
+                },
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Transmembrane helix",
+            "evidences": [
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "ARBA",
+                        "id": "ARBA00022989",
+                        "url": ""
+                    }
+                },
+                {
+                    "code": "ECO:0000256",
+                    "source": {
+                        "name": "SAM",
+                        "id": "Phobius",
+                        "url": "https://www.uniprot.org/help/sam"
+                    }
+                }
+            ]
+        }
+    ],
+    "references": [
+        {
+            "citation": {
+                "type": "submission",
+                "publicationDate": "SEP-2006",
+                "authors": [
+                    "Ostash B.O.",
+                    "Walker S."
+                ],
+                "publication": {
+                    "submissionDatabase": "EMBL/GenBank/DDBJ databases"
+                }
+            },
+            "source": {
+                "strain": [
+                    {
+                        "value": "ATCC14672",
+                        "evidences": [
+                            {
+                                "code": "ECO:0000313",
+                                "source": {
+                                    "name": "EMBL",
+                                    "id": "ABJ90154.1",
+                                    "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "scope": [
+                "NUCLEOTIDE SEQUENCE"
+            ],
+            "evidences": [
+                {
+                    "code": "ECO:0000313",
+                    "source": {
+                        "name": "EMBL",
+                        "id": "ABJ90154.1",
+                        "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                    }
+                }
+            ]
+        },
+        {
+            "citation": {
+                "type": "journal article",
+                "publicationDate": "2007",
+                "title": "A streamlined metabolic pathway for the biosynthesis of moenomycin A.",
+                "authors": [
+                    "Ostash B.",
+                    "Saghatelian A.",
+                    "Walker S."
+                ],
+                "publication": {
+                    "journalName": "Chem. Biol."
+                },
+                "location": {
+                    "volume": "14",
+                    "firstPage": "257",
+                    "lastPage": "267"
+                },
+                "dbReferences": [
+                    {
+                        "type": "PubMed",
+                        "id": "17379141"
+                    },
+                    {
+                        "type": "DOI",
+                        "id": "10.1016/j.chembiol.2007.01.008"
+                    }
+                ]
+            },
+            "source": {
+                "strain": [
+                    {
+                        "value": "ATCC14672",
+                        "evidences": [
+                            {
+                                "code": "ECO:0000313",
+                                "source": {
+                                    "name": "EMBL",
+                                    "id": "ABJ90154.1",
+                                    "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "scope": [
+                "NUCLEOTIDE SEQUENCE"
+            ],
+            "evidences": [
+                {
+                    "code": "ECO:0000313",
+                    "source": {
+                        "name": "EMBL",
+                        "id": "ABJ90154.1",
+                        "url": "https://www.ebi.ac.uk/ena/browser/view/ABJ90154.1"
+                    }
+                }
+            ]
+        }
+    ],
+    "sequence": {
+        "version": 1,
+        "length": 591,
+        "mass": 61726,
+        "modified": "2006-11-14",
+        "sequence": "MLRGSARTYWTLTGLWVLLRAGTLVVGLLFQRLFDALGAGGGVWLIIALVAAIEAGRLFLQFGVMINRLEPRVQYGTTARLRHALLGSALRGSEVTARTSPGESLRTVGEDVDETGFFVAWAPTNLAHWLFVAASVTVMMRIDAVVTGALLALLVLLTLVTALAHSRFLRHRRATRAASGEVAGALREMVGAVGAVQAAAAEPQVAAHVAGLNGARAEAAVREELYAVVQRTVIGNPAPIGVGVVLLLVAGRMDEGTFSVGDLALFAFYLQILTEALGSIGMLSVRLQRVSVALGRITNNLGCRLRRSLERASPPIASDAPGGTGEGAAAPDAGPEPAPPLRELAVRGLTARHPGAGHGIEDVDLVVERHTVTVVTGRVGSGKSTLVRAVLGLLPHERGTVLWNGEPIADPASFLVAPRCGYTPQVPCLFSGTVRENVLLGRDGAAFDEAVRLAVAEPDLAAMQDGPDTVVGPRGLRLSGGQIQRVAIARMLVGDPELVVLDDVSSALDPETEHLLWERLLDGTRTVLAVSHRPALLRAADRVVVLEGGRVEASGTFEEVMAVSAEMGRIWTGAGPGGGDAGPAPQSPPAG"
+    }
+}
