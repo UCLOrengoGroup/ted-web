@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "biome check --apply-unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
     "preview": "vite preview",
-    "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios --exportSchemas true"
+    "generate-client": "openapi --input ./openapi.json --useOptions --useUnionTypes --output ./src/client --client axios --exportSchemas true",
+    "test": "vitest"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",
@@ -40,6 +41,7 @@
     "react-slick": "^0.30.2",
     "sass": "^1.75.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.12"
+    "vite": "^5.0.12",
+    "vitest": "^1.6.0"
   }
 }

@@ -9,11 +9,27 @@ const http = axios.create({
   }
 });
 
-const convertUniprotWebToModel = (data: any): UniprotData => {
+export const convertUniprotWebToModel = (data: any): UniprotData => {
   const scientificName = data.organism.names.find((name: any) => name.type === "scientific");
   const commonName = data.organism.names.find((name: any) => name.type === "common");
-  const fullName = data.protein.submittedName && data.protein.submittedName[0].fullName?.value;
-  const shortName = data.protein.submittedName && data.protein.submittedName[0].shortName?.value;
+  let fullName = null;
+  let shortName = null;
+  if (data.protein.recommendedName) {
+    fullName = data.protein.recommendedName.fullName?.value;
+    shortName = data.protein.recommendedName.shortName?.value;
+  }
+  if (!fullName && data.protein.alternativeName) {
+    fullName = data.protein.alternativeName[0].fullName?.value;
+  }
+  if (!shortName && data.protein.alternativeName) {
+    shortName = data.protein.alternativeName[0].shortName?.value;
+  }
+  if (!fullName && data.protein.submittedName) {
+    fullName = data.protein.submittedName[0].fullName?.value;
+  }
+  if (!shortName && data.protein.submittedName) {
+    shortName = data.protein.submittedName[0].shortName?.value;
+  }
   // console.log("UniProt.API.data: ", data)
   return {
     accession: data.accession,
