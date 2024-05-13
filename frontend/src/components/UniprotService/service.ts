@@ -39,7 +39,7 @@ const convertUniprotWebToModel = (data: any): UniprotData => {
 const get = (id: any): Promise<UniprotData> => {
   return http.get(`/proteins/${id}`)
     .then((response) => {
-      console.log("UniProt.API.response.data: ", response.data)
+      // console.log("UniProt.API.response.data: ", response.data)
       return convertUniprotWebToModel(response.data);
     });
 };
