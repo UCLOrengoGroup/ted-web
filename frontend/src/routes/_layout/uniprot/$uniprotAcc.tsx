@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {
+  Center,
   Box,
   Container,
   Flex,
@@ -10,7 +11,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -65,9 +65,9 @@ function UniprotAcc() {
 
   useEffect(() => {
     if (!uniprotDidLoad) {
-      console.log("useEffect.UPDATE: ", uniprotAcc)
+      // console.log("useEffect.UPDATE: ", uniprotAcc)
       UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
-        console.log("uniprot.data: ", up_entry);
+        // console.log("uniprot.data: ", up_entry);
         setUniprotEntry(up_entry);
       })
       setUniprotDidLoad(true)
@@ -110,6 +110,7 @@ function UniprotAcc() {
   }
 
   let summaryFigure = null;
+  let structureFigure = null
   if (uniprotEntry && domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
     const opts: ProteinSummaryFigureProps = {
@@ -122,7 +123,14 @@ function UniprotAcc() {
       opts.highlightedDomainId = highlightedDomainId
     }
     summaryFigure = <ProteinSummaryFigure {...opts} />
+    structureFigure = <PDBeMolStarWrapper 
+      afdb={afId} 
+      onInit={onInitPlugin}
+      domainAnnotations={domain_annotations}
+    />
+
   }
+
 
   let infoTable = null
   if (uniprotEntry) {
@@ -135,7 +143,7 @@ function UniprotAcc() {
         <dt>Organism</dt>
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
-        <dd><Text fontSize="sm">{uniprotEntry.organism.lineage.join(" > ")}</Text></dd>
+        <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
       </dl>
     </Box>
   }
@@ -161,23 +169,23 @@ function UniprotAcc() {
 
             {infoTable}
 
-            <Flex height="50vh" position="relative" margin="1em 0">
+            <Flex height="50vh" position="relative" margin="1em 0 0">
               <Box maxW="lg" maxH="sm" id="molstar-view">
-                {afPdbUrl && <PDBeMolStarWrapper 
-                  afdb={afId} 
-                  onInit={onInitPlugin} />}
+                {structureFigure}
               </Box>
             </Flex>
-
-            <Heading size="md" pt={12}>
-              TED Consensus Domains ({domain_summary_entries.data.length})
-            </Heading>
             
-            <Box margin="1em 0">
-              {summaryFigure}
+            <Box margin="1em 0 0">
+              <Center>
+                {summaryFigure}
+              </Center>
             </Box>
 
-            <TableContainer>
+            <Heading size="md" pt={12}>
+              Consensus Domains ({domain_summary_entries.data.length})
+            </Heading>
+
+            <TableContainer margin="1em 0 0" >
               <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
