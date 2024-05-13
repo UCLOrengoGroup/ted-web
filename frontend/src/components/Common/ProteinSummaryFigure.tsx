@@ -50,7 +50,9 @@ function ProteinSummaryFigure(props: ProteinSummaryFigureProps) {
               stroke={highlighted ? stroke : "none"}
               fillOpacity={highlighted ? 1.0 : 0.75}
               fill={dom_col}
-            />
+            >
+              <title>{`Domain ${dom_index + 1}: ` + dom.segments.map((seg) => `${seg.start}-${seg.end}`).join(', ')}</title>
+            </rect>
           )
         })
       })}
