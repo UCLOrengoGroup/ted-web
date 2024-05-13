@@ -34,6 +34,7 @@ import UniprotEntryDataService from "../../../components/UniprotService/service"
 import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
+import { getColourByIndex } from "../../../components/Common/DomainColors"
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -56,7 +57,6 @@ function UniprotAcc() {
   })
 
   const afId = `AF-${uniprotAcc}-F1-model_v4`
-  const afPdbUrl = afId ? `https://alphafold.ebi.ac.uk/files/${afId}.pdb` : null
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -78,12 +78,12 @@ function UniprotAcc() {
     if (!plugin) return
     const params = getQueryParamsFromChoppingString(dom.chopping)
     setSelectedDomainId(dom.ted_id)
-    plugin.visual.select({ data: params })
+    plugin.visual.focus(params)
   }
   
   const unselectChopping = () => {
     if (!plugin) return
-    plugin.visual.clearSelection()
+    plugin.visual.reset({ camera: true })
     setSelectedDomainId(null)
   }
 
@@ -101,8 +101,12 @@ function UniprotAcc() {
   }
 
   const toggleSelectChopping = (dom: DomainSummary) => {
-    unselectChopping()
-    selectChopping(dom)
+    if (selectedDomainId === dom.ted_id) {
+      unselectChopping()
+    }
+    else{
+      selectChopping(dom)
+    }
   }
 
   const onInitPlugin = (instance: PDBeMolstarPlugin) => {
@@ -128,9 +132,7 @@ function UniprotAcc() {
       onInit={onInitPlugin}
       domainAnnotations={domain_annotations}
     />
-
   }
-
 
   let infoTable = null
   if (uniprotEntry) {
@@ -189,34 +191,37 @@ function UniprotAcc() {
               <Table size={{ base: "sm", md: "md" }}>
                 <Thead>
                   <Tr>
-                    <Th></Th>
+                    <Th>Domain</Th>
                     <Th>Boundaries</Th>
                     <Th>CATH</Th>
                     <Th>Residues</Th>
                     <Th>Av pLDDT</Th>
                     <Th>Packing Density</Th>
+                    <Th>Focus</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {domain_summary_entries.data.map((item) => (
+                  {domain_summary_entries.data.map((item, domain_idx) => (
                     <Tr key={item.ted_id} 
                         onMouseOver={() => highlightChopping(item)} 
                         onMouseOut={() => unhighlightChopping()}
                         onClick={() => toggleSelectChopping(item)}
                         className={
                           (selectedDomainId === item.ted_id ? classes.selected : "") + " " + 
-                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")}
+                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")} 
+                        style={{ borderWidth: "0 0 0 1em", borderStyle: "solid", borderColor: getColourByIndex(domain_idx)}}
                         >
-                      <Td><IconButton 
-                            aria-label="View Domain"
-                            colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
-                            onClick={(e) => {e.preventDefault()}}
-                            icon={<ViewIcon/>} /></Td>
+                      <Td>{domain_idx + 1}</Td>
                       <Td>{item.chopping}</Td>
                       <Td>{item.cath_label}</Td>
                       <Td>{item.nres_domain}</Td>
                       <Td>{item.plddt}</Td>
                       <Td>{item.packing_density}</Td>
+                      <Td><IconButton 
+                            aria-label="View Domain"
+                            colorScheme={selectedDomainId === item.ted_id ? "blue" : "gray"}
+                            onClick={(e) => {e.preventDefault()}}
+                            icon={<ViewIcon/>} /></Td>
                     </Tr>
                   ))}
                 </Tbody>
