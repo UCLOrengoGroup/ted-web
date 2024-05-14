@@ -3,7 +3,6 @@
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 
 import Carousel from "../../components/Common/Carousel"
-import Citation from "../../components/Common/Citation"
 
 import {
   Box,
