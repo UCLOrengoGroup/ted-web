@@ -83,7 +83,9 @@ function Dashboard() {
               bg={"red.400"}
               _hover={{ bg: "red.500" }}
             >
-              Search
+              <Link as={RouterLink} to={"/search"}>
+                Search
+              </Link>
             </Button>
             <Button
               rounded={"full"}
@@ -123,17 +125,6 @@ function Dashboard() {
           >
             <Carousel />
           </Box>
-        </Flex>
-      </Stack>
-      <Stack>
-        <Flex
-          flex={1}
-          justify={"center"}
-          align={"center"}
-          position={"relative"}
-          w={"full"}
-        >
-          <Citation />
         </Flex>
       </Stack>
     </Container>

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Flex,
@@ -127,19 +128,22 @@ function Search() {
         uniprot_items && (
           <Container maxWidth={"100ch"}>
             <Stack spacing={3}>
-              <SearchBar
-                onSubmitQuery={(query) => {
-                  return handleSearchSubmit(query)
-                }}
-              />
               <Heading
+                margin="0.5em 0 0"
                 size="lg"
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
               >
                 Search{searchQuery && ":"} {searchQuery}
               </Heading>
-              <Text>
+              <Box margin="0.5em 0 0">
+                <SearchBar
+                  onSubmitQuery={(query) => {
+                    return handleSearchSubmit(query)
+                  }}
+                />
+              </Box>
+              <Text margin="0.5em 0 0">
                 {uniprot_items.length} AlphaFold entries found ({ted_count} TED
                 domains)
               </Text>
