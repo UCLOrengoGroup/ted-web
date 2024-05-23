@@ -2,25 +2,27 @@ import re
 
 from pydantic import BaseModel
 
-SEGMENT_PDB_RES_LABEL_RE = re.compile(r'(?P<start>-?\d+[A-Z]?)-(?P<stop>-?\d+[A-Z]?)$')
-SEGMENT_NUM_RE = re.compile(r'(?P<start>\d+)-(?P<stop>\d+)$')
+SEGMENT_PDB_RES_LABEL_RE = re.compile(r"(?P<start>-?\d+[A-Z]?)-(?P<stop>-?\d+[A-Z]?)$")
+SEGMENT_NUM_RE = re.compile(r"(?P<start>\d+)-(?P<stop>\d+)$")
 
 
 class SegmentResLabel(BaseModel):
     start: str
     stop: str
 
+
 class SegmentNum(BaseModel):
     start: int
     stop: int
+
 
 class ChoppingBase(BaseModel):
     domain_id: str
     segments: list[SegmentNum] | list[SegmentResLabel]
 
     @classmethod
-    def from_chopping_str(cls, domain_id: str, chopping_str: str) -> 'ChoppingBase':
-        seg_strs = chopping_str.split('_')
+    def from_chopping_str(cls, domain_id: str, chopping_str: str) -> "ChoppingBase":
+        seg_strs = chopping_str.split("_")
 
         segments = []
         for seg_str in seg_strs:
@@ -41,17 +43,16 @@ class ChoppingBase(BaseModel):
 
             m = seg_re.match(seg_str)
             if m is None:
-                raise ValueError(f"Invalid segment string: {seg_str} (did not match {seg_re})")
+                raise ValueError(
+                    f"Invalid segment string: {seg_str} (did not match {seg_re})"
+                )
             seg = seg_class(
-                start=seg_cast(m.group('start')),
-                stop=seg_cast(m.group('stop')),
+                start=seg_cast(m.group("start")),
+                stop=seg_cast(m.group("stop")),
             )
             segments.append(seg)
 
-        return cls(
-            domain_id=domain_id,
-            segments=[seg]
-        )
+        return cls(domain_id=domain_id, segments=segments)
 
     def get_first_res(self) -> int | str:
         return self.segments[0].start
@@ -73,7 +74,9 @@ class ChoppingResLabel(ChoppingBase):
     segments: list[SegmentResLabel]
 
     def count_residues(self) -> None:
-        raise NotImplementedError("Cannot get residue count from PDB residue labels (without more jiggery pokery)")
+        raise NotImplementedError(
+            "Cannot get residue count from PDB residue labels (without more jiggery pokery)"
+        )
 
 
 class ChoppingNumeric(ChoppingBase):
