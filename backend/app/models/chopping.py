@@ -48,10 +48,7 @@ class ChoppingBase(BaseModel):
             )
             segments.append(seg)
 
-        return cls(
-            domain_id=domain_id,
-            segments=[seg]
-        )
+        return cls(domain_id=domain_id, segments=segments)
 
     def get_first_res(self) -> int | str:
         return self.segments[0].start
