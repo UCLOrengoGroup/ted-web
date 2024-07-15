@@ -34,7 +34,7 @@ const NavLink = (props: Props) => {
       rounded={"md"}
       _hover={{
         textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
+        bg: useColorModeValue("purple.500", "purple.600"),
       }}
       href={href}
     >
@@ -48,7 +48,7 @@ const Topbar: React.FC = () => {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box color={useColorModeValue("white", "white")} bg={useColorModeValue("purple.700", "purple.800")} px={4}>
         <Container>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
@@ -59,7 +59,7 @@ const Topbar: React.FC = () => {
               onClick={isOpen ? onClose : onOpen}
             />
             <HStack spacing={8} alignItems={"center"}>
-              <Box fontWeight={600} fontSize={{ base: "2l" }}>
+              <Box fontWeight={900} fontSize={{ base: "2l" }}>
                 TED
               </Box>
               <HStack
