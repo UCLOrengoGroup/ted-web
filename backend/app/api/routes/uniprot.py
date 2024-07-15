@@ -6,7 +6,7 @@ from sqlmodel import select
 
 from app.api.deps import SessionDep
 from app.models.beacons import UniprotSummary
-from app.models.db import DomainSummary, DomainSummaryItemsOut
+from app.models.db import DomainSummary, DomainSummaryItemsPublic
 from app.transformers import create_uniprot_summary
 
 logger = logging.getLogger(__name__)
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
-@router.get("/summary/{uniprot_acc}", response_model=DomainSummaryItemsOut)
+@router.get("/summary/{uniprot_acc}", response_model=DomainSummaryItemsPublic)
 def read_uniprot_summary(
     session: SessionDep, uniprot_acc: str, skip: int = 0, limit: int = 100
 ) -> Any:
@@ -36,7 +36,7 @@ def read_uniprot_summary(
             status_code=404, detail=f"No domains found for Uniprot Acc {uniprot_acc}"
         )
 
-    uni_sum = DomainSummaryItemsOut(
+    uni_sum = DomainSummaryItemsPublic(
         data=domain_summary_items, count=len(domain_summary_items)
     )
 
