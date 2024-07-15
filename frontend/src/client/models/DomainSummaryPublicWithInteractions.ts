@@ -3,7 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type DomainSummary = {
+import type { InteractionSummary } from './InteractionSummary';
+
+export type DomainSummaryPublicWithInteractions = {
     ted_id: string;
     uniprot_acc: string;
     md5_domain: string;
@@ -26,5 +28,6 @@ export type DomainSummary = {
     tax_common_name: string;
     tax_scientific_name: string;
     tax_lineage: string;
+    interactions?: Array<InteractionSummary>;
 };
 

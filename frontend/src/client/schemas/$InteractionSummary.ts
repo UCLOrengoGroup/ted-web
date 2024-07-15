@@ -2,25 +2,29 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $ItemOut = {
+export const $InteractionSummary = {
     properties: {
-        title: {
-            type: 'string',
-            isRequired: true,
-        },
-        description: {
+        id: {
             type: 'any-of',
             contains: [{
-                type: 'string',
+                type: 'number',
             }, {
                 type: 'null',
             }],
         },
-        id: {
-            type: 'number',
+        af_id: {
+            type: 'string',
             isRequired: true,
         },
-        owner_id: {
+        ted_id1: {
+            type: 'string',
+            isRequired: true,
+        },
+        ted_id2: {
+            type: 'string',
+            isRequired: true,
+        },
+        pae_score: {
             type: 'number',
             isRequired: true,
         },

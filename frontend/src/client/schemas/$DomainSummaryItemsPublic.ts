@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $ItemsOut = {
+export const $DomainSummaryItemsPublic = {
     properties: {
         data: {
             type: 'array',
             contains: {
-                type: 'ItemOut',
+                type: 'DomainSummaryPublicWithInteractions',
             },
             isRequired: true,
         },
