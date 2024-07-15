@@ -46,8 +46,23 @@ def test_read_uniprot_summary_passes(
     ]
 
 
+def test_read_real_uniprot_summary_returns_empty_result(
+    client: TestClient,
+    db: Session,
+) -> None:
+
+    # uniprot accession in AFDB, but not in this database
+    uni_acc = "P12345"
+    response = client.get(
+        f"{settings.API_V1_STR}/uniprot/summary/{uni_acc}",
+    )
+    assert response.status_code == 200
+    content = response.json()
+    assert content == {"data": [], "count": 0}
+
+
 def test_read_uniprot_summary_fails_with_404(client: TestClient, db: Session) -> None:
-    uni_acc = "A98765"
+    uni_acc = "NOT_A_REAL_UNIPROT_ACC"
     response = client.get(
         f"{settings.API_V1_STR}/uniprot/summary/{uni_acc}",
     )
