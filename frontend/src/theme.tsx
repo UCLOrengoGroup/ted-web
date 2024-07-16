@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme, textDecoration } from "@chakra-ui/react"
 
 const disabledStyles = {
   _disabled: {
@@ -54,6 +54,11 @@ const theme = extendTheme({
         },
       },
     },
+    Link: {
+      baseStyle: {
+        textDecoration: 'underline',
+      }
+    }
   },
 })
 
