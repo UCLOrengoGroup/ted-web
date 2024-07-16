@@ -1,4 +1,4 @@
-import { DomainSummary } from "../../client"
+import { DomainSummaryPublicWithInteractions } from "../../client"
 import { DomainAnnotation, SegmentAnnotation } from "../Common/models"
 
 export const getQueryParamsFromChoppingString = (chopping: string) => {
@@ -28,7 +28,7 @@ export const getSegmentsFromChoppingString = (chopping: string): SegmentAnnotati
   })
 }
 
-export const getDomainAnnotationFromDomainSummary = (domsum: DomainSummary): DomainAnnotation => {
+export const getDomainAnnotationFromDomainSummary = (domsum: DomainSummaryPublicWithInteractions): DomainAnnotation => {
   return {
     id: domsum.ted_id,
     annotation: domsum.cath_label,
