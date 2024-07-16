@@ -62,7 +62,7 @@ function SearchBar({
           <InputGroup>
             <Input
               id="query"
-              placeholder="Enter UniProt ID e.g. A0A001"
+              placeholder="Enter UniProt ID e.g. A0A000"
               {...register("query", {
                 required: "This field is required",
               })}
@@ -87,6 +87,8 @@ function fetchDomainSummary(query: string) {
   return UniprotService.readUniprotSummary({ uniprotAcc: query, limit: 50 })
 }
 
+
+
 function Search() {
   const showToast = useCustomToast()
   const [searchQuery, setSearchQuery] = React.useState<string>("")
@@ -102,6 +104,11 @@ function Search() {
     const errDetail = (error as ApiError).body?.detail
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
+  
+
+  function handleUniprotEntryClick(uniprot_acc: string) {
+    setSearchQuery(uniprot_acc)
+  }
 
   function handleSearchSubmit(_search_query: string) {
     queryClient.invalidateQueries("search")
@@ -113,9 +120,25 @@ function Search() {
   }
 
   const first_entry = domain_summary_entries?.data[0]
-  const uniprot_items = first_entry ? [first_entry] : []
+  const uniprot_items = domain_summary_entries ? (first_entry ? [first_entry] : []) : null
   const ted_count = domain_summary_entries ? domain_summary_entries.count : 0
 
+  function getSearchMessage() {
+    if (uniprot_items == null) {
+      return <Text>Enter a UniProt accession into the search bar (e.g. {" "}
+        <Link onClick={() => handleUniprotEntryClick('A0A000')}>A0A000</Link> )
+        </Text>
+    }
+    if (uniprot_items.length == 0) {
+      return <Text>Sorry, no consensus TED domains found for '{searchQuery}'</Text>
+    }
+    return (
+      <Text>
+        {uniprot_items.length} AlphaFold entries found for '{searchQuery}' ({ted_count} TED
+        domains)
+      </Text>
+    )
+  }
   return (
     <>
       {isLoading ? (
@@ -124,66 +147,65 @@ function Search() {
           <Spinner size="xl" color="ui.main" />
         </Flex>
       ) : (
-        uniprot_items && (
           <Container maxWidth={"100ch"}>
-            <Stack spacing={3}>
-              <SearchBar
-                onSubmitQuery={(query) => {
-                  return handleSearchSubmit(query)
-                }}
-              />
+            <Stack spacing={9}>
               <Heading
                 size="lg"
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
               >
-                Search{searchQuery && ":"} {searchQuery}
+                Search TED
               </Heading>
-              <Text>
-                {uniprot_items.length} AlphaFold entries found ({ted_count} TED
-                domains)
-              </Text>
-              <TableContainer>
-                <Table size={{ base: "sm", md: "md" }}>
-                  <Thead>
-                    <Tr>
-                      <Th>AlphaFold ID</Th>
-                      <Th>UniProt</Th>
-                      <Th>Taxonomy</Th>
-                      <Th>TED Domains</Th>
-                      <Th>Link</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {uniprot_items.map((item) => (
-                      <Tr key={item.uniprot_acc}>
-                        <Td>{tedToAf(item.ted_id)}</Td>
-                        <Td>{item.uniprot_acc}</Td>
-                        <Td>
-                          <Stack>
-                            <Text>{item.tax_scientific_name}</Text>
-                            {/* <Text fontSize="xs">{item.tax_lineage.split(',').join(" > ")}</Text> */}
-                          </Stack>
-                        </Td>
-                        <Td>{ted_count}</Td>
-                        <Td>
-                          <Button variant="primary">
-                            <Link
-                              as={RouterLink}
-                              to={`/uniprot/${item.uniprot_acc}`}
-                            >
-                              Go
-                            </Link>
-                          </Button>
-                        </Td>
+              <SearchBar
+                onSubmitQuery={(query) => {
+                  return handleSearchSubmit(query)
+                }}
+              />
+              { getSearchMessage() }
+              { uniprot_items?.length && (
+                <>
+                <TableContainer>
+                  <Table size={{ base: "sm", md: "md" }}>
+                    <Thead>
+                      <Tr>
+                        <Th>AlphaFold ID</Th>
+                        <Th>UniProt</Th>
+                        <Th>Taxonomy</Th>
+                        <Th>TED Domains</Th>
+                        <Th>Link</Th>
                       </Tr>
-                    ))}
-                  </Tbody>
-                </Table>
-              </TableContainer>
+                    </Thead>
+                    <Tbody>
+                      {uniprot_items.map((item) => (
+                        <Tr key={item.uniprot_acc}>
+                          <Td>{tedToAf(item.ted_id)}</Td>
+                          <Td>{item.uniprot_acc}</Td>
+                          <Td>
+                            <Stack>
+                              <Text>{item.tax_scientific_name}</Text>
+                              {/* <Text fontSize="xs">{item.tax_lineage.split(',').join(" > ")}</Text> */}
+                            </Stack>
+                          </Td>
+                          <Td>{ted_count}</Td>
+                          <Td>
+                            <Button variant="primary">
+                              <Link
+                                as={RouterLink}
+                                to={`/uniprot/${item.uniprot_acc}`}
+                              >
+                                Go
+                              </Link>
+                            </Button>
+                          </Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+                </>
+              )}
             </Stack>
           </Container>
-        )
       )}
     </>
   )
