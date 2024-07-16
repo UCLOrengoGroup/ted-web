@@ -2,16 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $InteractionSummary = {
+export const $InteractionSummaryPublic = {
     properties: {
-        id: {
-            type: 'any-of',
-            contains: [{
-                type: 'number',
-            }, {
-                type: 'null',
-            }],
-        },
         af_id: {
             type: 'string',
             isRequired: true,
@@ -25,6 +17,10 @@ export const $InteractionSummary = {
             isRequired: true,
         },
         pae_score: {
+            type: 'number',
+            isRequired: true,
+        },
+        id: {
             type: 'number',
             isRequired: true,
         },

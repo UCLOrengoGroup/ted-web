@@ -3,11 +3,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type InteractionSummary = {
-    id?: (number | null);
+export type InteractionSummaryPublic = {
     af_id: string;
     ted_id1: string;
     ted_id2: string;
     pae_score: number;
+    id: number;
 };
 

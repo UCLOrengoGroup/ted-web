@@ -95,7 +95,7 @@ export const $DomainSummaryPublicWithInteractions = {
         interactions: {
             type: 'array',
             contains: {
-                type: 'InteractionSummary',
+                type: 'InteractionSummaryPublic',
             },
         },
     },

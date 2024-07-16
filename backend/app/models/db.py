@@ -158,7 +158,7 @@ class DomainSummaryPublic(DomainSummaryBase):
 
 
 class DomainSummaryPublicWithInteractions(DomainSummaryPublic):
-    interactions: list["InteractionSummary"] = []
+    interactions: list["InteractionSummaryPublic"] = []
 
 
 class DomainSummaryItemsPublic(SQLModel):
@@ -166,8 +166,7 @@ class DomainSummaryItemsPublic(SQLModel):
     count: int
 
 
-class InteractionSummary(SQLModel, table=True):
-    id: Optional[int] | None = Field(default=None, primary_key=True)
+class InteractionSummaryBase(SQLModel):
     af_id: str = Field(nullable=False)
     ted_id1: str = Field(
         nullable=False,
@@ -181,6 +180,10 @@ class InteractionSummary(SQLModel, table=True):
     )
     pae_score: float = Field(nullable=False)
 
+
+class InteractionSummary(InteractionSummaryBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+
     ted1: DomainSummary = Relationship(
         back_populates="interactions",
         sa_relationship_kwargs={"foreign_keys": "InteractionSummary.ted_id1"},
@@ -189,6 +192,15 @@ class InteractionSummary(SQLModel, table=True):
         back_populates="interactions",
         sa_relationship_kwargs={"foreign_keys": "InteractionSummary.ted_id2"},
     )
+
+
+class InteractionSummaryPublic(InteractionSummaryBase):
+    id: int
+
+
+class InteractionSummaryPublicWithDomains(InteractionSummaryPublic):
+    ted1: DomainSummaryPublic
+    ted2: DomainSummaryPublic
 
 
 class InteractionSummaryItemsOut(SQLModel):

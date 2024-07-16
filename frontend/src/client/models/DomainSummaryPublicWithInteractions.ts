@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { InteractionSummary } from './InteractionSummary';
+import type { InteractionSummaryPublic } from './InteractionSummaryPublic';
 
 export type DomainSummaryPublicWithInteractions = {
     ted_id: string;
@@ -28,6 +28,6 @@ export type DomainSummaryPublicWithInteractions = {
     tax_common_name: string;
     tax_scientific_name: string;
     tax_lineage: string;
-    interactions?: Array<InteractionSummary>;
+    interactions?: Array<InteractionSummaryPublic>;
 };
 
