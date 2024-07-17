@@ -1,3 +1,4 @@
+from typing import Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 from .utils import ted_id_to_af_id
@@ -115,7 +116,7 @@ class NewPassword(SQLModel):
     new_password: str
 
 
-class DomainSummary(SQLModel, table=True):
+class DomainSummaryBase(SQLModel):
     ted_id: str = Field(nullable=False, primary_key=True)
     uniprot_acc: str = Field(nullable=False, index=True)
     md5_domain: str = Field(nullable=False, index=True)
@@ -144,6 +145,64 @@ class DomainSummary(SQLModel, table=True):
         return ted_id_to_af_id(self.ted_id)
 
 
-class DomainSummaryItemsOut(SQLModel):
-    data: list[DomainSummary]
+class DomainSummary(DomainSummaryBase, table=True):
+    interactions: list["InteractionSummary"] = Relationship(
+        sa_relationship_kwargs={
+            "primaryjoin": "or_(DomainSummary.ted_id==InteractionSummary.ted_id1, DomainSummary.ted_id==InteractionSummary.ted_id2)",
+        },
+    )
+
+
+class DomainSummaryPublic(DomainSummaryBase):
+    pass
+
+
+class DomainSummaryPublicWithInteractions(DomainSummaryPublic):
+    interactions: list["InteractionSummaryPublic"] = []
+
+
+class DomainSummaryItemsPublic(SQLModel):
+    data: list[DomainSummaryPublicWithInteractions]
+    count: int
+
+
+class InteractionSummaryBase(SQLModel):
+    af_id: str = Field(nullable=False)
+    ted_id1: str = Field(
+        nullable=False,
+        index=True,
+        foreign_key="domainsummary.ted_id",
+    )
+    ted_id2: str = Field(
+        nullable=False,
+        index=True,
+        foreign_key="domainsummary.ted_id",
+    )
+    pae_score: float = Field(nullable=False)
+
+
+class InteractionSummary(InteractionSummaryBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+
+    ted1: DomainSummary = Relationship(
+        back_populates="interactions",
+        sa_relationship_kwargs={"foreign_keys": "InteractionSummary.ted_id1"},
+    )
+    ted2: DomainSummary = Relationship(
+        back_populates="interactions",
+        sa_relationship_kwargs={"foreign_keys": "InteractionSummary.ted_id2"},
+    )
+
+
+class InteractionSummaryPublic(InteractionSummaryBase):
+    id: int
+
+
+class InteractionSummaryPublicWithDomains(InteractionSummaryPublic):
+    ted1: DomainSummaryPublic
+    ted2: DomainSummaryPublic
+
+
+class InteractionSummaryItemsOut(SQLModel):
+    data: list[InteractionSummary]
     count: int

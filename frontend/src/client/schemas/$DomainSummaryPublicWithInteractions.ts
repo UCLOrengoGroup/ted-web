@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $DomainSummary = {
+export const $DomainSummaryPublicWithInteractions = {
     properties: {
         ted_id: {
             type: 'string',
@@ -91,6 +91,12 @@ export const $DomainSummary = {
         tax_lineage: {
             type: 'string',
             isRequired: true,
+        },
+        interactions: {
+            type: 'array',
+            contains: {
+                type: 'InteractionSummaryPublic',
+            },
         },
     },
 } as const;

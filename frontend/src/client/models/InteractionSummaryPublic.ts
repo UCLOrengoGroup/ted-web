@@ -3,10 +3,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ItemOut = {
-    title: string;
-    description?: (string | null);
+export type InteractionSummaryPublic = {
+    af_id: string;
+    ted_id1: string;
+    ted_id2: string;
+    pae_score: number;
     id: number;
-    owner_id: number;
 };
 

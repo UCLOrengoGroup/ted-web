@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DomainSummaryItemsOut } from '../models/DomainSummaryItemsOut';
+import type { DomainSummaryItemsPublic } from '../models/DomainSummaryItemsPublic';
 import type { UniprotSummary } from '../models/UniprotSummary';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -14,7 +14,7 @@ export class UniprotService {
     /**
      * Read Uniprot Summary
      * Retrieve summary information for TED Domains.
-     * @returns DomainSummaryItemsOut Successful Response
+     * @returns DomainSummaryItemsPublic Successful Response
      * @throws ApiError
      */
     public static readUniprotSummary({
@@ -25,7 +25,7 @@ export class UniprotService {
         uniprotAcc: string,
         skip?: number,
         limit?: number,
-    }): CancelablePromise<DomainSummaryItemsOut> {
+    }): CancelablePromise<DomainSummaryItemsPublic> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/v1/uniprot/summary/{uniprot_acc}',

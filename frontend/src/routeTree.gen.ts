@@ -18,8 +18,8 @@ import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
 import { Route as LayoutSearchImport } from './routes/_layout/search'
-import { Route as LayoutItemsImport } from './routes/_layout/items'
 import { Route as LayoutDataImport } from './routes/_layout/data'
+import { Route as LayoutApiImport } from './routes/_layout/api'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
 import { Route as LayoutAboutImport } from './routes/_layout/about'
 import { Route as LayoutUniprotUniprotAccImport } from './routes/_layout/uniprot/$uniprotAcc'
@@ -61,13 +61,13 @@ const LayoutSearchRoute = LayoutSearchImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
-const LayoutItemsRoute = LayoutItemsImport.update({
-  path: '/items',
+const LayoutDataRoute = LayoutDataImport.update({
+  path: '/data',
   getParentRoute: () => LayoutRoute,
 } as any)
 
-const LayoutDataRoute = LayoutDataImport.update({
-  path: '/data',
+const LayoutApiRoute = LayoutApiImport.update({
+  path: '/api',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -114,12 +114,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAdminImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/data': {
-      preLoaderRoute: typeof LayoutDataImport
+    '/_layout/api': {
+      preLoaderRoute: typeof LayoutApiImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/items': {
-      preLoaderRoute: typeof LayoutItemsImport
+    '/_layout/data': {
+      preLoaderRoute: typeof LayoutDataImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/search': {
@@ -147,8 +147,8 @@ export const routeTree = rootRoute.addChildren([
   LayoutRoute.addChildren([
     LayoutAboutRoute,
     LayoutAdminRoute,
+    LayoutApiRoute,
     LayoutDataRoute,
-    LayoutItemsRoute,
     LayoutSearchRoute,
     LayoutSettingsRoute,
     LayoutIndexRoute,

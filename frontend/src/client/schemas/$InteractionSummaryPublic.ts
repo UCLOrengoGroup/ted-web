@@ -2,25 +2,25 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export const $ItemOut = {
+export const $InteractionSummaryPublic = {
     properties: {
-        title: {
+        af_id: {
             type: 'string',
             isRequired: true,
         },
-        description: {
-            type: 'any-of',
-            contains: [{
-                type: 'string',
-            }, {
-                type: 'null',
-            }],
+        ted_id1: {
+            type: 'string',
+            isRequired: true,
         },
-        id: {
+        ted_id2: {
+            type: 'string',
+            isRequired: true,
+        },
+        pae_score: {
             type: 'number',
             isRequired: true,
         },
-        owner_id: {
+        id: {
             type: 'number',
             isRequired: true,
         },

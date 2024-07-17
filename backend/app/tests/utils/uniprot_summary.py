@@ -50,6 +50,10 @@ def create_ted_id_string(uniprot_acc: str, domain_num: int) -> str:
     return f"AF-{uniprot_acc}-F1-model_v4_TED{domain_num:02}"
 
 
+def create_random_pae_score():
+    return random.uniform(1, 5)
+
+
 def create_random_domain_summary(
     uniprot_acc: str,
     domain_num: int = 1,
