@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import {
-  Center,
   Box,
   Center,
   Container,
@@ -39,7 +38,6 @@ import UniprotEntryDataService from "../../../components/UniprotService/service"
 import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
-import { getColourByIndex } from "../../../components/Common/DomainColors"
 
 function ted_domain_to_id(ted_domain: string) {
   const id_parts = ted_domain.split('_')
@@ -119,7 +117,7 @@ function UniprotAcc() {
     setPlugin(instance)
   }
 
-  let summaryFigure = null;
+  let summaryFigure = null
   let structureFigure = null
   if (uniprotEntry && domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
@@ -187,7 +185,7 @@ function UniprotAcc() {
   if (!domain_summary_entries) {
     return (
       <Flex justify="center" align="center" height="100vh" width="full">
-        <Text>Sorry, no consensus TED domains found for '{uniprotAcc}'</Text>
+        Sorry, no consensus TED domains found for '{uniprotAcc}'
       </Flex>
     )
   }
@@ -208,9 +206,7 @@ function UniprotAcc() {
 
         <Flex height="50vh" position="relative" margin="1em 0">
           <Box maxW="lg" maxH="sm" id="molstar-view">
-            {afPdbUrl && <PDBeMolStarWrapper 
-              afdb={afId} 
-              onInit={onInitPlugin} />}
+            {structureFigure}
           </Box>
         </Flex>
 
