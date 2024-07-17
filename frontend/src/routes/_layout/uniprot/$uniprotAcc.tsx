@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {
+  Center,
   Box,
   Center,
   Container,
@@ -14,7 +15,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
@@ -39,6 +39,7 @@ import UniprotEntryDataService from "../../../components/UniprotService/service"
 import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
+import { getColourByIndex } from "../../../components/Common/DomainColors"
 
 function ted_domain_to_id(ted_domain: string) {
   const id_parts = ted_domain.split('_')
@@ -66,7 +67,6 @@ function UniprotAcc() {
   })
 
   const afId = `AF-${uniprotAcc}-F1-model_v4`
-  const afPdbUrl = afId ? `https://alphafold.ebi.ac.uk/files/${afId}.pdb` : null
 
   if (isError) {
     const errDetail = (error as ApiError).body?.detail
@@ -75,9 +75,9 @@ function UniprotAcc() {
 
   useEffect(() => {
     if (!uniprotDidLoad) {
-      console.log("useEffect.UPDATE: ", uniprotAcc)
+      // console.log("useEffect.UPDATE: ", uniprotAcc)
       UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
-        console.log("uniprot.data: ", up_entry);
+        // console.log("uniprot.data: ", up_entry);
         setUniprotEntry(up_entry);
       })
       setUniprotDidLoad(true)
@@ -88,12 +88,12 @@ function UniprotAcc() {
     if (!plugin) return
     const params = getQueryParamsFromChoppingString(dom.chopping)
     setSelectedDomainId(dom.ted_id)
-    plugin.visual.select({ data: params })
+    plugin.visual.focus(params)
   }
   
   const unselectChopping = () => {
     if (!plugin) return
-    plugin.visual.clearSelection()
+    plugin.visual.reset({ camera: true })
     setSelectedDomainId(null)
   }
 
@@ -120,6 +120,7 @@ function UniprotAcc() {
   }
 
   let summaryFigure = null;
+  let structureFigure = null
   if (uniprotEntry && domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
     const opts: ProteinSummaryFigureProps = {
@@ -132,6 +133,11 @@ function UniprotAcc() {
       opts.highlightedDomainId = highlightedDomainId
     }
     summaryFigure = <ProteinSummaryFigure {...opts} />
+    structureFigure = <PDBeMolStarWrapper 
+      afdb={afId} 
+      onInit={onInitPlugin}
+      domainAnnotations={domain_annotations}
+    />
   }
 
   let infoTable = null
@@ -149,7 +155,7 @@ function UniprotAcc() {
         <dt>Organism</dt>
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
-        <dd><Text>{uniprotEntry.organism.lineage.join(" > ")}</Text></dd>
+        <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
       </dl>
     </Box>
     <Box width="30%">
@@ -269,7 +275,6 @@ function UniprotAcc() {
             </Tbody>
           </Table>
         </TableContainer> 
-        
       </Container>
     </>
     )

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Flex,
@@ -150,6 +151,7 @@ function Search() {
           <Container maxWidth={"100ch"}>
             <Stack spacing={9}>
               <Heading
+                margin="0.5em 0 0"
                 size="lg"
                 textAlign={{ base: "center", md: "left" }}
                 pt={12}
