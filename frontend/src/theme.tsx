@@ -19,6 +19,23 @@ const theme = extendTheme({
     },
   },
   components: {
+    Badge: {
+      variants: {
+        plddtVeryHigh: {
+          backgroundColor: "blue.600",
+          color: "white",
+        },
+        plddtHigh: {
+          backgroundColor: "blue.200",
+        },
+        plddtLow: {
+          backgroundColor: "yellow.400",
+        },
+        plddtVeryLow: {
+          backgroundColor: "orange.400",
+        },
+      },
+    },
     Button: {
       variants: {
         primary: {

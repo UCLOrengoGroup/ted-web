@@ -53,7 +53,7 @@ function get_cath_id_link(cath_id: string) {
 function get_pae_color_scheme(pae_score: number) {
   if (pae_score < 2.5) {
     return "green"
-  } else if (pae_score < 5.0) {
+  } else if (pae_score < 4.0) {
     return "yellow"
   } else {
     return "red"
@@ -61,12 +61,15 @@ function get_pae_color_scheme(pae_score: number) {
 }
 
 function get_plddt_color_scheme(plddt: number) {
-  if (plddt < 60) {
-    return "red"
-  } else if (plddt < 80) {
-    return "yellow"
-  } else {
-    return "green"
+  if (plddt < 50) {
+    return "plddtVeryLow"
+  } else if (plddt < 70) {
+    return "plddtLow"
+  } else if (plddt < 90) {
+    return "plddtHigh"
+  }
+  else {
+    return "plddtVeryHigh"
   }
 }
 
@@ -281,7 +284,7 @@ function UniprotAcc() {
                       <Td>{item.chopping}</Td>
                       <Td>{get_cath_id_link(item.cath_label)}</Td>
                       <Td>{item.nres_domain}</Td>
-                      <Td><Badge colorScheme={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
+                      <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
                       <Td>
                         <List>
