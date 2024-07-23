@@ -6,7 +6,7 @@ import "swagger-ui-react/swagger-ui.css"
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
 
-export const Route = createFileRoute("/_layout/api")({
+export const Route = createFileRoute("/_layout/access")({
   component: Api,
 })
 

@@ -21,7 +21,7 @@ const TopbarItems = [
   { title: "Search", path: "/search" },
   { title: "Data", path: "/data" },
   { title: "About", path: "/about" },
-  { title: "API", path: "/api" },
+  { title: "API", path: "/access" },
 ]
 
 const NavLink = (props: Props) => {
