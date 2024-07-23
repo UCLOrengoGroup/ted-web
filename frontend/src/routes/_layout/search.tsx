@@ -7,6 +7,7 @@ import {
   Heading,
   Input,
   InputGroup,
+  InputLeftElement,
   InputRightAddon,
   Link,
   Spinner,
@@ -20,6 +21,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react"
+import { Search2Icon } from "@chakra-ui/icons"
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 import React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
@@ -60,6 +62,10 @@ function SearchBar({
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isRequired>
           <InputGroup>
+          <InputLeftElement
+              pointerEvents="none"
+              children={<Search2Icon color="gray.600" />}
+            />
             <Input
               id="query"
               placeholder="Enter UniProt ID e.g. A0A000"
@@ -67,8 +73,8 @@ function SearchBar({
                 required: "This field is required",
               })}
             />
-            <InputRightAddon>
-              <Button variant="primary" type="submit">
+            <InputRightAddon p={0} border="none">
+              <Button variant="primary" type="submit" borderLeftRadius={0}>
                 Search
               </Button>
             </InputRightAddon>
@@ -189,14 +195,14 @@ function Search() {
                           </Td>
                           <Td>{ted_count}</Td>
                           <Td>
-                            <Button variant="primary">
-                              <Link
-                                as={RouterLink}
-                                to={`/uniprot/${item.uniprot_acc}`}
-                              >
-                                Go
-                              </Link>
-                            </Button>
+                            <Link
+                              as={RouterLink}
+                              to={`/uniprot/${item.uniprot_acc}`}
+                            >
+                              <Button variant="primary">
+                              Go
+                              </Button>
+                            </Link>
                           </Td>
                         </Tr>
                       ))}
