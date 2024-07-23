@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {
+  Badge,
   Box,
   Center,
   Container,
@@ -10,6 +11,7 @@ import {
   List,
   ListItem,
   Spinner,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -42,6 +44,30 @@ import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../compon
 function ted_domain_to_id(ted_domain: string) {
   const id_parts = ted_domain.split('_')
   return id_parts[id_parts.length - 1]
+}
+
+function get_cath_id_link(cath_id: string) {
+  return <Link href={`https://www.cathdb.info/version/latest/superfamily/${cath_id}`} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
+}
+
+function get_pae_color_scheme(pae_score: number) {
+  if (pae_score < 2.5) {
+    return "green"
+  } else if (pae_score < 5.0) {
+    return "yellow"
+  } else {
+    return "red"
+  }
+}
+
+function get_plddt_color_scheme(plddt: number) {
+  if (plddt < 60) {
+    return "red"
+  } else if (plddt < 80) {
+    return "yellow"
+  } else {
+    return "green"
+  }
 }
 
 function UniprotAcc() {
@@ -166,7 +192,7 @@ function UniprotAcc() {
           <Link href={`https://www.uniprot.org/uniprotkb/${uniprotAcc}/entry`} isExternal>UniProt-KB <ExternalLinkIcon mx='2px' /></Link>
         </ListItem>
         <ListItem>
-          <Link href={`https://www.ebi.ac.uk/interpro/search/text/${uniprotAcc}/`} isExternal>Interpro <ExternalLinkIcon mx='2px' /></Link>
+          <Link href={`https://www.ebi.ac.uk/interpro/search/text/${uniprotAcc}/`} isExternal>InterPro <ExternalLinkIcon mx='2px' /></Link>
         </ListItem>
       </List>
     </Box>
@@ -194,83 +220,87 @@ function UniprotAcc() {
   return (
     <>
       <Container maxWidth={"120ch"}>
-        <Heading
-          as="h1"
-          textAlign={{ base: "center", md: "left" }}
-          pt={12}
-        >
-        TED Domains: {uniprotAcc}
-      </Heading>
+        <Stack spacing={12} align='stretch'>
+          <Box>
+            <Heading
+              as="h1"
+              textAlign={{ base: "center", md: "left" }}
+              pt={12}
+            >
+              TED Domains: {uniprotAcc}
+            </Heading>
 
-        {infoTable}
-
-        <Flex height="50vh" position="relative" margin="1em 0">
-          <Box maxW="lg" maxH="sm" id="molstar-view">
-            {structureFigure}
+            {infoTable}
           </Box>
-        </Flex>
-
-        <Heading as="h2">
-          TED Consensus Domains ({domain_summary_entries.data.length})
-        </Heading>
         
-        <Center>
-          <Box p="2em">
-            {summaryFigure}
+          <Flex height="50vh" position="relative">
+            <Box maxW="lg" maxH="sm" id="molstar-view">
+              {structureFigure}
+            </Box>
+          </Flex>
+
+          <Box>
+            <Heading as="h2">
+              TED Consensus Domains <Badge p={2}>{domain_summary_entries.data.length}</Badge>
+            </Heading>
+            <Center>
+              <Box p="2em">
+                {summaryFigure}
+              </Box>
+            </Center>
+            <TableContainer>
+              <Table size={{ base: "sm", md: "md" }}>
+                <Thead>
+                  <Tr>
+                    <Th></Th>
+                    <Th>Domain</Th>
+                    <Th>Boundaries</Th>
+                    <Th>CATH</Th>
+                    <Th>Residues</Th>
+                    <Th>Av pLDDT</Th>
+                    <Th>Packing Density</Th>
+                    <Th>Interactions (PAE)</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {domain_summary_entries.data.map((item) => (
+                    <Tr key={item.ted_id} 
+                        onMouseOver={() => highlightChopping(item)} 
+                        onMouseOut={() => unhighlightChopping()}
+                        onClick={() => toggleSelectChopping(item)}
+                        className={
+                          (selectedDomainId === item.ted_id ? classes.selected : "") + " " + 
+                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")}
+                        >
+                      <Td><IconButton 
+                            aria-label="View Domain"
+                            colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
+                            onClick={(e) => {e.preventDefault()}}
+                            icon={<ViewIcon/>} /></Td>
+                      <Td>{ted_domain_to_id(item.ted_id)}</Td>
+                      <Td>{item.chopping}</Td>
+                      <Td>{get_cath_id_link(item.cath_label)}</Td>
+                      <Td>{item.nres_domain}</Td>
+                      <Td><Badge colorScheme={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
+                      <Td>{item.packing_density.toFixed(1)}</Td>
+                      <Td>
+                        <List>
+
+                        { item.interactions?.map((interaction) => {
+                          const pair_id = interaction.ted_id1 === item.ted_id ? interaction.ted_id2 : interaction.ted_id1
+                          return(
+                            <ListItem>{ted_domain_to_id(pair_id)} <Badge colorScheme={get_pae_color_scheme(interaction.pae_score)}>{interaction.pae_score.toFixed(1)}</Badge></ListItem>
+                          )
+                        })}
+                        </List>
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
           </Box>
-        </Center>
-
-        <TableContainer>
-          <Table size={{ base: "sm", md: "md" }}>
-            <Thead>
-              <Tr>
-                <Th></Th>
-                <Th>Domain</Th>
-                <Th>Boundaries</Th>
-                <Th>CATH</Th>
-                <Th>Residues</Th>
-                <Th>Av pLDDT</Th>
-                <Th>Packing Density</Th>
-                <Th>Interactions (PAE)</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {domain_summary_entries.data.map((item) => (
-                <Tr key={item.ted_id} 
-                    onMouseOver={() => highlightChopping(item)} 
-                    onMouseOut={() => unhighlightChopping()}
-                    onClick={() => toggleSelectChopping(item)}
-                    className={
-                      (selectedDomainId === item.ted_id ? classes.selected : "") + " " + 
-                      (highlightedDomainId === item.ted_id ? classes.highlighted : "")}
-                    >
-                  <Td><IconButton 
-                        aria-label="View Domain"
-                        colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
-                        onClick={(e) => {e.preventDefault()}}
-                        icon={<ViewIcon/>} /></Td>
-                  <Td>{ted_domain_to_id(item.ted_id)}</Td>
-                  <Td>{item.chopping}</Td>
-                  <Td>{item.cath_label}</Td>
-                  <Td>{item.nres_domain}</Td>
-                  <Td>{item.plddt}</Td>
-                  <Td>{item.packing_density}</Td>
-                  <Td>
-                    <List>
-
-                    { item.interactions?.map((interaction) => {
-                      const pair_id = interaction.ted_id1 === item.ted_id ? interaction.ted_id2 : interaction.ted_id1
-                      return(
-                        <ListItem>{ted_domain_to_id(pair_id)} ({interaction.pae_score})</ListItem>
-                      )
-                    })}
-                    </List>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer> 
+        </Stack>
       </Container>
     </>
     )
