@@ -4,6 +4,8 @@ import SwaggerUI from "swagger-ui-react"
 
 import "swagger-ui-react/swagger-ui.css"
 
+const API_BASE_URL = import.meta.env.VITE_API_URL
+
 export const Route = createFileRoute("/_layout/api")({
   component: Api,
 })
@@ -21,7 +23,7 @@ function Api() {
           Application Programming Interface (API). The API provides a convenient way for 
           developers to programmatically access metadata related to TED annotations.
           </Text>
-          <SwaggerUI url="http://localhost/api/v1/openapi.json" />
+          <SwaggerUI url={`${API_BASE_URL}/api/v1/openapi.json`} />
         </Stack>
       </Container>
     </>
