@@ -19,8 +19,8 @@ import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
 import { Route as LayoutSearchImport } from './routes/_layout/search'
 import { Route as LayoutDataImport } from './routes/_layout/data'
-import { Route as LayoutApiImport } from './routes/_layout/api'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
+import { Route as LayoutAccessImport } from './routes/_layout/access'
 import { Route as LayoutAboutImport } from './routes/_layout/about'
 import { Route as LayoutUniprotUniprotAccImport } from './routes/_layout/uniprot/$uniprotAcc'
 
@@ -66,13 +66,13 @@ const LayoutDataRoute = LayoutDataImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
-const LayoutApiRoute = LayoutApiImport.update({
-  path: '/api',
+const LayoutAdminRoute = LayoutAdminImport.update({
+  path: '/admin',
   getParentRoute: () => LayoutRoute,
 } as any)
 
-const LayoutAdminRoute = LayoutAdminImport.update({
-  path: '/admin',
+const LayoutAccessRoute = LayoutAccessImport.update({
+  path: '/access',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -110,12 +110,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAboutImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/admin': {
-      preLoaderRoute: typeof LayoutAdminImport
+    '/_layout/access': {
+      preLoaderRoute: typeof LayoutAccessImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/api': {
-      preLoaderRoute: typeof LayoutApiImport
+    '/_layout/admin': {
+      preLoaderRoute: typeof LayoutAdminImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/data': {
@@ -146,8 +146,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   LayoutRoute.addChildren([
     LayoutAboutRoute,
+    LayoutAccessRoute,
     LayoutAdminRoute,
-    LayoutApiRoute,
     LayoutDataRoute,
     LayoutSearchRoute,
     LayoutSettingsRoute,
