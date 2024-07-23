@@ -10,7 +10,7 @@ import Citation from "./Citation"
 const Footer: React.FC = () => {
 
   return (
-    <>
+    <Box pt={12}>
       <Box bgColor={"#eee"}>
         <Container maxW={"6xl"}>
           <Center>
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
           </Center>
         </Container>
       </Box>
-    </>
+    </Box>
   )
 }
 
