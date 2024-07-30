@@ -16,6 +16,7 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -41,9 +42,17 @@ import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
 
-function ted_domain_to_id(ted_domain: string) {
+import { AfChainId } from "../../../components/Common/models"
+
+function ted_domain_to_id(ted_domain: string): string {
   const id_parts = ted_domain.split('_')
   return id_parts[id_parts.length - 1]
+}
+
+function ted_domain_to_afid(ted_id: string): AfChainId {
+  const id_parts = ted_id.split('_').slice(0, -1)
+  const af_id = id_parts?.join('_')
+  return new AfChainId(af_id)
 }
 
 function get_cath_id_link(cath_id: string) {
@@ -219,23 +228,35 @@ function UniprotAcc() {
     )
   }
 
+  const ted_id = domain_summary_entries?.data[0].ted_id
+  const af_chain_id = ted_id ? ted_domain_to_afid(ted_id) : undefined
+
   // console.log("uniprotEntry: ", uniprotEntry)
   return (
     <>
       <Container maxWidth={"120ch"}>
-        <Stack spacing={12} align='stretch'>
+        <Stack spacing={12} align='stretch' pt={12}>
           <Box>
-            <Heading
-              as="h1"
-              textAlign={{ base: "center", md: "left" }}
-              pt={12}
-            >
-              TED Domains: {uniprotAcc}
+            <Heading as="h1" pb={4}>
+              {af_chain_id ? (
+                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">({af_chain_id.id})</Text>}</>
+              ) : (
+                <>Loading...</>
+              )
+              }
             </Heading>
+            <Text fontSize="lg">
+            AlphaFold Structure Prediction: {af_chain_id?.uniprot_acc}, fragment {af_chain_id?.fragment}, version {af_chain_id?.version}
+            </Text>
+          </Box>
 
+          <Box>
+            <Heading as="h2" size="lg">
+              Information
+            </Heading>
             {infoTable}
           </Box>
-        
+
           <Flex height="50vh" position="relative">
             <Box maxW="lg" maxH="sm" id="molstar-view">
               {structureFigure}
@@ -243,7 +264,7 @@ function UniprotAcc() {
           </Flex>
 
           <Box>
-            <Heading as="h2">
+            <Heading as="h2" size="lg">
               TED Consensus Domains <Badge p={2}>{domain_summary_entries.data.length}</Badge>
             </Heading>
             <Center>
