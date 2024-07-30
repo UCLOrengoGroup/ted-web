@@ -22,7 +22,7 @@ import {
   Tr,
 } from "@chakra-ui/react"
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { ViewIcon } from '@chakra-ui/icons'
+import { ViewIcon, DownloadIcon } from '@chakra-ui/icons'
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery } from "react-query"
 
@@ -43,6 +43,8 @@ import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
 
 import { AfChainId } from "../../../components/Common/models"
+
+const API_BASE_URL = import.meta.env.VITE_API_URL
 
 function ted_domain_to_id(ted_domain: string): string {
   const id_parts = ted_domain.split('_')
@@ -239,14 +241,14 @@ function UniprotAcc() {
           <Box>
             <Heading as="h1" pb={4}>
               {af_chain_id ? (
-                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">({af_chain_id.id})</Text>}</>
+                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">(fragment: {af_chain_id?.fragment}, version: {af_chain_id?.version})</Text>}</>
               ) : (
                 <>Loading...</>
               )
               }
             </Heading>
             <Text fontSize="lg">
-            AlphaFold Structure Prediction: {af_chain_id?.uniprot_acc}, fragment {af_chain_id?.fragment}, version {af_chain_id?.version}
+            TED domains from AlphaFold structure prediction: {af_chain_id?.id}
             </Text>
           </Box>
 
@@ -283,7 +285,8 @@ function UniprotAcc() {
                     <Th>Residues</Th>
                     <Th>Av pLDDT</Th>
                     <Th>Packing Density</Th>
-                    <Th>Interactions (PAE)</Th>
+                    <Th>Interactions</Th>
+                    <Th></Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -300,7 +303,8 @@ function UniprotAcc() {
                             aria-label="View Domain"
                             colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
                             onClick={(e) => {e.preventDefault()}}
-                            icon={<ViewIcon/>} /></Td>
+                            icon={<ViewIcon/>} />
+                      </Td>
                       <Td>{ted_domain_to_id(item.ted_id)}</Td>
                       <Td>{item.chopping}</Td>
                       <Td>{get_cath_id_link(item.cath_label)}</Td>
@@ -317,6 +321,13 @@ function UniprotAcc() {
                           )
                         })}
                         </List>
+                      </Td>
+                      <Td>
+                        <Link href={`${API_BASE_URL}/api/v1/files/${item.ted_id}.pdb`}>
+                              <IconButton 
+                                  aria-label="Download PDB"
+                                  icon={<DownloadIcon/>}/>
+                        </Link>
                       </Td>
                     </Tr>
                   ))}
