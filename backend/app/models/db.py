@@ -206,3 +206,27 @@ class InteractionSummaryPublicWithDomains(InteractionSummaryPublic):
 class InteractionSummaryItemsOut(SQLModel):
     data: list[InteractionSummary]
     count: int
+
+
+class ChainParseBase(SQLModel):
+    af_id: str = Field(nullable=False)
+    uniprot_acc: str = Field(nullable=False, index=True)
+    method: str = Field(nullable=False, index=True)
+    md5_chain: str = Field(nullable=False, index=True)
+    nres_chain: int = Field(nullable=False)
+    num_domains: int = Field(nullable=False)
+    chopping: str = Field(nullable=False)
+    score: float = Field(nullable=False)
+
+
+class ChainParse(ChainParseBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+
+
+class ChainParsePublic(ChainParseBase):
+    id: int
+
+
+class ChainParseItemsPublic(SQLModel):
+    data: list[ChainParsePublic]
+    count: int
