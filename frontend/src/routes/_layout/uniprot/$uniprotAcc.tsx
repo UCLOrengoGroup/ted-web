@@ -4,6 +4,7 @@ import {
   Box,
   Center,
   Container,
+  Divider,
   Flex,
   Heading,
   IconButton,
@@ -237,11 +238,11 @@ function UniprotAcc() {
   return (
     <>
       <Container maxWidth={"120ch"}>
-        <Stack spacing={12} align='stretch' pt={12}>
+        <Stack spacing={6} align='stretch' pt={12}>
           <Box>
             <Heading as="h1" pb={4}>
               {af_chain_id ? (
-                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">(fragment: {af_chain_id?.fragment}, version: {af_chain_id?.version})</Text>}</>
+                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">(AlphaFold, fragment: {af_chain_id?.fragment}, version: {af_chain_id?.version})</Text>}</>
               ) : (
                 <>Loading...</>
               )
@@ -251,6 +252,8 @@ function UniprotAcc() {
             TED domains from AlphaFold structure prediction: {af_chain_id?.id}
             </Text>
           </Box>
+            
+          <Divider />
 
           <Box>
             <Heading as="h2" size="lg">
@@ -265,6 +268,8 @@ function UniprotAcc() {
             </Box>
           </Flex>
 
+          <Divider />
+          
           <Box>
             <Heading as="h2" size="lg">
               TED Consensus Domains <Badge p={2}>{domain_summary_entries.data.length}</Badge>
