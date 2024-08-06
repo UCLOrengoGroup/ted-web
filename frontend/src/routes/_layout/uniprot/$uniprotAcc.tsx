@@ -93,23 +93,31 @@ function UniprotAcc() {
   const [ selectedDomainId, setSelectedDomainId ] = useState<string | null>(null)
   const [ uniprotEntry, setUniprotEntry ] = useState<UniprotData | null>(null)
   const [ uniprotDidLoad, setUniprotDidLoad ] = useState<boolean>(false)
-  const {
-    data: domain_summary_entries,
-    error,
-    isLoading,
-    isError,
-  } = useQuery("domainsummary", () => {
+  const domainSummaryResult = useQuery("domainsummary", () => {
     return UniprotService.readUniprotSummary({
       uniprotAcc: uniprotAcc,
       limit: 50,
     })
   })
+  const chainParseResult = useQuery("chainparse", () => {
+    return UniprotService.readChainparseByUniprot({
+      uniprotAcc: uniprotAcc,
+      limit: 50,
+    })
+  })
+
+  const domain_summary_entries = domainSummaryResult.data
+  const chain_parse_entries = chainParseResult.data
 
   const afId = `AF-${uniprotAcc}-F1-model_v4`
 
-  if (isError) {
-    const errDetail = (error as ApiError).body?.detail
-    showToast("Something went wrong.", `${errDetail}`, "error")
+  if (domainSummaryResult.isError) {
+    const errDetail = (domainSummaryResult.error as ApiError).body?.detail
+    showToast("Something went wrong retrieving TED domains.", `${errDetail}`, "error")
+  }
+  if (chainParseResult.isError) {
+    const errDetail = (chainParseResult.error as ApiError).body?.detail
+    showToast("Something went wrong retrieving chain parses.", `${errDetail}`, "error")
   }
 
   useEffect(() => {
@@ -215,7 +223,7 @@ function UniprotAcc() {
     )
   }
 
-  if (isLoading) {
+  if (domainSummaryResult.isLoading) {
     return (
       <Flex justify="center" align="center" height="100vh" width="full">
         <Spinner size="xl" color="ui.main" />
@@ -279,8 +287,9 @@ function UniprotAcc() {
                 {summaryFigure}
               </Box>
             </Center>
+
             <TableContainer>
-              <Table size={{ base: "sm", md: "md" }}>
+              <Table size={"sm"}>
                 <Thead>
                   <Tr>
                     <Th></Th>
@@ -289,13 +298,14 @@ function UniprotAcc() {
                     <Th>CATH</Th>
                     <Th>Residues</Th>
                     <Th>Av pLDDT</Th>
-                    <Th>Packing Density</Th>
+                    <Th>Packing</Th>
+                    <Th>Globularity</Th>
                     <Th>Interactions</Th>
                     <Th></Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {domain_summary_entries.data.map((item) => (
+                  {domain_summary_entries?.data.map((item) => (
                     <Tr key={item.ted_id} 
                         onMouseOver={() => highlightChopping(item)} 
                         onMouseOut={() => unhighlightChopping()}
@@ -316,6 +326,7 @@ function UniprotAcc() {
                       <Td>{item.nres_domain}</Td>
                       <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
+                      <Td>{item.norm_rg.toFixed(1)}</Td>
                       <Td>
                         <List>
 
@@ -334,6 +345,35 @@ function UniprotAcc() {
                                   icon={<DownloadIcon/>}/>
                         </Link>
                       </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
+
+          <Divider />
+
+          <Box>
+            <Heading as="h2" size="lg" pb="6">
+              TED Results <Badge p={2}>{chain_parse_entries?.data.length}</Badge>
+            </Heading>
+
+            <TableContainer>
+              <Table size={"sm"}>
+                <Thead>
+                  <Tr>
+                    <Th>Method</Th>
+                    <Th>Domains</Th>
+                    <Th>Boundaries</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {chain_parse_entries?.data.map((item) => (
+                    <Tr key={item.id}>
+                      <Td>{item.method}</Td>
+                      <Td>{item.num_domains}</Td>
+                      <Td>{item.chopping}</Td>
                     </Tr>
                   ))}
                 </Tbody>
