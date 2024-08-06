@@ -59,6 +59,9 @@ function ted_domain_to_afid(ted_id: string): AfChainId {
 }
 
 function get_cath_id_link(cath_id: string) {
+  if (!cath_id || cath_id == "-") {
+    return cath_id
+  }
   return <Link href={`https://www.cathdb.info/version/latest/superfamily/${cath_id}`} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
 }
 
