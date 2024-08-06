@@ -68,7 +68,7 @@ function SearchBar({
             />
             <Input
               id="query"
-              placeholder="Enter UniProt ID e.g. A0A000"
+              placeholder="Enter UniProt ID e.g. A0A000, A0A1V6M2Y0"
               {...register("query", {
                 required: "This field is required",
               })}
@@ -132,7 +132,9 @@ function Search() {
   function getSearchMessage() {
     if (uniprot_items == null) {
       return <Text>Enter a UniProt accession into the search bar (e.g. {" "}
-        <Link onClick={() => handleUniprotEntryClick('A0A000')}>A0A000</Link> )
+        <Link onClick={() => handleUniprotEntryClick('A0A000')}>A0A000</Link>, 
+        <Link onClick={() => handleUniprotEntryClick('A0A1V6M2Y0')}>A0A1V6M2Y0</Link> 
+        )
         </Text>
     }
     if (uniprot_items.length == 0) {
