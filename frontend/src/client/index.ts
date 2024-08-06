@@ -8,6 +8,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { Body_login_login_access_token } from './models/Body_login_login_access_token';
+export type { ChainParseItemsPublic } from './models/ChainParseItemsPublic';
+export type { ChainParsePublic } from './models/ChainParsePublic';
 export type { ConfidenceType } from './models/ConfidenceType';
 export type { DomainSummaryItemsPublic } from './models/DomainSummaryItemsPublic';
 export type { DomainSummaryPublicWithInteractions } from './models/DomainSummaryPublicWithInteractions';
@@ -40,6 +42,8 @@ export type { UserUpdateMe } from './models/UserUpdateMe';
 export type { ValidationError } from './models/ValidationError';
 
 export { $Body_login_login_access_token } from './schemas/$Body_login_login_access_token';
+export { $ChainParseItemsPublic } from './schemas/$ChainParseItemsPublic';
+export { $ChainParsePublic } from './schemas/$ChainParsePublic';
 export { $ConfidenceType } from './schemas/$ConfidenceType';
 export { $DomainSummaryItemsPublic } from './schemas/$DomainSummaryItemsPublic';
 export { $DomainSummaryPublicWithInteractions } from './schemas/$DomainSummaryPublicWithInteractions';
@@ -75,4 +79,3 @@ export { FilesService } from './services/FilesService';
 export { LoginService } from './services/LoginService';
 export { UniprotService } from './services/UniprotService';
 export { UsersService } from './services/UsersService';
-export { UtilsService } from './services/UtilsService';
