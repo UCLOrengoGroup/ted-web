@@ -88,6 +88,14 @@ function get_plddt_color_scheme(plddt: number) {
   }
 }
 
+function get_chainparse_data_link(uniprot_acc: string) {
+  return `${API_BASE_URL}/api/v1/uniprot/chainparse/${uniprot_acc}`
+}
+
+function get_domainsummary_data_link(uniprot_acc: string) {
+  return `${API_BASE_URL}/api/v1/uniprot/summary/${uniprot_acc}`
+}
+
 function UniprotAcc() {
   const showToast = useCustomToast()
   const { uniprotAcc } = Route.useParams()
@@ -284,6 +292,15 @@ function UniprotAcc() {
           <Box>
             <Heading as="h2" size="lg">
               TED Consensus Domains <Badge p={2}>{domain_summary_entries.data.length}</Badge>
+
+              <Link px="6" href={get_domainsummary_data_link(uniprotAcc)}>
+                <IconButton 
+                    aria-label="Download Domain Summary Data"
+                    title="Download Domain Summary Data"
+                    icon={<DownloadIcon/>}>
+                </IconButton>
+              </Link>
+
             </Heading>
             <Center>
               <Box p="2em">
@@ -304,7 +321,7 @@ function UniprotAcc() {
                     <Th>Packing</Th>
                     <Th>Globularity</Th>
                     <Th>Interactions</Th>
-                    <Th></Th>
+                    <Th>PDB</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -329,7 +346,7 @@ function UniprotAcc() {
                       <Td>{item.nres_domain}</Td>
                       <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
-                      <Td>{item.norm_rg.toFixed(1)}</Td>
+                      <Td>{item.norm_rg.toFixed(3)}</Td>
                       <Td>
                         <List>
 
@@ -345,6 +362,7 @@ function UniprotAcc() {
                         <Link href={`${API_BASE_URL}/api/v1/files/${item.ted_id}.pdb`}>
                               <IconButton 
                                   aria-label="Download PDB"
+                                  title="Download PDB"
                                   icon={<DownloadIcon/>}/>
                         </Link>
                       </Td>
@@ -360,6 +378,14 @@ function UniprotAcc() {
           <Box>
             <Heading as="h2" size="lg" pb="6">
               TED Results <Badge p={2}>{chain_parse_entries?.data.length}</Badge>
+
+              <Link px="6" href={get_chainparse_data_link(uniprotAcc)}>
+                <IconButton 
+                    aria-label="Download results from individual methods"
+                    title="Download results from individual methods"
+                    icon={<DownloadIcon/>}/>
+              </Link>
+
             </Heading>
 
             <TableContainer>
