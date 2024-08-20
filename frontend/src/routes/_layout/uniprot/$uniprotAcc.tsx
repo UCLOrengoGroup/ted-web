@@ -104,13 +104,13 @@ function UniprotAcc() {
   const [ selectedDomainId, setSelectedDomainId ] = useState<string | null>(null)
   const [ uniprotEntry, setUniprotEntry ] = useState<UniprotData | null>(null)
   const [ uniprotDidLoad, setUniprotDidLoad ] = useState<boolean>(false)
-  const domainSummaryResult = useQuery("domainsummary", () => {
+  const domainSummaryResult = useQuery(["domainsummary", uniprotAcc], () => {
     return UniprotService.readUniprotSummary({
       uniprotAcc: uniprotAcc,
       limit: 50,
     })
   })
-  const chainParseResult = useQuery("chainparse", () => {
+  const chainParseResult = useQuery(["chainparse", uniprotAcc], () => {
     return UniprotService.readChainparseByUniprot({
       uniprotAcc: uniprotAcc,
       limit: 50,
