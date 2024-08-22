@@ -59,15 +59,21 @@ function Dashboard() {
             </Text>
             <br />
           </Heading>
-          <Text color={"gray.500"}>
+          <Text color={"gray.700"}>
             The Encyclopedia of Domains combines state-of-the-art deep
             learning-based domain parsing and structure comparison algorithms to
             segment and classify domains across the whole{" "}
             <Link href="https://alphafold.ebi.ac.uk">AlphaFold Database</Link>.
-            TED describes over 370 million domains, over 100 million more than
-            detectable by sequence-based methods. Nearly 80% of TED domains
-            share similarities to known superfamilies in CATH, greatly expanding
-            the set of known protein structural domains.
+            TED describes nearly 365 million domains, over 100 million more than
+            detectable by sequence-based methods. Nearly 77% of TED domains
+            share similarities to known superfamilies in <Link href="https://www.cathdb.info">CATH</Link>, 
+            greatly expanding the set of known protein structural domains.
+          </Text>
+          <Text color={"gray.700"}>
+            TED is built and maintained by the Structural Bioinformatics groups of 
+            {" "}<Link href="http://www0.cs.ucl.ac.uk/staff/d.jones/">Prof. David Jones</Link>{" "}
+            and {" "}<Link href="https://www.ucl.ac.uk/orengo-group/">Prof. Christine Orengo</Link>{" "}
+            at University College London, UK. 
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
