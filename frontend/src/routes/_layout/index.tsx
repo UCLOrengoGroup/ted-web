@@ -3,7 +3,7 @@
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 
 import Carousel from "../../components/Common/Carousel"
-
+import logoImg from "../../assets/images/ted_logo.png"
 import {
   Box,
   Button,
@@ -11,6 +11,7 @@ import {
   Flex,
   Heading,
   Icon,
+  Image,
   type IconProps,
   Link,
   Stack,
@@ -33,31 +34,15 @@ function Dashboard() {
         direction={{ base: "column", md: "row" }}
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+          <Box>
+            <Image src={logoImg} alt="TED Logo" height={"100px"} objectFit={"contain"}/>
+          </Box>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+            fontSize={{ base: "2xl", sm: "3xl", lg: "4xl" }}
           >
-            <Text
-              as={"span"}
-              position={"relative"}
-              _after={{
-                content: "''",
-                width: "full",
-                height: "30%",
-                position: "absolute",
-                bottom: 1,
-                left: 0,
-                bg: "red.400",
-                zIndex: -1,
-              }}
-            >
-              TED: {""}
-            </Text>
-            <Text color={"red.400"} as={"span"}>
-              The Encyclopedia of Domains
-            </Text>
-            <br />
+            TED: The Encyclopedia of Domains
           </Heading>
           <Text color={"gray.700"}>
             The Encyclopedia of Domains combines state-of-the-art deep

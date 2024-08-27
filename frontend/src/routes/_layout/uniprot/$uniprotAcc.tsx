@@ -7,6 +7,7 @@ import {
   Divider,
   Flex,
   Heading,
+  Icon,
   IconButton,
   Link,
   List,
@@ -20,10 +21,11 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from "@chakra-ui/react"
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { ViewIcon, DownloadIcon } from '@chakra-ui/icons'
+import { ViewIcon, DownloadIcon, QuestionIcon } from '@chakra-ui/icons'
 import { createFileRoute } from "@tanstack/react-router"
 import { useQuery } from "react-query"
 
@@ -315,7 +317,13 @@ function UniprotAcc() {
                     <Th></Th>
                     <Th>Domain</Th>
                     <Th>Boundaries</Th>
-                    <Th>CATH</Th>
+                    <Th>CATH
+                      <Tooltip hasArrow label="The annotation of CATH labels in TED differs from the standard CATH protocol for 
+            superfamily assignment, which involves additional HMM-based protocols and manual curation 
+            for remote matches.">
+                        <QuestionIcon />
+                      </Tooltip>
+                    </Th>
                     <Th>Residues</Th>
                     <Th>Av pLDDT</Th>
                     <Th>Packing</Th>

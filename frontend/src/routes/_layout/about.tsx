@@ -55,6 +55,20 @@ function About() {
           </Text>
 
           <Heading size="m">
+            CATH Labels
+          </Heading>
+          <Text>
+            CATH annotations have been assigned using the FoldSeek algorithm applied in various modes 
+            and the FoldClass algorithm, both of which are used to report significant structural 
+            similarity to a known CATH domain.             
+          </Text>
+          <Text>
+            <strong>Note: The TED protocol differs from the standard CATH Assignment protocol for 
+            superfamily assignment, which involves additional HMM-based protocols and manual curation 
+            for remote matches.</strong>
+          </Text>
+
+          <Heading size="m">
             Resources
           </Heading>
           <Text>

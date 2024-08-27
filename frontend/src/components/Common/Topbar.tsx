@@ -5,6 +5,8 @@ import {
   Flex,
   HStack,
   IconButton,
+  Image,
+  Link,
   Stack,
   useColorModeValue,
   useDisclosure,
@@ -15,6 +17,8 @@ interface Props {
   children: React.ReactNode
   href: string
 }
+
+import logoImg from "../../assets/images/ted_logo.png"
 
 const TopbarItems = [
   { title: "Home", path: "/" },
@@ -60,8 +64,10 @@ const Topbar: React.FC = () => {
               onClick={isOpen ? onClose : onOpen}
             />
             <HStack spacing={8} alignItems={"center"}>
-              <Box fontWeight={900} fontSize={{ base: "2l" }}>
-                TED
+              <Box boxSize={"m"}>
+                <Link href={"/"}>
+                  <Image src={logoImg} alt="TED Logo" objectFit="cover" height={"40px"} />
+                </Link>
               </Box>
               <HStack
                 as={"nav"}
