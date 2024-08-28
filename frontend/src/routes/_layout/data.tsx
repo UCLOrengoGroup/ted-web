@@ -29,27 +29,36 @@ function Data() {
           <UnorderedList>
             <ListItem>
               Zenodo:{" "}
-              <Link href="https://doi.org/10.5281/zenodo.10848710">
-                doi.org/10.5281/zenodo.10848710
+              <Link href="https://zenodo.org/doi/10.5281/zenodo.10788941">
+                doi.org/10.5281/zenodo.10788941
               </Link>
             </ListItem>
           </UnorderedList>
-          <Heading size="m">API</Heading>
+          <Heading size="m">Data</Heading>
           <UnorderedList>
             <ListItem>
-              <Link href="/docs">OpenAPI Documentation</Link>
+              <Link href="/docs">API (OpenAPI Documentation)</Link>
             </ListItem>
           </UnorderedList>
           <Heading size="m">Software</Heading>
           <UnorderedList>
             <ListItem>
+              <Link href="https://github.com/psipred/ted-tools">
+                PSIPRED
+              </Link>{" "}
+              - code for calculating consensus domain chopping, domain quality, Foldclass embedding, search, and GO term analysis is available via the PSIPRED github repository
+            </ListItem>
+            <ListItem>
               <Link href="https://github.com/UCLOrengoGroup/cath-alphaflow">
                 CATH-AlphaFlow
               </Link>{" "}
-              - tools and workflows to process AlphaFold data
+              - tools and workflows to process AlphaFold data (including calculation of globularity and packing density)
             </ListItem>
             <ListItem>
-              TED supplementary - extra tools and script used in TED
+              <Link href="https://github.com/UCLOrengoGroup/ted-web">
+                  TED Web
+              </Link>{" "}
+              - code for this website is available at TED-web github repository.
             </ListItem>
           </UnorderedList>
         </Stack>
