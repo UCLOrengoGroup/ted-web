@@ -46,19 +46,19 @@ function Data() {
               <Link href="https://github.com/psipred/ted-tools">
                 PSIPRED
               </Link>{" "}
-              - code for calculating consensus domain chopping, domain quality, Foldclass embedding, search, and GO term analysis is available via the PSIPRED github repository
+              - code for calculating consensus domain chopping, domain quality, Foldclass embedding, search, and GO term analysis.
             </ListItem>
             <ListItem>
               <Link href="https://github.com/UCLOrengoGroup/cath-alphaflow">
                 CATH-AlphaFlow
               </Link>{" "}
-              - tools and workflows to process AlphaFold data (including calculation of globularity and packing density)
+              - tools and workflows to process AlphaFold data (including calculation of globularity and packing density).
             </ListItem>
             <ListItem>
               <Link href="https://github.com/UCLOrengoGroup/ted-web">
                   TED Web
               </Link>{" "}
-              - code for this website is available at TED-web github repository.
+              - code for this website.
             </ListItem>
           </UnorderedList>
         </Stack>
