@@ -115,10 +115,6 @@ def create_random_domain_summary_entries(db) -> Generator[list[DomainSummary]]:
             for j in range(i + 1, len(entries)):
                 random_pairs.append((entries[i].ted_id, entries[j].ted_id))
 
-        random_pairs = random.sample(
-            random_pairs,
-            random.randint(1, len(random_pairs)),
-        )
         for pair in random_pairs:
             af_id = ted_id_to_af_id(pair[0])
             int_sum = InteractionSummary(

@@ -44,58 +44,17 @@ import { UniprotData } from "../../../components/UniprotService/model"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
 
-import { AfChainId } from "../../../components/Common/models"
+import { 
+  ted_domain_to_id,
+  ted_pdb_file_url,
+  ted_domain_to_afid, 
+  render_cath_label, 
+  get_pae_color_scheme, 
+  get_plddt_color_scheme, 
+  get_chainparse_data_link, 
+  get_domainsummary_data_link 
+} from "../../../components/Utils/uniprotAccUtils"
 
-const API_BASE_URL = import.meta.env.VITE_API_URL
-
-function ted_domain_to_id(ted_domain: string): string {
-  const id_parts = ted_domain.split('_')
-  return id_parts[id_parts.length - 1]
-}
-
-function ted_domain_to_afid(ted_id: string): AfChainId {
-  const id_parts = ted_id.split('_').slice(0, -1)
-  const af_id = id_parts?.join('_')
-  return new AfChainId(af_id)
-}
-
-function get_cath_id_link(cath_id: string) {
-  if (!cath_id || cath_id == "-") {
-    return cath_id
-  }
-  return <Link href={`https://www.cathdb.info/version/latest/superfamily/${cath_id}`} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
-}
-
-function get_pae_color_scheme(pae_score: number) {
-  if (pae_score < 2.5) {
-    return "green"
-  } else if (pae_score < 4.0) {
-    return "yellow"
-  } else {
-    return "red"
-  }
-}
-
-function get_plddt_color_scheme(plddt: number) {
-  if (plddt < 50) {
-    return "plddtVeryLow"
-  } else if (plddt < 70) {
-    return "plddtLow"
-  } else if (plddt < 90) {
-    return "plddtHigh"
-  }
-  else {
-    return "plddtVeryHigh"
-  }
-}
-
-function get_chainparse_data_link(uniprot_acc: string) {
-  return `${API_BASE_URL}/api/v1/uniprot/chainparse/${uniprot_acc}`
-}
-
-function get_domainsummary_data_link(uniprot_acc: string) {
-  return `${API_BASE_URL}/api/v1/uniprot/summary/${uniprot_acc}`
-}
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -349,7 +308,7 @@ function UniprotAcc() {
                       </Td>
                       <Td>{ted_domain_to_id(item.ted_id)}</Td>
                       <Td>{item.chopping}</Td>
-                      <Td>{get_cath_id_link(item.cath_label)}</Td>
+                      <Td>{render_cath_label(item.cath_label)}</Td>
                       <Td>{item.nres_domain}</Td>
                       <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
@@ -366,7 +325,7 @@ function UniprotAcc() {
                         </List>
                       </Td>
                       <Td>
-                        <Link href={`${API_BASE_URL}/api/v1/files/${item.ted_id}.pdb`}>
+                        <Link href={ted_pdb_file_url(item.ted_id)}>
                               <IconButton 
                                   aria-label="Download PDB"
                                   title="Download PDB"
