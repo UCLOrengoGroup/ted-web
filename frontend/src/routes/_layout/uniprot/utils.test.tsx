@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, it, expect, test } from 'vitest'
+import { expect, test } from 'vitest'
 import { render_cath_label, get_cath_sfam_url } from './utils.tsx'
 import { throws } from "assert"
 
