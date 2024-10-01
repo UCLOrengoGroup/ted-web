@@ -1,5 +1,5 @@
 import { Link } from "@chakra-ui/react"
-import { AfChainId } from "../../../components/Common/models"
+import { AfChainId } from "../Common/models"
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL

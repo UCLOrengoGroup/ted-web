@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { expect, test } from 'vitest'
-import { render_cath_label, get_cath_sfam_url } from './utils.tsx'
+import { render_cath_label, get_cath_sfam_url } from './uniprotAccUtils.tsx'
 import { throws } from "assert"
 
 import { Link } from "@chakra-ui/react"

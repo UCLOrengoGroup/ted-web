@@ -53,7 +53,7 @@ import {
   get_plddt_color_scheme, 
   get_chainparse_data_link, 
   get_domainsummary_data_link 
-} from "./utils"
+} from "../../../components/Utils/uniprotAccUtils"
 
 
 function UniprotAcc() {
