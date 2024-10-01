@@ -27,18 +27,18 @@ export function render_cath_label(cath_label: string): JSX.Element {
         if (!cath_id || cath_id == "-") {
           return <>-</>;
         }
-        return <Link key={idx} href={get_cath_sfam_url(cath_id)} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
+        return <Link key={idx} href={get_cath_cathnode_url(cath_id)} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
     })}
     </>
   )
   return links
 }
 
-export function get_cath_sfam_url(cath_id: string): string {
+export function get_cath_cathnode_url(cath_id: string): string {
   if (!cath_id || cath_id == "-") {
     throw Error("CATH ID is blank");
   }
-  return `${CATH_BASE_URL}/version/latest/superfamily/${cath_id}`
+  return `${CATH_BASE_URL}/version/latest/cathnode/${cath_id}`
 }
 
 export function get_pae_color_scheme(pae_score: number): string {

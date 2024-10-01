@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { expect, test } from 'vitest'
-import { render_cath_label, get_cath_sfam_url } from './uniprotAccUtils.tsx'
+import { render_cath_label, get_cath_cathnode_url } from './uniprotAccUtils.tsx'
 import { throws } from "assert"
 
 import { Link } from "@chakra-ui/react"
@@ -8,14 +8,14 @@ import { ExternalLinkIcon } from "@chakra-ui/icons"
 
 const CATH_BASE_URL = 'https://www.cathdb.info/'
 
-test('get_cath_sfam_url_blank', () => {
-  throws(() => get_cath_sfam_url('-'), { name: 'Error', message: 'CATH ID is blank' })
+test('get_cath_cathnode_url_blank', () => {
+  throws(() => get_cath_cathnode_url('-'), { name: 'Error', message: 'CATH ID is blank' })
 })
 
-test('get_cath_sfam_url_id', () => {
+test('get_cath_cathnode_url_id', () => {
   const cath_id = '1.10.8.10'
-  const expected = `${CATH_BASE_URL}/version/latest/superfamily/${cath_id}`
-  expect(get_cath_sfam_url(cath_id)).toBe(expected)
+  const expected = `${CATH_BASE_URL}/version/latest/cathnode/${cath_id}`
+  expect(get_cath_cathnode_url(cath_id)).toBe(expected)
 })
 
 
@@ -23,7 +23,7 @@ test('render_cath_label_single_label', () => {
   const cath_label = '1.10.8.10'
   const expected = render(
   <>
-    <Link href={`${CATH_BASE_URL}/version/latest/superfamily/${cath_label}`} isExternal>
+    <Link href={`${CATH_BASE_URL}/version/latest/cathnode/${cath_label}`} isExternal>
       {cath_label} <ExternalLinkIcon mx={"2px"}/>
     </Link>
   </>
@@ -39,7 +39,7 @@ test('render_cath_label_single_label', () => {
   const expected = render(
   <>
     { cath_label.split(",").map((cath_id) => {
-      return <Link href={`${CATH_BASE_URL}/version/latest/superfamily/${cath_id}`} isExternal>
+      return <Link href={`${CATH_BASE_URL}/version/latest/cathnode/${cath_id}`} isExternal>
         {cath_id} <ExternalLinkIcon mx={"2px"}/>
       </Link>
     })}
