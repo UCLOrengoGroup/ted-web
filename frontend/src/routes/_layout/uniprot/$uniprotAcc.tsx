@@ -59,9 +59,14 @@ function ted_domain_to_afid(ted_id: string): AfChainId {
   return new AfChainId(af_id)
 }
 
+function render_cath_label(cath_label: string) {
+  const cath_ids = cath_label.split(",");
+  return cath_ids.map((cath_id) => get_cath_id_link(cath_id)).join(", ")
+}
+
 function get_cath_id_link(cath_id: string) {
   if (!cath_id || cath_id == "-") {
-    return cath_id
+    return cath_id;
   }
   return <Link href={`https://www.cathdb.info/version/latest/superfamily/${cath_id}`} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
 }
@@ -349,7 +354,7 @@ function UniprotAcc() {
                       </Td>
                       <Td>{ted_domain_to_id(item.ted_id)}</Td>
                       <Td>{item.chopping}</Td>
-                      <Td>{get_cath_id_link(item.cath_label)}</Td>
+                      <Td>{render_cath_label(item.cath_label)}</Td>
                       <Td>{item.nres_domain}</Td>
                       <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
