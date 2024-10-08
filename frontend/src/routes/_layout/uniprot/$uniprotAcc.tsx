@@ -281,10 +281,10 @@ function UniprotAcc() {
                     <Th>Domain</Th>
                     <Th>Boundaries</Th>
                     <Th>CATH
-                      <Tooltip hasArrow label="The annotation of CATH labels in TED differs from the standard CATH protocol for 
+                      <Tooltip hasArrow label="Please note: the annotation of CATH labels in TED differs from the standard CATH protocol for 
             superfamily assignment, which involves additional HMM-based protocols and manual curation 
             for remote matches.">
-                        <QuestionIcon />
+                        <QuestionIcon mx="1"/>
                       </Tooltip>
                     </Th>
                     <Th>Residues</Th>
