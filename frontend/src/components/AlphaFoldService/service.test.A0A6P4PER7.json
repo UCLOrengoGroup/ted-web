@@ -1,0 +1,50 @@
+{
+  "uniprot_entry": {
+    "ac": "A0A6P4PER7",
+    "id": "A0A6P4PER7_GOSAR",
+    "uniprot_checksum": "E5BF4AF471D8B238",
+    "sequence_length": 960,
+    "segment_start": 1,
+    "segment_end": 960
+  },
+  "structures": [
+    {
+      "summary": {
+        "model_identifier": "AF-A0A6P4PER7-F1",
+        "model_category": "AB-INITIO",
+        "model_url": "https://alphafold.ebi.ac.uk/files/AF-A0A6P4PER7-F1-model_v4.cif",
+        "model_format": "MMCIF",
+        "model_type": null,
+        "model_page_url": "https://alphafold.ebi.ac.uk/entry/A0A6P4PER7",
+        "provider": "AlphaFold DB",
+        "number_of_conformers": null,
+        "ensemble_sample_url": null,
+        "ensemble_sample_format": null,
+        "created": "2022-06-01",
+        "sequence_identity": 1,
+        "uniprot_start": 1,
+        "uniprot_end": 960,
+        "coverage": 1,
+        "experimental_method": null,
+        "resolution": null,
+        "confidence_type": "pLDDT",
+        "confidence_version": null,
+        "confidence_avg_local_score": 79.38,
+        "oligomeric_state": null,
+        "preferred_assembly_id": null,
+        "entities": [
+          {
+            "entity_type": "POLYMER",
+            "entity_poly_type": "POLYPEPTIDE(L)",
+            "identifier": "A0A6P4PER7",
+            "identifier_category": "UNIPROT",
+            "description": "probable disease resistance protein At1g58602",
+            "chain_ids": [
+              "A"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
