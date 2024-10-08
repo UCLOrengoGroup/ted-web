@@ -42,14 +42,14 @@ export default function Carousel() {
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
   const top = useBreakpointValue({ base: "90%", md: "50%" })
-  const side = useBreakpointValue({ base: "30%", md: "40px" })
+  const side = useBreakpointValue({ base: "30%", md: "20px" })
 
   // This list contains all the data for carousels
   // This can be static or loaded from a server
   const cards = [
     {
       title: "214 million AFDB target models",
-      text: "Processing 214 million AFDB target sequences",
+      text: "Processed into nearly 365 million structural TED domains",
       image: ImgFig1Url,
     },
     {
@@ -64,7 +64,7 @@ export default function Carousel() {
     },
     {
       title: "Novel domain clusters",
-      text: "TED domains are associated with a 'novelty' score",
+      text: "TED domains are associated with a score that provides a measure of the structural novelty.",
       image: ImgFig4Url,
     },
     {
@@ -95,11 +95,11 @@ export default function Carousel() {
       {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
-        variant="ghost"
         position="absolute"
         left={side}
         top={top}
-        transform={"translate(0%, -50%)"}
+        variant="solid"
+        colorScheme="teal"
         zIndex={2}
         onClick={() => slider?.slickPrev()}
       >
@@ -108,11 +108,11 @@ export default function Carousel() {
       {/* Right Icon */}
       <IconButton
         aria-label="right-arrow"
-        variant="ghost"
         position="absolute"
         right={side}
         top={top}
-        transform={"translate(0%, -50%)"}
+        variant="solid"
+        colorScheme="teal"
         zIndex={2}
         onClick={() => slider?.slickNext()}
       >
@@ -123,39 +123,42 @@ export default function Carousel() {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={"6xl"}
             position="relative"
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            backgroundSize="cover"
-            backgroundImage={`url(${card.image})`}
           >
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="600px" position="relative">
-              <Stack
-                spacing={3}
-                w={"full"}
-                maxW={"lg"}
-                position="absolute"
-                top="50%"
-                // transform="translate(0, -10%)"
-              >
-                <Heading
-                  fontSize={{ base: "1xl", md: "2xl", lg: "3xl" }}
-                  backdropFilter={"auto"}
-                  backdropBlur={"20px"}
+            <Stack
+              spacing={3}
+              backgroundPosition="center"
+              backgroundRepeat="no-repeat"
+              backgroundSize="cover"
+              backgroundImage={`url(${card.image})`}
+              height="600px"
+            >
+              <Container size="container.lg"
+                  w={"full"}
+                  maxW={"lg"}
                 >
-                  {card.title}
-                </Heading>
-                <Text
-                  fontSize={{ base: "md", lg: "lg" }}
+                <Box 
                   backdropFilter={"auto"}
-                  backdropBlur={"20px"}
+                  backdropBlur={"30px"}
+                  padding={6}
+                  bottom="20%"
+                  position="absolute"
                 >
-                  {card.text}
-                </Text>
-              </Stack>
-            </Container>
+                  <Heading
+                    fontSize={{ base: "1xl", md: "lg", lg: "lg" }}
+                    pb="3"
+                  >
+                    {card.title}
+                  </Heading>
+                  <Text
+                    fontSize={{ base: "sm", lg: "md" }}
+                  >
+                    {card.text}
+                  </Text>
+                </Box>
+              </Container>
+            </Stack>
           </Box>
         ))}
       </Slider>
