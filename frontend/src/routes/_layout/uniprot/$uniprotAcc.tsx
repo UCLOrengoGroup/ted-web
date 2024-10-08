@@ -84,11 +84,11 @@ function UniprotAcc() {
 
   if (domainSummaryResult.isError) {
     const errDetail = (domainSummaryResult.error as ApiError).body?.detail
-    showToast("Something went wrong retrieving TED domains.", `${errDetail}`, "error")
+    showToast("Failed to retrieve TED domains.", `${errDetail}`, "error")
   }
   if (chainParseResult.isError) {
     const errDetail = (chainParseResult.error as ApiError).body?.detail
-    showToast("Something went wrong retrieving chain parses.", `${errDetail}`, "error")
+    showToast("Failed to retrieve chain parses.", `${errDetail}`, "error")
   }
 
   useEffect(() => {
@@ -97,6 +97,8 @@ function UniprotAcc() {
       UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
         // console.log("uniprot.data: ", up_entry);
         setUniprotEntry(up_entry);
+      }).catch((err) => {
+        console.error("Error fetching UniProt entry: ", err)
       })
       setUniprotDidLoad(true)
     }
@@ -139,18 +141,20 @@ function UniprotAcc() {
 
   let summaryFigure = null
   let structureFigure = null
-  if (uniprotEntry && domain_summary_entries) {
+  if (domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
-    const opts: ProteinSummaryFigureProps = {
-      width: 500,
-      height: 30,
-      totalResidues: uniprotEntry.sequence.length,
-      domainAnnotations: domain_annotations,
+    if (uniprotEntry) {
+      const opts: ProteinSummaryFigureProps = {
+        width: 500,
+        height: 30,
+        totalResidues: uniprotEntry.sequence.length,
+        domainAnnotations: domain_annotations,
+      }
+      if (highlightedDomainId) {
+        opts.highlightedDomainId = highlightedDomainId
+      }
+      summaryFigure = <ProteinSummaryFigure {...opts} />  
     }
-    if (highlightedDomainId) {
-      opts.highlightedDomainId = highlightedDomainId
-    }
-    summaryFigure = <ProteinSummaryFigure {...opts} />
     structureFigure = <PDBeMolStarWrapper 
       afdb={afId} 
       onInit={onInitPlugin}
@@ -158,14 +162,13 @@ function UniprotAcc() {
     />
   }
 
-  let infoTable = null
-  if (uniprotEntry) {
-    infoTable = (
+  const infoTable = (
     <Flex>
     <Box width="70%">
       <dl>
         <dt>Accession</dt>
         <dd>{uniprotAcc}</dd>
+        {uniprotEntry ? (<>
         <dt>Name</dt>
         <dd>{uniprotEntry.proteinDescription.fullName}</dd>
         <dt>Length</dt>
@@ -174,6 +177,9 @@ function UniprotAcc() {
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
         <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
+        </>) : (<Box pt="6">
+          No additional information available from UniProt API.</Box>
+        )}
       </dl>
     </Box>
     <Box width="30%">
@@ -191,8 +197,7 @@ function UniprotAcc() {
       </List>
     </Box>
     </Flex>
-    )
-  }
+  )
 
   if (domainSummaryResult.isLoading) {
     return (
@@ -276,10 +281,10 @@ function UniprotAcc() {
                     <Th>Domain</Th>
                     <Th>Boundaries</Th>
                     <Th>CATH
-                      <Tooltip hasArrow label="The annotation of CATH labels in TED differs from the standard CATH protocol for 
+                      <Tooltip hasArrow label="Please note: the annotation of CATH labels in TED differs from the standard CATH protocol for 
             superfamily assignment, which involves additional HMM-based protocols and manual curation 
             for remote matches.">
-                        <QuestionIcon />
+                        <QuestionIcon mx="1"/>
                       </Tooltip>
                     </Th>
                     <Th>Residues</Th>
