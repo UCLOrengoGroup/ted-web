@@ -141,18 +141,20 @@ function UniprotAcc() {
 
   let summaryFigure = null
   let structureFigure = null
-  if (uniprotEntry && domain_summary_entries) {
+  if (domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
-    const opts: ProteinSummaryFigureProps = {
-      width: 500,
-      height: 30,
-      totalResidues: uniprotEntry.sequence.length,
-      domainAnnotations: domain_annotations,
+    if (uniprotEntry) {
+      const opts: ProteinSummaryFigureProps = {
+        width: 500,
+        height: 30,
+        totalResidues: uniprotEntry.sequence.length,
+        domainAnnotations: domain_annotations,
+      }
+      if (highlightedDomainId) {
+        opts.highlightedDomainId = highlightedDomainId
+      }
+      summaryFigure = <ProteinSummaryFigure {...opts} />  
     }
-    if (highlightedDomainId) {
-      opts.highlightedDomainId = highlightedDomainId
-    }
-    summaryFigure = <ProteinSummaryFigure {...opts} />
     structureFigure = <PDBeMolStarWrapper 
       afdb={afId} 
       onInit={onInitPlugin}
@@ -160,14 +162,13 @@ function UniprotAcc() {
     />
   }
 
-  let infoTable = null
-  if (uniprotEntry) {
-    infoTable = (
+  const infoTable = (
     <Flex>
     <Box width="70%">
       <dl>
         <dt>Accession</dt>
         <dd>{uniprotAcc}</dd>
+        {uniprotEntry ? (<>
         <dt>Name</dt>
         <dd>{uniprotEntry.proteinDescription.fullName}</dd>
         <dt>Length</dt>
@@ -176,6 +177,9 @@ function UniprotAcc() {
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
         <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
+        </>) : (<Box pt="6">
+          No additional information available from UniProt API.</Box>
+        )}
       </dl>
     </Box>
     <Box width="30%">
@@ -193,8 +197,7 @@ function UniprotAcc() {
       </List>
     </Box>
     </Flex>
-    )
-  }
+  )
 
   if (domainSummaryResult.isLoading) {
     return (
