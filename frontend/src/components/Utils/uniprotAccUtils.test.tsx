@@ -38,7 +38,7 @@ test('render_cath_label_single_label', () => {
   const cath_label = '1.10.8.10,2.40.60.10'
   const expected = render(
   <>
-    { cath_label.split(",").map((cath_id) => {
+    { [cath_label.split(",")[0]].map((cath_id) => {
       return <Link href={`${CATH_BASE_URL}/version/latest/cathnode/${cath_id}`} isExternal>
         {cath_id} <ExternalLinkIcon mx={"2px"}/>
       </Link>

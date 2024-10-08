@@ -41,6 +41,7 @@ export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
 import { getQueryParamsFromChoppingString, getDomainAnnotationFromDomainSummary } from "../../../components/Utils/DomainSummary"
 import UniprotEntryDataService from "../../../components/UniprotService/service"
 import { UniprotData } from "../../../components/UniprotService/model"
+import { UniprotEntry } from "../../../client/models/UniprotEntry"
 import classes from './$uniprotAcc.module.css'
 import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
 
@@ -54,6 +55,7 @@ import {
   get_chainparse_data_link, 
   get_domainsummary_data_link 
 } from "../../../components/Utils/uniprotAccUtils"
+import AlphaFoldUniprotEntryDataService from "../../../components/AlphaFoldService/service"
 
 
 function UniprotAcc() {
@@ -64,6 +66,8 @@ function UniprotAcc() {
   const [ selectedDomainId, setSelectedDomainId ] = useState<string | null>(null)
   const [ uniprotEntry, setUniprotEntry ] = useState<UniprotData | null>(null)
   const [ uniprotDidLoad, setUniprotDidLoad ] = useState<boolean>(false)
+  const [ afUniProtEntry, setAFUniprotEntry ] = useState<UniprotEntry | null>(null)
+  const [ afDidLoad, setAFDidLoad ] = useState<boolean>(false)
   const domainSummaryResult = useQuery(["domainsummary", uniprotAcc], () => {
     return UniprotService.readUniprotSummary({
       uniprotAcc: uniprotAcc,
@@ -101,6 +105,16 @@ function UniprotAcc() {
         console.error("Error fetching UniProt entry: ", err)
       })
       setUniprotDidLoad(true)
+    }
+    if (!afDidLoad) {
+      // console.log("useEffect.UPDATE: ", uniprotAcc)
+      AlphaFoldUniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotEntry) => {
+        // console.log("afuniprot.data: ", up_entry);
+        setAFUniprotEntry(up_entry);
+      }).catch((err) => {
+        console.error("Error fetching AF UniProt entry: ", err)
+      })
+      setAFDidLoad(true)
     }
   }, [uniprotAcc])
 
@@ -143,11 +157,11 @@ function UniprotAcc() {
   let structureFigure = null
   if (domain_summary_entries) {
     const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
-    if (uniprotEntry) {
+    if (afUniProtEntry && afUniProtEntry.sequence_length) {
       const opts: ProteinSummaryFigureProps = {
         width: 500,
         height: 30,
-        totalResidues: uniprotEntry.sequence.length,
+        totalResidues: afUniProtEntry.sequence_length,
         domainAnnotations: domain_annotations,
       }
       if (highlightedDomainId) {
@@ -168,11 +182,13 @@ function UniprotAcc() {
       <dl>
         <dt>Accession</dt>
         <dd>{uniprotAcc}</dd>
+        {afUniProtEntry && (<>
+        <dt>Length</dt>
+        <dd>{afUniProtEntry.sequence_length} Residues</dd>
+        </>)}
         {uniprotEntry ? (<>
         <dt>Name</dt>
         <dd>{uniprotEntry.proteinDescription.fullName}</dd>
-        <dt>Length</dt>
-        <dd>{uniprotEntry.sequence.length} Residues</dd>
         <dt>Organism</dt>
         <dd>{uniprotEntry.organism.scientificName}</dd>
         <dt>Lineage</dt>
