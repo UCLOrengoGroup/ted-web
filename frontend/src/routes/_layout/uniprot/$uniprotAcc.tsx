@@ -84,11 +84,11 @@ function UniprotAcc() {
 
   if (domainSummaryResult.isError) {
     const errDetail = (domainSummaryResult.error as ApiError).body?.detail
-    showToast("Something went wrong retrieving TED domains.", `${errDetail}`, "error")
+    showToast("Failed to retrieve TED domains.", `${errDetail}`, "error")
   }
   if (chainParseResult.isError) {
     const errDetail = (chainParseResult.error as ApiError).body?.detail
-    showToast("Something went wrong retrieving chain parses.", `${errDetail}`, "error")
+    showToast("Failed to retrieve chain parses.", `${errDetail}`, "error")
   }
 
   useEffect(() => {
