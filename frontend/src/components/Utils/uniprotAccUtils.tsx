@@ -21,17 +21,13 @@ export function ted_domain_to_afid(ted_id: string): AfChainId {
 }
 
 export function render_cath_label(cath_label: string): JSX.Element {
+  // HACK: if the cath label has more than one cath id, we only show the first one
   const cath_ids = cath_label.split(",");
-  const links = (<>
-    { cath_ids.map((cath_id, idx) => {
-        if (!cath_id || cath_id == "-") {
-          return <>-</>;
-        }
-        return <Link key={idx} href={get_cath_cathnode_url(cath_id)} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
-    })}
-    </>
-  )
-  return links
+  const cath_id = cath_ids[0];
+  if (!cath_id || cath_id == "-") {
+    return <>-</>;
+  }
+  return <Link href={get_cath_cathnode_url(cath_id)} isExternal>{cath_id} <ExternalLinkIcon mx="2px" /></Link>
 }
 
 export function get_cath_cathnode_url(cath_id: string): string {
