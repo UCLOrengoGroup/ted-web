@@ -97,6 +97,8 @@ function UniprotAcc() {
       UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
         // console.log("uniprot.data: ", up_entry);
         setUniprotEntry(up_entry);
+      }).catch((err) => {
+        console.error("Error fetching UniProt entry: ", err)
       })
       setUniprotDidLoad(true)
     }
