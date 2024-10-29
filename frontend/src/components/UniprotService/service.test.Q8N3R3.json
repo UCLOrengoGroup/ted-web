@@ -1,1483 +1,1455 @@
 {
-    "accession": "Q8N3R3",
-    "id": "TCAIM_HUMAN",
-    "proteinExistence": "Evidence at transcript level",
-    "info": {
-        "type": "Swiss-Prot",
-        "created": "2006-05-16",
-        "modified": "2024-03-27",
-        "version": 126
+  "accession": "Q8N3R3",
+  "id": "TCAIM_HUMAN",
+  "proteinExistence": "Evidence at transcript level",
+  "info": {
+    "type": "Swiss-Prot",
+    "created": "2006-05-16",
+    "modified": "2024-03-27",
+    "version": 126
+  },
+  "organism": {
+    "taxonomy": 9606,
+    "names": [
+      {
+        "type": "scientific",
+        "value": "Homo sapiens"
+      },
+      {
+        "type": "common",
+        "value": "Human"
+      }
+    ],
+    "lineage": [
+      "Eukaryota",
+      "Metazoa",
+      "Chordata",
+      "Craniata",
+      "Vertebrata",
+      "Euteleostomi",
+      "Mammalia",
+      "Eutheria",
+      "Euarchontoglires",
+      "Primates",
+      "Haplorrhini",
+      "Catarrhini",
+      "Hominidae",
+      "Homo"
+    ]
+  },
+  "secondaryAccession": [
+    "A8K9P1",
+    "Q0P5T9",
+    "Q495R1",
+    "Q495R3",
+    "Q4G0M4",
+    "Q6GMU8"
+  ],
+  "protein": {
+    "recommendedName": {
+      "fullName": {
+        "value": "T-cell activation inhibitor, mitochondrial"
+      }
     },
-    "organism": {
-        "taxonomy": 9606,
-        "names": [
-            {
-                "type": "scientific",
-                "value": "Homo sapiens"
-            },
-            {
-                "type": "common",
-                "value": "Human"
-            }
-        ],
-        "lineage": [
-            "Eukaryota",
-            "Metazoa",
-            "Chordata",
-            "Craniata",
-            "Vertebrata",
-            "Euteleostomi",
-            "Mammalia",
-            "Eutheria",
-            "Euarchontoglires",
-            "Primates",
-            "Haplorrhini",
-            "Catarrhini",
-            "Hominidae",
-            "Homo"
+    "alternativeName": [
+      {
+        "fullName": {
+          "value": "Tolerance associated gene-1 protein"
+        },
+        "shortName": [
+          {
+            "value": "TOAG-1"
+          }
         ]
-    },
-    "secondaryAccession": [
-        "A8K9P1",
-        "Q0P5T9",
-        "Q495R1",
-        "Q495R3",
-        "Q4G0M4",
-        "Q6GMU8"
-    ],
-    "protein": {
-        "recommendedName": {
-            "fullName": {
-                "value": "T-cell activation inhibitor, mitochondrial"
-            }
-        },
-        "alternativeName": [
-            {
-                "fullName": {
-                    "value": "Tolerance associated gene-1 protein"
-                },
-                "shortName": [
-                    {
-                        "value": "TOAG-1"
-                    }
-                ]
-            }
-        ]
-    },
-    "gene": [
+      }
+    ]
+  },
+  "gene": [
+    {
+      "name": {
+        "value": "TCAIM"
+      },
+      "synonyms": [
         {
-            "name": {
-                "value": "TCAIM"
-            },
-            "synonyms": [
-                {
-                    "value": "C3orf23"
-                },
-                {
-                    "value": "TOAG1"
-                }
-            ]
+          "value": "C3orf23"
+        },
+        {
+          "value": "TOAG1"
         }
-    ],
-    "comments": [
-        {
-            "type": "FUNCTION",
-            "text": [
-                {
-                    "value": "May regulate T-cell apoptosis",
-                    "evidences": [
-                        {
-                            "code": "ECO:0000250"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "SUBCELLULAR_LOCATION",
-            "locations": [
-                {
-                    "location": {
-                        "value": "Mitochondrion",
-                        "evidences": [
-                            {
-                                "code": "ECO:0000250"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "type": "ALTERNATIVE_PRODUCTS",
-            "event": [
-                "Alternative splicing"
-            ],
-            "isoforms": [
-                {
-                    "ids": [
-                        "Q8N3R3-1"
-                    ],
-                    "name": {
-                        "value": "1"
-                    },
-                    "sequenceStatus": "displayed"
-                },
-                {
-                    "ids": [
-                        "Q8N3R3-2"
-                    ],
-                    "name": {
-                        "value": "2"
-                    },
-                    "sequenceStatus": "described",
-                    "sequence": [
-                        "VSP_018471",
-                        "VSP_018472"
-                    ]
-                },
-                {
-                    "ids": [
-                        "Q8N3R3-3"
-                    ],
-                    "name": {
-                        "value": "3"
-                    },
-                    "sequenceStatus": "described",
-                    "sequence": [
-                        "VSP_018469",
-                        "VSP_018470"
-                    ]
-                },
-                {
-                    "ids": [
-                        "Q8N3R3-4"
-                    ],
-                    "name": {
-                        "value": "4"
-                    },
-                    "sequenceStatus": "described",
-                    "sequence": [
-                        "VSP_038421"
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "MISCELLANEOUS",
-            "molecule": "Isoform 2",
-            "text": [
-                {
-                    "value": "May be produced at very low levels due to a premature stop codon in the mRNA, leading to nonsense-mediated mRNA decay",
-                    "evidences": [
-                        {
-                            "code": "ECO:0000305"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "features": [
-        {
-            "type": "CHAIN",
-            "category": "MOLECULE_PROCESSING",
-            "ftId": "PRO_0000235340",
-            "description": "T-cell activation inhibitor, mitochondrial",
-            "begin": "1",
-            "end": "496",
-            "molecule": ""
-        },
-        {
-            "type": "COILED",
-            "category": "DOMAINS_AND_SITES",
-            "begin": "404",
-            "end": "437",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000255"
-                }
-            ]
-        },
-        {
-            "type": "VAR_SEQ",
-            "category": "VARIANTS",
-            "ftId": "VSP_038421",
-            "begin": "1",
-            "end": "144",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "14702039",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
-                    }
-                },
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "15489334",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "VAR_SEQ",
-            "category": "VARIANTS",
-            "ftId": "VSP_018469",
-            "begin": "56",
-            "end": "70",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "14702039",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
-                    }
-                },
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "15489334",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "VAR_SEQ",
-            "category": "VARIANTS",
-            "ftId": "VSP_018470",
-            "begin": "71",
-            "end": "496",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "14702039",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
-                    }
-                },
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "15489334",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "VAR_SEQ",
-            "category": "VARIANTS",
-            "ftId": "VSP_018471",
-            "begin": "107",
-            "end": "115",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "15489334",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "VAR_SEQ",
-            "category": "VARIANTS",
-            "ftId": "VSP_018472",
-            "begin": "116",
-            "end": "496",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000303",
-                    "source": {
-                        "name": "PubMed",
-                        "id": "15489334",
-                        "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
-                        "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
-                    }
-                }
-            ]
-        },
-        {
-            "type": "VARIANT",
-            "category": "VARIANTS",
-            "ftId": "VAR_050720",
-            "description": "in dbSNP:rs35830741",
-            "alternativeSequence": "P",
-            "begin": "4",
-            "end": "4",
-            "molecule": ""
-        },
-        {
-            "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATION",
-            "description": "in Ref. 1; BAF85445",
-            "alternativeSequence": "Y",
-            "begin": "3",
-            "end": "3",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000305"
-                }
-            ]
-        },
-        {
-            "type": "CONFLICT",
-            "category": "SEQUENCE_INFORMATION",
-            "description": "in Ref. 2; CAD38627",
-            "alternativeSequence": "G",
-            "begin": "244",
-            "end": "244",
-            "molecule": "",
-            "evidences": [
-                {
-                    "code": "ECO:0000305"
-                }
-            ]
-        }
-    ],
-    "dbReferences": [
-        {
-            "type": "EMBL",
-            "id": "AK292756",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "BAF85445.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "AK056593",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "BAG51758.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "AK124087",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "BAG54004.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "AL832473",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "CAD38627.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "AC104187",
-            "properties": {
-                "molecule type": "Genomic_DNA",
-                "status": "NOT_ANNOTATED_CDS"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "AC134943",
-            "properties": {
-                "molecule type": "Genomic_DNA",
-                "status": "NOT_ANNOTATED_CDS"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "CH471055",
-            "properties": {
-                "molecule type": "Genomic_DNA",
-                "protein sequence ID": "EAW64703.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "CH471055",
-            "properties": {
-                "molecule type": "Genomic_DNA",
-                "protein sequence ID": "EAW64704.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC009400",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAH09400.2"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC038420",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAH38420.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC047231",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAH47231.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC062587",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAH62587.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC073829",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAH73829.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC101059",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAI01060.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC101061",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAI01062.1"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC101058",
-            "properties": {
-                "molecule type": "mRNA",
-                "status": "NOT_ANNOTATED_CDS"
-            }
-        },
-        {
-            "type": "EMBL",
-            "id": "BC101060",
-            "properties": {
-                "molecule type": "mRNA",
-                "protein sequence ID": "AAI01061.1"
-            }
-        },
-        {
-            "type": "CCDS",
-            "id": "CCDS2712.1",
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "CCDS",
-            "id": "CCDS43076.1",
-            "isoform": "Q8N3R3-3"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_001025010.1",
-            "properties": {
-                "nucleotide sequence ID": "NM_001029839.2"
-            },
-            "isoform": "Q8N3R3-3"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_001025011.1",
-            "properties": {
-                "nucleotide sequence ID": "NM_001029840.2"
-            },
-            "isoform": "Q8N3R3-3"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_001269842.1",
-            "properties": {
-                "nucleotide sequence ID": "NM_001282913.1"
-            },
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_001269843.1",
-            "properties": {
-                "nucleotide sequence ID": "NM_001282914.1"
-            },
-            "isoform": "Q8N3R3-4"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_001269844.1",
-            "properties": {
-                "nucleotide sequence ID": "NM_001282915.1"
-            },
-            "isoform": "Q8N3R3-4"
-        },
-        {
-            "type": "RefSeq",
-            "id": "NP_776187.2",
-            "properties": {
-                "nucleotide sequence ID": "NM_173826.3"
-            },
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "RefSeq",
-            "id": "XP_016861740.1",
-            "properties": {
-                "nucleotide sequence ID": "XM_017006251.1"
-            }
-        },
-        {
-            "type": "AlphaFoldDB",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "BioGRID",
-            "id": "130085",
-            "properties": {
-                "interactions": "5"
-            }
-        },
-        {
-            "type": "IntAct",
-            "id": "Q8N3R3",
-            "properties": {
-                "interactions": "1"
-            }
-        },
-        {
-            "type": "STRING",
-            "id": "9606.ENSP00000341539"
-        },
-        {
-            "type": "iPTMnet",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "PhosphoSitePlus",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "BioMuta",
-            "id": "TCAIM"
-        },
-        {
-            "type": "DMDM",
-            "id": "116241286"
-        },
-        {
-            "type": "EPD",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "jPOST",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "MassIVE",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "MaxQB",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "PaxDb",
-            "id": "9606-ENSP00000341539"
-        },
-        {
-            "type": "PeptideAtlas",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "ProteomicsDB",
-            "id": "71823",
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "ProteomicsDB",
-            "id": "71824",
-            "isoform": "Q8N3R3-2"
-        },
-        {
-            "type": "ProteomicsDB",
-            "id": "71826",
-            "isoform": "Q8N3R3-4"
-        },
-        {
-            "type": "Pumba",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "Antibodypedia",
-            "id": "53088",
-            "properties": {
-                "antibodies": "74 antibodies from 11 providers"
-            }
-        },
-        {
-            "type": "DNASU",
-            "id": "285343"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000342649.9",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000341539.4"
-            },
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000383746.7",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000373252.3"
-            },
-            "isoform": "Q8N3R3-3"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000396078.7",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000379388.3"
-            },
-            "isoform": "Q8N3R3-3"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000412611.6",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000392032.2"
-            },
-            "isoform": "Q8N3R3-2"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000417237.5",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000402581.1"
-            },
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000417768.1",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000402604.1"
-            },
-            "isoform": "Q8N3R3-2"
-        },
-        {
-            "type": "Ensembl",
-            "id": "ENST00000431657.5",
-            "properties": {
-                "gene ID": "ENSG00000179152.20",
-                "protein sequence ID": "ENSP00000387842.1"
-            },
-            "isoform": "Q8N3R3-2"
-        },
-        {
-            "type": "GeneID",
-            "id": "285343"
-        },
-        {
-            "type": "KEGG",
-            "id": "hsa:285343"
-        },
-        {
-            "type": "MANE-Select",
-            "id": "ENST00000342649.9",
-            "properties": {
-                "RefSeq nucleotide sequence ID": "NM_173826.4",
-                "RefSeq protein sequence ID": "NP_776187.2",
-                "protein sequence ID": "ENSP00000341539.4"
-            }
-        },
-        {
-            "type": "UCSC",
-            "id": "uc003cnb.5",
-            "properties": {
-                "organism name": "human"
-            },
-            "isoform": "Q8N3R3-1"
-        },
-        {
-            "type": "AGR",
-            "id": "HGNC:25241"
-        },
-        {
-            "type": "CTD",
-            "id": "285343"
-        },
-        {
-            "type": "DisGeNET",
-            "id": "285343"
-        },
-        {
-            "type": "GeneCards",
-            "id": "TCAIM"
-        },
-        {
-            "type": "HGNC",
-            "id": "HGNC:25241",
-            "properties": {
-                "gene designation": "TCAIM"
-            }
-        },
-        {
-            "type": "HPA",
-            "id": "ENSG00000179152",
-            "properties": {
-                "expression patterns": "Tissue enhanced (liver)"
-            }
-        },
-        {
-            "type": "neXtProt",
-            "id": "NX_Q8N3R3"
-        },
-        {
-            "type": "OpenTargets",
-            "id": "ENSG00000179152"
-        },
-        {
-            "type": "PharmGKB",
-            "id": "PA142672384"
-        },
-        {
-            "type": "VEuPathDB",
-            "id": "HostDB:ENSG00000179152"
-        },
-        {
-            "type": "eggNOG",
-            "id": "ENOG502QTGC",
-            "properties": {
-                "taxonomic scope": "Eukaryota"
-            }
-        },
-        {
-            "type": "GeneTree",
-            "id": "ENSGT00390000012832"
-        },
-        {
-            "type": "HOGENOM",
-            "id": "CLU_2757111_0_0_1"
-        },
-        {
-            "type": "InParanoid",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "OMA",
-            "id": "HISHYYS"
-        },
-        {
-            "type": "OrthoDB",
-            "id": "5384466at2759"
-        },
-        {
-            "type": "PhylomeDB",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "TreeFam",
-            "id": "TF315619"
-        },
-        {
-            "type": "PathwayCommons",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "SignaLink",
-            "id": "Q8N3R3"
-        },
-        {
-            "type": "BioGRID-ORCS",
-            "id": "285343",
-            "properties": {
-                "hits": "12 hits in 1163 CRISPR screens"
-            }
-        },
-        {
-            "type": "ChiTaRS",
-            "id": "TCAIM",
-            "properties": {
-                "organism name": "human"
-            }
-        },
-        {
-            "type": "GeneWiki",
-            "id": "C3orf23"
-        },
-        {
-            "type": "GenomeRNAi",
-            "id": "285343"
-        },
-        {
-            "type": "Pharos",
-            "id": "Q8N3R3",
-            "properties": {
-                "development level": "Tbio"
-            }
-        },
-        {
-            "type": "PRO",
-            "id": "PR:Q8N3R3"
-        },
-        {
-            "type": "Proteomes",
-            "id": "UP000005640",
-            "properties": {
-                "component": "Chromosome 3"
-            }
-        },
-        {
-            "type": "RNAct",
-            "id": "Q8N3R3",
-            "properties": {
-                "molecule type": "Protein"
-            }
-        },
-        {
-            "type": "Bgee",
-            "id": "ENSG00000179152",
-            "properties": {
-                "expression patterns": "Expressed in right lobe of liver and 181 other cell types or tissues"
-            }
-        },
-        {
-            "type": "ExpressionAtlas",
-            "id": "Q8N3R3",
-            "properties": {
-                "expression patterns": "baseline and differential"
-            }
-        },
-        {
-            "type": "Genevisible",
-            "id": "Q8N3R3",
-            "properties": {
-                "organism ID": "HS"
-            }
-        },
-        {
-            "type": "GO",
-            "id": "GO:0005739",
-            "properties": {
-                "term": "C:mitochondrion",
-                "source": "IDA:LIFEdb"
-            }
-        },
-        {
-            "type": "InterPro",
-            "id": "IPR028031",
-            "properties": {
-                "entry name": "DUF4460"
-            }
-        },
-        {
-            "type": "InterPro",
-            "id": "IPR027989",
-            "properties": {
-                "entry name": "DUF4461"
-            }
-        },
-        {
-            "type": "InterPro",
-            "id": "IPR027986",
-            "properties": {
-                "entry name": "TCAIM"
-            }
-        },
-        {
-            "type": "PANTHER",
-            "id": "PTHR31596",
-            "properties": {
-                "match status": "1",
-                "entry name": "T-CELL ACTIVATION INHIBITOR, MITOCHONDRIAL"
-            }
-        },
-        {
-            "type": "PANTHER",
-            "id": "PTHR31596:SF1",
-            "properties": {
-                "match status": "1",
-                "entry name": "T-CELL ACTIVATION INHIBITOR, MITOCHONDRIAL"
-            }
-        },
-        {
-            "type": "Pfam",
-            "id": "PF14687",
-            "properties": {
-                "match status": "1",
-                "entry name": "DUF4460"
-            }
-        },
-        {
-            "type": "Pfam",
-            "id": "PF14688",
-            "properties": {
-                "match status": "1",
-                "entry name": "DUF4461"
-            }
-        }
-    ],
-    "keywords": [
-        {
-            "value": "Alternative splicing"
-        },
-        {
-            "value": "Coiled coil"
-        },
-        {
-            "value": "Mitochondrion"
-        },
-        {
-            "value": "Reference proteome"
-        }
-    ],
-    "references": [
-        {
-            "citation": {
-                "type": "journal article",
-                "publicationDate": "2004",
-                "title": "Complete sequencing and characterization of 21,243 full-length human cDNAs.",
-                "authors": [
-                    "Ota T.",
-                    "Suzuki Y.",
-                    "Nishikawa T.",
-                    "Otsuki T.",
-                    "Sugiyama T.",
-                    "Irie R.",
-                    "Wakamatsu A.",
-                    "Hayashi K.",
-                    "Sato H.",
-                    "Nagai K.",
-                    "Kimura K.",
-                    "Makita H.",
-                    "Sekine M.",
-                    "Obayashi M.",
-                    "Nishi T.",
-                    "Shibahara T.",
-                    "Tanaka T.",
-                    "Ishii S.",
-                    "Yamamoto J.",
-                    "Saito K.",
-                    "Kawai Y.",
-                    "Isono Y.",
-                    "Nakamura Y.",
-                    "Nagahari K.",
-                    "Murakami K.",
-                    "Yasuda T.",
-                    "Iwayanagi T.",
-                    "Wagatsuma M.",
-                    "Shiratori A.",
-                    "Sudo H.",
-                    "Hosoiri T.",
-                    "Kaku Y.",
-                    "Kodaira H.",
-                    "Kondo H.",
-                    "Sugawara M.",
-                    "Takahashi M.",
-                    "Kanda K.",
-                    "Yokoi T.",
-                    "Furuya T.",
-                    "Kikkawa E.",
-                    "Omura Y.",
-                    "Abe K.",
-                    "Kamihara K.",
-                    "Katsuta N.",
-                    "Sato K.",
-                    "Tanikawa M.",
-                    "Yamazaki M.",
-                    "Ninomiya K.",
-                    "Ishibashi T.",
-                    "Yamashita H.",
-                    "Murakawa K.",
-                    "Fujimori K.",
-                    "Tanai H.",
-                    "Kimata M.",
-                    "Watanabe M.",
-                    "Hiraoka S.",
-                    "Chiba Y.",
-                    "Ishida S.",
-                    "Ono Y.",
-                    "Takiguchi S.",
-                    "Watanabe S.",
-                    "Yosida M.",
-                    "Hotuta T.",
-                    "Kusano J.",
-                    "Kanehori K.",
-                    "Takahashi-Fujii A.",
-                    "Hara H.",
-                    "Tanase T.-O.",
-                    "Nomura Y.",
-                    "Togiya S.",
-                    "Komai F.",
-                    "Hara R.",
-                    "Takeuchi K.",
-                    "Arita M.",
-                    "Imose N.",
-                    "Musashino K.",
-                    "Yuuki H.",
-                    "Oshima A.",
-                    "Sasaki N.",
-                    "Aotsuka S.",
-                    "Yoshikawa Y.",
-                    "Matsunawa H.",
-                    "Ichihara T.",
-                    "Shiohata N.",
-                    "Sano S.",
-                    "Moriya S.",
-                    "Momiyama H.",
-                    "Satoh N.",
-                    "Takami S.",
-                    "Terashima Y.",
-                    "Suzuki O.",
-                    "Nakagawa S.",
-                    "Senoh A.",
-                    "Mizoguchi H.",
-                    "Goto Y.",
-                    "Shimizu F.",
-                    "Wakebe H.",
-                    "Hishigaki H.",
-                    "Watanabe T.",
-                    "Sugiyama A.",
-                    "Takemoto M.",
-                    "Kawakami B.",
-                    "Yamazaki M.",
-                    "Watanabe K.",
-                    "Kumagai A.",
-                    "Itakura S.",
-                    "Fukuzumi Y.",
-                    "Fujimori Y.",
-                    "Komiyama M.",
-                    "Tashiro H.",
-                    "Tanigami A.",
-                    "Fujiwara T.",
-                    "Ono T.",
-                    "Yamada K.",
-                    "Fujii Y.",
-                    "Ozaki K.",
-                    "Hirao M.",
-                    "Ohmori Y.",
-                    "Kawabata A.",
-                    "Hikiji T.",
-                    "Kobatake N.",
-                    "Inagaki H.",
-                    "Ikema Y.",
-                    "Okamoto S.",
-                    "Okitani R.",
-                    "Kawakami T.",
-                    "Noguchi S.",
-                    "Itoh T.",
-                    "Shigeta K.",
-                    "Senba T.",
-                    "Matsumura K.",
-                    "Nakajima Y.",
-                    "Mizuno T.",
-                    "Morinaga M.",
-                    "Sasaki M.",
-                    "Togashi T.",
-                    "Oyama M.",
-                    "Hata H.",
-                    "Watanabe M.",
-                    "Komatsu T.",
-                    "Mizushima-Sugano J.",
-                    "Satoh T.",
-                    "Shirai Y.",
-                    "Takahashi Y.",
-                    "Nakagawa K.",
-                    "Okumura K.",
-                    "Nagase T.",
-                    "Nomura N.",
-                    "Kikuchi H.",
-                    "Masuho Y.",
-                    "Yamashita R.",
-                    "Nakai K.",
-                    "Yada T.",
-                    "Nakamura Y.",
-                    "Ohara O.",
-                    "Isogai T.",
-                    "Sugano S."
-                ],
-                "publication": {
-                    "journalName": "Nat. Genet."
-                },
-                "location": {
-                    "volume": "36",
-                    "firstPage": "40",
-                    "lastPage": "45"
-                },
-                "dbReferences": [
-                    {
-                        "type": "PubMed",
-                        "id": "14702039"
-                    },
-                    {
-                        "type": "DOI",
-                        "id": "10.1038/ng1285"
-                    }
-                ]
-            },
-            "source": {
-                "tissue": [
-                    {
-                        "value": "Esophageal carcinoma"
-                    },
-                    {
-                        "value": "Tongue"
-                    }
-                ]
-            },
-            "scope": [
-                "NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS 1; 3 AND 4)"
-            ]
-        },
-        {
-            "citation": {
-                "type": "journal article",
-                "publicationDate": "2007",
-                "title": "The full-ORF clone resource of the German cDNA consortium.",
-                "authors": [
-                    "Bechtel S.",
-                    "Rosenfelder H.",
-                    "Duda A.",
-                    "Schmidt C.P.",
-                    "Ernst U.",
-                    "Wellenreuther R.",
-                    "Mehrle A.",
-                    "Schuster C.",
-                    "Bahr A.",
-                    "Bloecker H.",
-                    "Heubner D.",
-                    "Hoerlein A.",
-                    "Michel G.",
-                    "Wedler H.",
-                    "Koehrer K.",
-                    "Ottenwaelder B.",
-                    "Poustka A.",
-                    "Wiemann S.",
-                    "Schupp I."
-                ],
-                "publication": {
-                    "journalName": "BMC Genomics"
-                },
-                "location": {
-                    "volume": "8",
-                    "firstPage": "399",
-                    "lastPage": "399"
-                },
-                "dbReferences": [
-                    {
-                        "type": "PubMed",
-                        "id": "17974005"
-                    },
-                    {
-                        "type": "DOI",
-                        "id": "10.1186/1471-2164-8-399"
-                    }
-                ]
-            },
-            "source": {
-                "tissue": [
-                    {
-                        "value": "Adipose tissue"
-                    }
-                ]
-            },
-            "scope": [
-                "NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1)"
-            ]
-        },
-        {
-            "citation": {
-                "type": "journal article",
-                "publicationDate": "2006",
-                "title": "The DNA sequence, annotation and analysis of human chromosome 3.",
-                "authors": [
-                    "Muzny D.M.",
-                    "Scherer S.E.",
-                    "Kaul R.",
-                    "Wang J.",
-                    "Yu J.",
-                    "Sudbrak R.",
-                    "Buhay C.J.",
-                    "Chen R.",
-                    "Cree A.",
-                    "Ding Y.",
-                    "Dugan-Rocha S.",
-                    "Gill R.",
-                    "Gunaratne P.",
-                    "Harris R.A.",
-                    "Hawes A.C.",
-                    "Hernandez J.",
-                    "Hodgson A.V.",
-                    "Hume J.",
-                    "Jackson A.",
-                    "Khan Z.M.",
-                    "Kovar-Smith C.",
-                    "Lewis L.R.",
-                    "Lozado R.J.",
-                    "Metzker M.L.",
-                    "Milosavljevic A.",
-                    "Miner G.R.",
-                    "Morgan M.B.",
-                    "Nazareth L.V.",
-                    "Scott G.",
-                    "Sodergren E.",
-                    "Song X.-Z.",
-                    "Steffen D.",
-                    "Wei S.",
-                    "Wheeler D.A.",
-                    "Wright M.W.",
-                    "Worley K.C.",
-                    "Yuan Y.",
-                    "Zhang Z.",
-                    "Adams C.Q.",
-                    "Ansari-Lari M.A.",
-                    "Ayele M.",
-                    "Brown M.J.",
-                    "Chen G.",
-                    "Chen Z.",
-                    "Clendenning J.",
-                    "Clerc-Blankenburg K.P.",
-                    "Chen R.",
-                    "Chen Z.",
-                    "Davis C.",
-                    "Delgado O.",
-                    "Dinh H.H.",
-                    "Dong W.",
-                    "Draper H.",
-                    "Ernst S.",
-                    "Fu G.",
-                    "Gonzalez-Garay M.L.",
-                    "Garcia D.K.",
-                    "Gillett W.",
-                    "Gu J.",
-                    "Hao B.",
-                    "Haugen E.",
-                    "Havlak P.",
-                    "He X.",
-                    "Hennig S.",
-                    "Hu S.",
-                    "Huang W.",
-                    "Jackson L.R.",
-                    "Jacob L.S.",
-                    "Kelly S.H.",
-                    "Kube M.",
-                    "Levy R.",
-                    "Li Z.",
-                    "Liu B.",
-                    "Liu J.",
-                    "Liu W.",
-                    "Lu J.",
-                    "Maheshwari M.",
-                    "Nguyen B.-V.",
-                    "Okwuonu G.O.",
-                    "Palmeiri A.",
-                    "Pasternak S.",
-                    "Perez L.M.",
-                    "Phelps K.A.",
-                    "Plopper F.J.",
-                    "Qiang B.",
-                    "Raymond C.",
-                    "Rodriguez R.",
-                    "Saenphimmachak C.",
-                    "Santibanez J.",
-                    "Shen H.",
-                    "Shen Y.",
-                    "Subramanian S.",
-                    "Tabor P.E.",
-                    "Verduzco D.",
-                    "Waldron L.",
-                    "Wang J.",
-                    "Wang J.",
-                    "Wang Q.",
-                    "Williams G.A.",
-                    "Wong G.K.-S.",
-                    "Yao Z.",
-                    "Zhang J.",
-                    "Zhang X.",
-                    "Zhao G.",
-                    "Zhou J.",
-                    "Zhou Y.",
-                    "Nelson D.",
-                    "Lehrach H.",
-                    "Reinhardt R.",
-                    "Naylor S.L.",
-                    "Yang H.",
-                    "Olson M.",
-                    "Weinstock G.",
-                    "Gibbs R.A."
-                ],
-                "publication": {
-                    "journalName": "Nature"
-                },
-                "location": {
-                    "volume": "440",
-                    "firstPage": "1194",
-                    "lastPage": "1198"
-                },
-                "dbReferences": [
-                    {
-                        "type": "PubMed",
-                        "id": "16641997"
-                    },
-                    {
-                        "type": "DOI",
-                        "id": "10.1038/nature04728"
-                    }
-                ]
-            },
-            "scope": [
-                "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
-            ]
-        },
-        {
-            "citation": {
-                "type": "submission",
-                "publicationDate": "JUL-2005",
-                "authors": [
-                    "Mural R.J.",
-                    "Istrail S.",
-                    "Sutton G.G.",
-                    "Florea L.",
-                    "Halpern A.L.",
-                    "Mobarry C.M.",
-                    "Lippert R.",
-                    "Walenz B.",
-                    "Shatkay H.",
-                    "Dew I.",
-                    "Miller J.R.",
-                    "Flanigan M.J.",
-                    "Edwards N.J.",
-                    "Bolanos R.",
-                    "Fasulo D.",
-                    "Halldorsson B.V.",
-                    "Hannenhalli S.",
-                    "Turner R.",
-                    "Yooseph S.",
-                    "Lu F.",
-                    "Nusskern D.R.",
-                    "Shue B.C.",
-                    "Zheng X.H.",
-                    "Zhong F.",
-                    "Delcher A.L.",
-                    "Huson D.H.",
-                    "Kravitz S.A.",
-                    "Mouchard L.",
-                    "Reinert K.",
-                    "Remington K.A.",
-                    "Clark A.G.",
-                    "Waterman M.S.",
-                    "Eichler E.E.",
-                    "Adams M.D.",
-                    "Hunkapiller M.W.",
-                    "Myers E.W.",
-                    "Venter J.C."
-                ],
-                "publication": {
-                    "submissionDatabase": "EMBL/GenBank/DDBJ databases"
-                }
-            },
-            "scope": [
-                "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
-            ]
-        },
-        {
-            "citation": {
-                "type": "journal article",
-                "publicationDate": "2004",
-                "title": "The status, quality, and expansion of the NIH full-length cDNA project: the Mammalian Gene Collection (MGC).",
-                "consortiums": [
-                    "The MGC Project Team"
-                ],
-                "publication": {
-                    "journalName": "Genome Res."
-                },
-                "location": {
-                    "volume": "14",
-                    "firstPage": "2121",
-                    "lastPage": "2127"
-                },
-                "dbReferences": [
-                    {
-                        "type": "PubMed",
-                        "id": "15489334"
-                    },
-                    {
-                        "type": "DOI",
-                        "id": "10.1101/gr.2596504"
-                    }
-                ]
-            },
-            "source": {
-                "tissue": [
-                    {
-                        "value": "Brain"
-                    },
-                    {
-                        "value": "Hippocampus"
-                    },
-                    {
-                        "value": "Leukocyte"
-                    },
-                    {
-                        "value": "Muscle"
-                    }
-                ]
-            },
-            "scope": [
-                "NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS 1; 2; 3 AND 4)"
-            ]
-        }
-    ],
-    "sequence": {
-        "version": 2,
-        "length": 496,
-        "mass": 57925,
-        "modified": "2006-10-17",
-        "sequence": "MFCHLRPMRRLCLEKIFPHWFPFSRALSGAEAVNALRPFYFAVHPDFFGQHPVEREINENSLKRLSVYLENLQKPGFKSLKPTQLTFYVRETDQSSSDGQEPFSTSGFRAVKFTLHTRDLLSTVLYILNSCSLSVEHIQSLNTNMHTQPLKEAKRMPDRPIKWDKSYYSFTGFKDPDEDLEQVSRVETTLTSWLDNNGKSAVKKLKNSLPLRKELDRLKDELSHQLQLSDIRWQRSWGIAHRCSQLHSLSRLAQQNLETLKKAKGCTIIFTDRSGMSAVGHVMLGTMDVHHHWTKLFERLPSYFDLQRRLMILEDQISYLLGGIQVVYIEELQPVLTLEEYYSLLDVFYNRLLKSRILFHPRSLRGLQMILNSDRYAPSLHELGHFNIPTLCDPANLQWFILTKAQQARENMKRKEELKVIENELIQASTKKFSLEKLYKEPSISSIQMVDCCKRLLEQSLPYLHGMHLCISHFYSVMQDGDLCIPWNWKNGEAIK"
+      ]
     }
+  ],
+  "comments": [
+    {
+      "type": "FUNCTION",
+      "text": [
+        {
+          "value": "May regulate T-cell apoptosis",
+          "evidences": [
+            {
+              "code": "ECO:0000250"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "SUBCELLULAR_LOCATION",
+      "locations": [
+        {
+          "location": {
+            "value": "Mitochondrion",
+            "evidences": [
+              {
+                "code": "ECO:0000250"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "ALTERNATIVE_PRODUCTS",
+      "event": ["Alternative splicing"],
+      "isoforms": [
+        {
+          "ids": ["Q8N3R3-1"],
+          "name": {
+            "value": "1"
+          },
+          "sequenceStatus": "displayed"
+        },
+        {
+          "ids": ["Q8N3R3-2"],
+          "name": {
+            "value": "2"
+          },
+          "sequenceStatus": "described",
+          "sequence": ["VSP_018471", "VSP_018472"]
+        },
+        {
+          "ids": ["Q8N3R3-3"],
+          "name": {
+            "value": "3"
+          },
+          "sequenceStatus": "described",
+          "sequence": ["VSP_018469", "VSP_018470"]
+        },
+        {
+          "ids": ["Q8N3R3-4"],
+          "name": {
+            "value": "4"
+          },
+          "sequenceStatus": "described",
+          "sequence": ["VSP_038421"]
+        }
+      ]
+    },
+    {
+      "type": "MISCELLANEOUS",
+      "molecule": "Isoform 2",
+      "text": [
+        {
+          "value": "May be produced at very low levels due to a premature stop codon in the mRNA, leading to nonsense-mediated mRNA decay",
+          "evidences": [
+            {
+              "code": "ECO:0000305"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "type": "CHAIN",
+      "category": "MOLECULE_PROCESSING",
+      "ftId": "PRO_0000235340",
+      "description": "T-cell activation inhibitor, mitochondrial",
+      "begin": "1",
+      "end": "496",
+      "molecule": ""
+    },
+    {
+      "type": "COILED",
+      "category": "DOMAINS_AND_SITES",
+      "begin": "404",
+      "end": "437",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000255"
+        }
+      ]
+    },
+    {
+      "type": "VAR_SEQ",
+      "category": "VARIANTS",
+      "ftId": "VSP_038421",
+      "begin": "1",
+      "end": "144",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "14702039",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
+          }
+        },
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "15489334",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
+          }
+        }
+      ]
+    },
+    {
+      "type": "VAR_SEQ",
+      "category": "VARIANTS",
+      "ftId": "VSP_018469",
+      "begin": "56",
+      "end": "70",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "14702039",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
+          }
+        },
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "15489334",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
+          }
+        }
+      ]
+    },
+    {
+      "type": "VAR_SEQ",
+      "category": "VARIANTS",
+      "ftId": "VSP_018470",
+      "begin": "71",
+      "end": "496",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "14702039",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/14702039",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/14702039"
+          }
+        },
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "15489334",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
+          }
+        }
+      ]
+    },
+    {
+      "type": "VAR_SEQ",
+      "category": "VARIANTS",
+      "ftId": "VSP_018471",
+      "begin": "107",
+      "end": "115",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "15489334",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
+          }
+        }
+      ]
+    },
+    {
+      "type": "VAR_SEQ",
+      "category": "VARIANTS",
+      "ftId": "VSP_018472",
+      "begin": "116",
+      "end": "496",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000303",
+          "source": {
+            "name": "PubMed",
+            "id": "15489334",
+            "url": "http://www.ncbi.nlm.nih.gov/pubmed/15489334",
+            "alternativeUrl": "https://europepmc.org/abstract/MED/15489334"
+          }
+        }
+      ]
+    },
+    {
+      "type": "VARIANT",
+      "category": "VARIANTS",
+      "ftId": "VAR_050720",
+      "description": "in dbSNP:rs35830741",
+      "alternativeSequence": "P",
+      "begin": "4",
+      "end": "4",
+      "molecule": ""
+    },
+    {
+      "type": "CONFLICT",
+      "category": "SEQUENCE_INFORMATION",
+      "description": "in Ref. 1; BAF85445",
+      "alternativeSequence": "Y",
+      "begin": "3",
+      "end": "3",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000305"
+        }
+      ]
+    },
+    {
+      "type": "CONFLICT",
+      "category": "SEQUENCE_INFORMATION",
+      "description": "in Ref. 2; CAD38627",
+      "alternativeSequence": "G",
+      "begin": "244",
+      "end": "244",
+      "molecule": "",
+      "evidences": [
+        {
+          "code": "ECO:0000305"
+        }
+      ]
+    }
+  ],
+  "dbReferences": [
+    {
+      "type": "EMBL",
+      "id": "AK292756",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "BAF85445.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "AK056593",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "BAG51758.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "AK124087",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "BAG54004.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "AL832473",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "CAD38627.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "AC104187",
+      "properties": {
+        "molecule type": "Genomic_DNA",
+        "status": "NOT_ANNOTATED_CDS"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "AC134943",
+      "properties": {
+        "molecule type": "Genomic_DNA",
+        "status": "NOT_ANNOTATED_CDS"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "CH471055",
+      "properties": {
+        "molecule type": "Genomic_DNA",
+        "protein sequence ID": "EAW64703.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "CH471055",
+      "properties": {
+        "molecule type": "Genomic_DNA",
+        "protein sequence ID": "EAW64704.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC009400",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAH09400.2"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC038420",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAH38420.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC047231",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAH47231.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC062587",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAH62587.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC073829",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAH73829.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC101059",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAI01060.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC101061",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAI01062.1"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC101058",
+      "properties": {
+        "molecule type": "mRNA",
+        "status": "NOT_ANNOTATED_CDS"
+      }
+    },
+    {
+      "type": "EMBL",
+      "id": "BC101060",
+      "properties": {
+        "molecule type": "mRNA",
+        "protein sequence ID": "AAI01061.1"
+      }
+    },
+    {
+      "type": "CCDS",
+      "id": "CCDS2712.1",
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "CCDS",
+      "id": "CCDS43076.1",
+      "isoform": "Q8N3R3-3"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_001025010.1",
+      "properties": {
+        "nucleotide sequence ID": "NM_001029839.2"
+      },
+      "isoform": "Q8N3R3-3"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_001025011.1",
+      "properties": {
+        "nucleotide sequence ID": "NM_001029840.2"
+      },
+      "isoform": "Q8N3R3-3"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_001269842.1",
+      "properties": {
+        "nucleotide sequence ID": "NM_001282913.1"
+      },
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_001269843.1",
+      "properties": {
+        "nucleotide sequence ID": "NM_001282914.1"
+      },
+      "isoform": "Q8N3R3-4"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_001269844.1",
+      "properties": {
+        "nucleotide sequence ID": "NM_001282915.1"
+      },
+      "isoform": "Q8N3R3-4"
+    },
+    {
+      "type": "RefSeq",
+      "id": "NP_776187.2",
+      "properties": {
+        "nucleotide sequence ID": "NM_173826.3"
+      },
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "RefSeq",
+      "id": "XP_016861740.1",
+      "properties": {
+        "nucleotide sequence ID": "XM_017006251.1"
+      }
+    },
+    {
+      "type": "AlphaFoldDB",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "BioGRID",
+      "id": "130085",
+      "properties": {
+        "interactions": "5"
+      }
+    },
+    {
+      "type": "IntAct",
+      "id": "Q8N3R3",
+      "properties": {
+        "interactions": "1"
+      }
+    },
+    {
+      "type": "STRING",
+      "id": "9606.ENSP00000341539"
+    },
+    {
+      "type": "iPTMnet",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "PhosphoSitePlus",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "BioMuta",
+      "id": "TCAIM"
+    },
+    {
+      "type": "DMDM",
+      "id": "116241286"
+    },
+    {
+      "type": "EPD",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "jPOST",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "MassIVE",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "MaxQB",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "PaxDb",
+      "id": "9606-ENSP00000341539"
+    },
+    {
+      "type": "PeptideAtlas",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "ProteomicsDB",
+      "id": "71823",
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "ProteomicsDB",
+      "id": "71824",
+      "isoform": "Q8N3R3-2"
+    },
+    {
+      "type": "ProteomicsDB",
+      "id": "71826",
+      "isoform": "Q8N3R3-4"
+    },
+    {
+      "type": "Pumba",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "Antibodypedia",
+      "id": "53088",
+      "properties": {
+        "antibodies": "74 antibodies from 11 providers"
+      }
+    },
+    {
+      "type": "DNASU",
+      "id": "285343"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000342649.9",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000341539.4"
+      },
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000383746.7",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000373252.3"
+      },
+      "isoform": "Q8N3R3-3"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000396078.7",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000379388.3"
+      },
+      "isoform": "Q8N3R3-3"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000412611.6",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000392032.2"
+      },
+      "isoform": "Q8N3R3-2"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000417237.5",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000402581.1"
+      },
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000417768.1",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000402604.1"
+      },
+      "isoform": "Q8N3R3-2"
+    },
+    {
+      "type": "Ensembl",
+      "id": "ENST00000431657.5",
+      "properties": {
+        "gene ID": "ENSG00000179152.20",
+        "protein sequence ID": "ENSP00000387842.1"
+      },
+      "isoform": "Q8N3R3-2"
+    },
+    {
+      "type": "GeneID",
+      "id": "285343"
+    },
+    {
+      "type": "KEGG",
+      "id": "hsa:285343"
+    },
+    {
+      "type": "MANE-Select",
+      "id": "ENST00000342649.9",
+      "properties": {
+        "RefSeq nucleotide sequence ID": "NM_173826.4",
+        "RefSeq protein sequence ID": "NP_776187.2",
+        "protein sequence ID": "ENSP00000341539.4"
+      }
+    },
+    {
+      "type": "UCSC",
+      "id": "uc003cnb.5",
+      "properties": {
+        "organism name": "human"
+      },
+      "isoform": "Q8N3R3-1"
+    },
+    {
+      "type": "AGR",
+      "id": "HGNC:25241"
+    },
+    {
+      "type": "CTD",
+      "id": "285343"
+    },
+    {
+      "type": "DisGeNET",
+      "id": "285343"
+    },
+    {
+      "type": "GeneCards",
+      "id": "TCAIM"
+    },
+    {
+      "type": "HGNC",
+      "id": "HGNC:25241",
+      "properties": {
+        "gene designation": "TCAIM"
+      }
+    },
+    {
+      "type": "HPA",
+      "id": "ENSG00000179152",
+      "properties": {
+        "expression patterns": "Tissue enhanced (liver)"
+      }
+    },
+    {
+      "type": "neXtProt",
+      "id": "NX_Q8N3R3"
+    },
+    {
+      "type": "OpenTargets",
+      "id": "ENSG00000179152"
+    },
+    {
+      "type": "PharmGKB",
+      "id": "PA142672384"
+    },
+    {
+      "type": "VEuPathDB",
+      "id": "HostDB:ENSG00000179152"
+    },
+    {
+      "type": "eggNOG",
+      "id": "ENOG502QTGC",
+      "properties": {
+        "taxonomic scope": "Eukaryota"
+      }
+    },
+    {
+      "type": "GeneTree",
+      "id": "ENSGT00390000012832"
+    },
+    {
+      "type": "HOGENOM",
+      "id": "CLU_2757111_0_0_1"
+    },
+    {
+      "type": "InParanoid",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "OMA",
+      "id": "HISHYYS"
+    },
+    {
+      "type": "OrthoDB",
+      "id": "5384466at2759"
+    },
+    {
+      "type": "PhylomeDB",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "TreeFam",
+      "id": "TF315619"
+    },
+    {
+      "type": "PathwayCommons",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "SignaLink",
+      "id": "Q8N3R3"
+    },
+    {
+      "type": "BioGRID-ORCS",
+      "id": "285343",
+      "properties": {
+        "hits": "12 hits in 1163 CRISPR screens"
+      }
+    },
+    {
+      "type": "ChiTaRS",
+      "id": "TCAIM",
+      "properties": {
+        "organism name": "human"
+      }
+    },
+    {
+      "type": "GeneWiki",
+      "id": "C3orf23"
+    },
+    {
+      "type": "GenomeRNAi",
+      "id": "285343"
+    },
+    {
+      "type": "Pharos",
+      "id": "Q8N3R3",
+      "properties": {
+        "development level": "Tbio"
+      }
+    },
+    {
+      "type": "PRO",
+      "id": "PR:Q8N3R3"
+    },
+    {
+      "type": "Proteomes",
+      "id": "UP000005640",
+      "properties": {
+        "component": "Chromosome 3"
+      }
+    },
+    {
+      "type": "RNAct",
+      "id": "Q8N3R3",
+      "properties": {
+        "molecule type": "Protein"
+      }
+    },
+    {
+      "type": "Bgee",
+      "id": "ENSG00000179152",
+      "properties": {
+        "expression patterns": "Expressed in right lobe of liver and 181 other cell types or tissues"
+      }
+    },
+    {
+      "type": "ExpressionAtlas",
+      "id": "Q8N3R3",
+      "properties": {
+        "expression patterns": "baseline and differential"
+      }
+    },
+    {
+      "type": "Genevisible",
+      "id": "Q8N3R3",
+      "properties": {
+        "organism ID": "HS"
+      }
+    },
+    {
+      "type": "GO",
+      "id": "GO:0005739",
+      "properties": {
+        "term": "C:mitochondrion",
+        "source": "IDA:LIFEdb"
+      }
+    },
+    {
+      "type": "InterPro",
+      "id": "IPR028031",
+      "properties": {
+        "entry name": "DUF4460"
+      }
+    },
+    {
+      "type": "InterPro",
+      "id": "IPR027989",
+      "properties": {
+        "entry name": "DUF4461"
+      }
+    },
+    {
+      "type": "InterPro",
+      "id": "IPR027986",
+      "properties": {
+        "entry name": "TCAIM"
+      }
+    },
+    {
+      "type": "PANTHER",
+      "id": "PTHR31596",
+      "properties": {
+        "match status": "1",
+        "entry name": "T-CELL ACTIVATION INHIBITOR, MITOCHONDRIAL"
+      }
+    },
+    {
+      "type": "PANTHER",
+      "id": "PTHR31596:SF1",
+      "properties": {
+        "match status": "1",
+        "entry name": "T-CELL ACTIVATION INHIBITOR, MITOCHONDRIAL"
+      }
+    },
+    {
+      "type": "Pfam",
+      "id": "PF14687",
+      "properties": {
+        "match status": "1",
+        "entry name": "DUF4460"
+      }
+    },
+    {
+      "type": "Pfam",
+      "id": "PF14688",
+      "properties": {
+        "match status": "1",
+        "entry name": "DUF4461"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "value": "Alternative splicing"
+    },
+    {
+      "value": "Coiled coil"
+    },
+    {
+      "value": "Mitochondrion"
+    },
+    {
+      "value": "Reference proteome"
+    }
+  ],
+  "references": [
+    {
+      "citation": {
+        "type": "journal article",
+        "publicationDate": "2004",
+        "title": "Complete sequencing and characterization of 21,243 full-length human cDNAs.",
+        "authors": [
+          "Ota T.",
+          "Suzuki Y.",
+          "Nishikawa T.",
+          "Otsuki T.",
+          "Sugiyama T.",
+          "Irie R.",
+          "Wakamatsu A.",
+          "Hayashi K.",
+          "Sato H.",
+          "Nagai K.",
+          "Kimura K.",
+          "Makita H.",
+          "Sekine M.",
+          "Obayashi M.",
+          "Nishi T.",
+          "Shibahara T.",
+          "Tanaka T.",
+          "Ishii S.",
+          "Yamamoto J.",
+          "Saito K.",
+          "Kawai Y.",
+          "Isono Y.",
+          "Nakamura Y.",
+          "Nagahari K.",
+          "Murakami K.",
+          "Yasuda T.",
+          "Iwayanagi T.",
+          "Wagatsuma M.",
+          "Shiratori A.",
+          "Sudo H.",
+          "Hosoiri T.",
+          "Kaku Y.",
+          "Kodaira H.",
+          "Kondo H.",
+          "Sugawara M.",
+          "Takahashi M.",
+          "Kanda K.",
+          "Yokoi T.",
+          "Furuya T.",
+          "Kikkawa E.",
+          "Omura Y.",
+          "Abe K.",
+          "Kamihara K.",
+          "Katsuta N.",
+          "Sato K.",
+          "Tanikawa M.",
+          "Yamazaki M.",
+          "Ninomiya K.",
+          "Ishibashi T.",
+          "Yamashita H.",
+          "Murakawa K.",
+          "Fujimori K.",
+          "Tanai H.",
+          "Kimata M.",
+          "Watanabe M.",
+          "Hiraoka S.",
+          "Chiba Y.",
+          "Ishida S.",
+          "Ono Y.",
+          "Takiguchi S.",
+          "Watanabe S.",
+          "Yosida M.",
+          "Hotuta T.",
+          "Kusano J.",
+          "Kanehori K.",
+          "Takahashi-Fujii A.",
+          "Hara H.",
+          "Tanase T.-O.",
+          "Nomura Y.",
+          "Togiya S.",
+          "Komai F.",
+          "Hara R.",
+          "Takeuchi K.",
+          "Arita M.",
+          "Imose N.",
+          "Musashino K.",
+          "Yuuki H.",
+          "Oshima A.",
+          "Sasaki N.",
+          "Aotsuka S.",
+          "Yoshikawa Y.",
+          "Matsunawa H.",
+          "Ichihara T.",
+          "Shiohata N.",
+          "Sano S.",
+          "Moriya S.",
+          "Momiyama H.",
+          "Satoh N.",
+          "Takami S.",
+          "Terashima Y.",
+          "Suzuki O.",
+          "Nakagawa S.",
+          "Senoh A.",
+          "Mizoguchi H.",
+          "Goto Y.",
+          "Shimizu F.",
+          "Wakebe H.",
+          "Hishigaki H.",
+          "Watanabe T.",
+          "Sugiyama A.",
+          "Takemoto M.",
+          "Kawakami B.",
+          "Yamazaki M.",
+          "Watanabe K.",
+          "Kumagai A.",
+          "Itakura S.",
+          "Fukuzumi Y.",
+          "Fujimori Y.",
+          "Komiyama M.",
+          "Tashiro H.",
+          "Tanigami A.",
+          "Fujiwara T.",
+          "Ono T.",
+          "Yamada K.",
+          "Fujii Y.",
+          "Ozaki K.",
+          "Hirao M.",
+          "Ohmori Y.",
+          "Kawabata A.",
+          "Hikiji T.",
+          "Kobatake N.",
+          "Inagaki H.",
+          "Ikema Y.",
+          "Okamoto S.",
+          "Okitani R.",
+          "Kawakami T.",
+          "Noguchi S.",
+          "Itoh T.",
+          "Shigeta K.",
+          "Senba T.",
+          "Matsumura K.",
+          "Nakajima Y.",
+          "Mizuno T.",
+          "Morinaga M.",
+          "Sasaki M.",
+          "Togashi T.",
+          "Oyama M.",
+          "Hata H.",
+          "Watanabe M.",
+          "Komatsu T.",
+          "Mizushima-Sugano J.",
+          "Satoh T.",
+          "Shirai Y.",
+          "Takahashi Y.",
+          "Nakagawa K.",
+          "Okumura K.",
+          "Nagase T.",
+          "Nomura N.",
+          "Kikuchi H.",
+          "Masuho Y.",
+          "Yamashita R.",
+          "Nakai K.",
+          "Yada T.",
+          "Nakamura Y.",
+          "Ohara O.",
+          "Isogai T.",
+          "Sugano S."
+        ],
+        "publication": {
+          "journalName": "Nat. Genet."
+        },
+        "location": {
+          "volume": "36",
+          "firstPage": "40",
+          "lastPage": "45"
+        },
+        "dbReferences": [
+          {
+            "type": "PubMed",
+            "id": "14702039"
+          },
+          {
+            "type": "DOI",
+            "id": "10.1038/ng1285"
+          }
+        ]
+      },
+      "source": {
+        "tissue": [
+          {
+            "value": "Esophageal carcinoma"
+          },
+          {
+            "value": "Tongue"
+          }
+        ]
+      },
+      "scope": ["NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS 1; 3 AND 4)"]
+    },
+    {
+      "citation": {
+        "type": "journal article",
+        "publicationDate": "2007",
+        "title": "The full-ORF clone resource of the German cDNA consortium.",
+        "authors": [
+          "Bechtel S.",
+          "Rosenfelder H.",
+          "Duda A.",
+          "Schmidt C.P.",
+          "Ernst U.",
+          "Wellenreuther R.",
+          "Mehrle A.",
+          "Schuster C.",
+          "Bahr A.",
+          "Bloecker H.",
+          "Heubner D.",
+          "Hoerlein A.",
+          "Michel G.",
+          "Wedler H.",
+          "Koehrer K.",
+          "Ottenwaelder B.",
+          "Poustka A.",
+          "Wiemann S.",
+          "Schupp I."
+        ],
+        "publication": {
+          "journalName": "BMC Genomics"
+        },
+        "location": {
+          "volume": "8",
+          "firstPage": "399",
+          "lastPage": "399"
+        },
+        "dbReferences": [
+          {
+            "type": "PubMed",
+            "id": "17974005"
+          },
+          {
+            "type": "DOI",
+            "id": "10.1186/1471-2164-8-399"
+          }
+        ]
+      },
+      "source": {
+        "tissue": [
+          {
+            "value": "Adipose tissue"
+          }
+        ]
+      },
+      "scope": ["NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1)"]
+    },
+    {
+      "citation": {
+        "type": "journal article",
+        "publicationDate": "2006",
+        "title": "The DNA sequence, annotation and analysis of human chromosome 3.",
+        "authors": [
+          "Muzny D.M.",
+          "Scherer S.E.",
+          "Kaul R.",
+          "Wang J.",
+          "Yu J.",
+          "Sudbrak R.",
+          "Buhay C.J.",
+          "Chen R.",
+          "Cree A.",
+          "Ding Y.",
+          "Dugan-Rocha S.",
+          "Gill R.",
+          "Gunaratne P.",
+          "Harris R.A.",
+          "Hawes A.C.",
+          "Hernandez J.",
+          "Hodgson A.V.",
+          "Hume J.",
+          "Jackson A.",
+          "Khan Z.M.",
+          "Kovar-Smith C.",
+          "Lewis L.R.",
+          "Lozado R.J.",
+          "Metzker M.L.",
+          "Milosavljevic A.",
+          "Miner G.R.",
+          "Morgan M.B.",
+          "Nazareth L.V.",
+          "Scott G.",
+          "Sodergren E.",
+          "Song X.-Z.",
+          "Steffen D.",
+          "Wei S.",
+          "Wheeler D.A.",
+          "Wright M.W.",
+          "Worley K.C.",
+          "Yuan Y.",
+          "Zhang Z.",
+          "Adams C.Q.",
+          "Ansari-Lari M.A.",
+          "Ayele M.",
+          "Brown M.J.",
+          "Chen G.",
+          "Chen Z.",
+          "Clendenning J.",
+          "Clerc-Blankenburg K.P.",
+          "Chen R.",
+          "Chen Z.",
+          "Davis C.",
+          "Delgado O.",
+          "Dinh H.H.",
+          "Dong W.",
+          "Draper H.",
+          "Ernst S.",
+          "Fu G.",
+          "Gonzalez-Garay M.L.",
+          "Garcia D.K.",
+          "Gillett W.",
+          "Gu J.",
+          "Hao B.",
+          "Haugen E.",
+          "Havlak P.",
+          "He X.",
+          "Hennig S.",
+          "Hu S.",
+          "Huang W.",
+          "Jackson L.R.",
+          "Jacob L.S.",
+          "Kelly S.H.",
+          "Kube M.",
+          "Levy R.",
+          "Li Z.",
+          "Liu B.",
+          "Liu J.",
+          "Liu W.",
+          "Lu J.",
+          "Maheshwari M.",
+          "Nguyen B.-V.",
+          "Okwuonu G.O.",
+          "Palmeiri A.",
+          "Pasternak S.",
+          "Perez L.M.",
+          "Phelps K.A.",
+          "Plopper F.J.",
+          "Qiang B.",
+          "Raymond C.",
+          "Rodriguez R.",
+          "Saenphimmachak C.",
+          "Santibanez J.",
+          "Shen H.",
+          "Shen Y.",
+          "Subramanian S.",
+          "Tabor P.E.",
+          "Verduzco D.",
+          "Waldron L.",
+          "Wang J.",
+          "Wang J.",
+          "Wang Q.",
+          "Williams G.A.",
+          "Wong G.K.-S.",
+          "Yao Z.",
+          "Zhang J.",
+          "Zhang X.",
+          "Zhao G.",
+          "Zhou J.",
+          "Zhou Y.",
+          "Nelson D.",
+          "Lehrach H.",
+          "Reinhardt R.",
+          "Naylor S.L.",
+          "Yang H.",
+          "Olson M.",
+          "Weinstock G.",
+          "Gibbs R.A."
+        ],
+        "publication": {
+          "journalName": "Nature"
+        },
+        "location": {
+          "volume": "440",
+          "firstPage": "1194",
+          "lastPage": "1198"
+        },
+        "dbReferences": [
+          {
+            "type": "PubMed",
+            "id": "16641997"
+          },
+          {
+            "type": "DOI",
+            "id": "10.1038/nature04728"
+          }
+        ]
+      },
+      "scope": ["NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"]
+    },
+    {
+      "citation": {
+        "type": "submission",
+        "publicationDate": "JUL-2005",
+        "authors": [
+          "Mural R.J.",
+          "Istrail S.",
+          "Sutton G.G.",
+          "Florea L.",
+          "Halpern A.L.",
+          "Mobarry C.M.",
+          "Lippert R.",
+          "Walenz B.",
+          "Shatkay H.",
+          "Dew I.",
+          "Miller J.R.",
+          "Flanigan M.J.",
+          "Edwards N.J.",
+          "Bolanos R.",
+          "Fasulo D.",
+          "Halldorsson B.V.",
+          "Hannenhalli S.",
+          "Turner R.",
+          "Yooseph S.",
+          "Lu F.",
+          "Nusskern D.R.",
+          "Shue B.C.",
+          "Zheng X.H.",
+          "Zhong F.",
+          "Delcher A.L.",
+          "Huson D.H.",
+          "Kravitz S.A.",
+          "Mouchard L.",
+          "Reinert K.",
+          "Remington K.A.",
+          "Clark A.G.",
+          "Waterman M.S.",
+          "Eichler E.E.",
+          "Adams M.D.",
+          "Hunkapiller M.W.",
+          "Myers E.W.",
+          "Venter J.C."
+        ],
+        "publication": {
+          "submissionDatabase": "EMBL/GenBank/DDBJ databases"
+        }
+      },
+      "scope": ["NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"]
+    },
+    {
+      "citation": {
+        "type": "journal article",
+        "publicationDate": "2004",
+        "title": "The status, quality, and expansion of the NIH full-length cDNA project: the Mammalian Gene Collection (MGC).",
+        "consortiums": ["The MGC Project Team"],
+        "publication": {
+          "journalName": "Genome Res."
+        },
+        "location": {
+          "volume": "14",
+          "firstPage": "2121",
+          "lastPage": "2127"
+        },
+        "dbReferences": [
+          {
+            "type": "PubMed",
+            "id": "15489334"
+          },
+          {
+            "type": "DOI",
+            "id": "10.1101/gr.2596504"
+          }
+        ]
+      },
+      "source": {
+        "tissue": [
+          {
+            "value": "Brain"
+          },
+          {
+            "value": "Hippocampus"
+          },
+          {
+            "value": "Leukocyte"
+          },
+          {
+            "value": "Muscle"
+          }
+        ]
+      },
+      "scope": [
+        "NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS 1; 2; 3 AND 4)"
+      ]
+    }
+  ],
+  "sequence": {
+    "version": 2,
+    "length": 496,
+    "mass": 57925,
+    "modified": "2006-10-17",
+    "sequence": "MFCHLRPMRRLCLEKIFPHWFPFSRALSGAEAVNALRPFYFAVHPDFFGQHPVEREINENSLKRLSVYLENLQKPGFKSLKPTQLTFYVRETDQSSSDGQEPFSTSGFRAVKFTLHTRDLLSTVLYILNSCSLSVEHIQSLNTNMHTQPLKEAKRMPDRPIKWDKSYYSFTGFKDPDEDLEQVSRVETTLTSWLDNNGKSAVKKLKNSLPLRKELDRLKDELSHQLQLSDIRWQRSWGIAHRCSQLHSLSRLAQQNLETLKKAKGCTIIFTDRSGMSAVGHVMLGTMDVHHHWTKLFERLPSYFDLQRRLMILEDQISYLLGGIQVVYIEELQPVLTLEEYYSLLDVFYNRLLKSRILFHPRSLRGLQMILNSDRYAPSLHELGHFNIPTLCDPANLQWFILTKAQQARENMKRKEELKVIENELIQASTKKFSLEKLYKEPSISSIQMVDCCKRLLEQSLPYLHGMHLCISHFYSVMQDGDLCIPWNWKNGEAIK"
+  }
 }

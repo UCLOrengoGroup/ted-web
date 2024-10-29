@@ -1,11 +1,11 @@
-import { DomainSummaryPublicWithInteractions } from "../../client"
-import { DomainAnnotation, SegmentAnnotation } from "../Common/models"
+import type { DomainSummaryPublicWithInteractions } from "../../client"
+import type { DomainAnnotation, SegmentAnnotation } from "../Common/models"
 
 export const getQueryParamsFromChoppingString = (chopping: string) => {
   const segs = getSegmentsFromChoppingString(chopping)
   return segs.map((seg: SegmentAnnotation) => {
-    return { 
-      start: seg.start, 
+    return {
+      start: seg.start,
       end: seg.end,
       start_residue_number: seg.start,
       end_residue_number: seg.end,
@@ -15,12 +15,14 @@ export const getQueryParamsFromChoppingString = (chopping: string) => {
   })
 }
 
-export const getSegmentsFromChoppingString = (chopping: string): SegmentAnnotation[] => {
+export const getSegmentsFromChoppingString = (
+  chopping: string,
+): SegmentAnnotation[] => {
   const segs_strs = chopping.split("_")
   return segs_strs.map((seg_str) => {
     const [start_str, end_str] = seg_str.split("-")
-    const start = parseInt(start_str)
-    const end = parseInt(end_str)
+    const start = Number.parseInt(start_str)
+    const end = Number.parseInt(end_str)
     return {
       start: start,
       end: end,
@@ -28,10 +30,12 @@ export const getSegmentsFromChoppingString = (chopping: string): SegmentAnnotati
   })
 }
 
-export const getDomainAnnotationFromDomainSummary = (domsum: DomainSummaryPublicWithInteractions): DomainAnnotation => {
+export const getDomainAnnotationFromDomainSummary = (
+  domsum: DomainSummaryPublicWithInteractions,
+): DomainAnnotation => {
   return {
     id: domsum.ted_id,
     annotation: domsum.cath_label,
-    segments: getSegmentsFromChoppingString(domsum.chopping)
+    segments: getSegmentsFromChoppingString(domsum.chopping),
   }
 }

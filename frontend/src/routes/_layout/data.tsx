@@ -43,20 +43,20 @@ function Data() {
           <Heading size="m">Software</Heading>
           <UnorderedList>
             <ListItem>
-              <Link href="https://github.com/psipred/ted-tools">
-                PSIPRED
-              </Link>{" "}
-              - code for calculating consensus domain chopping, domain quality, Foldclass embedding, search, and GO term analysis.
+              <Link href="https://github.com/psipred/ted-tools">PSIPRED</Link> -
+              code for calculating consensus domain chopping, domain quality,
+              Foldclass embedding, search, and GO term analysis.
             </ListItem>
             <ListItem>
               <Link href="https://github.com/UCLOrengoGroup/cath-alphaflow">
                 CATH-AlphaFlow
               </Link>{" "}
-              - tools and workflows to process AlphaFold data (including calculation of globularity and packing density).
+              - tools and workflows to process AlphaFold data (including
+              calculation of globularity and packing density).
             </ListItem>
             <ListItem>
               <Link href="https://github.com/UCLOrengoGroup/ted-web">
-                  TED Web
+                TED Web
               </Link>{" "}
               - code for this website.
             </ListItem>

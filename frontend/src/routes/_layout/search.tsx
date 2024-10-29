@@ -1,3 +1,4 @@
+import { Search2Icon } from "@chakra-ui/icons"
 import {
   Button,
   Container,
@@ -21,7 +22,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react"
-import { Search2Icon } from "@chakra-ui/icons"
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 import React from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
@@ -62,7 +62,7 @@ function SearchBar({
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isRequired>
           <InputGroup>
-          <InputLeftElement
+            <InputLeftElement
               pointerEvents="none"
               children={<Search2Icon color="gray.600" />}
             />
@@ -93,8 +93,6 @@ function fetchDomainSummary(query: string) {
   return UniprotService.readUniprotSummary({ uniprotAcc: query, limit: 50 })
 }
 
-
-
 function Search() {
   const showToast = useCustomToast()
   const [searchQuery, setSearchQuery] = React.useState<string>("")
@@ -110,7 +108,6 @@ function Search() {
     const errDetail = (error as ApiError).body?.detail
     showToast("Something went wrong.", `${errDetail}`, "error")
   }
-  
 
   function handleUniprotEntryClick(uniprot_acc: string) {
     setSearchQuery(uniprot_acc)
@@ -126,24 +123,35 @@ function Search() {
   }
 
   const first_entry = domain_summary_entries?.data[0]
-  const uniprot_items = domain_summary_entries ? (first_entry ? [first_entry] : []) : null
+  const uniprot_items = domain_summary_entries
+    ? first_entry
+      ? [first_entry]
+      : []
+    : null
   const ted_count = domain_summary_entries ? domain_summary_entries.count : 0
 
   function getSearchMessage() {
     if (uniprot_items == null) {
-      return <Text>Enter a UniProt accession into the search bar (e.g. {" "}
-        <Link onClick={() => handleUniprotEntryClick('A0A000')}>A0A000</Link>, {" "}
-        <Link onClick={() => handleUniprotEntryClick('A0A1V6M2Y0')}>A0A1V6M2Y0</Link> 
-        )
+      return (
+        <Text>
+          Enter a UniProt accession into the search bar (e.g.{" "}
+          <Link onClick={() => handleUniprotEntryClick("A0A000")}>A0A000</Link>,{" "}
+          <Link onClick={() => handleUniprotEntryClick("A0A1V6M2Y0")}>
+            A0A1V6M2Y0
+          </Link>
+          )
         </Text>
+      )
     }
-    if (uniprot_items.length == 0) {
-      return <Text>Sorry, no consensus TED domains found for '{searchQuery}'</Text>
+    if (uniprot_items.length === 0) {
+      return (
+        <Text>Sorry, no consensus TED domains found for '{searchQuery}'</Text>
+      )
     }
     return (
       <Text>
-        {uniprot_items.length} AlphaFold entries found for '{searchQuery}' ({ted_count} TED
-        domains)
+        {uniprot_items.length} AlphaFold entries found for '{searchQuery}' (
+        {ted_count} TED domains)
       </Text>
     )
   }
@@ -155,24 +163,24 @@ function Search() {
           <Spinner size="xl" color="ui.main" />
         </Flex>
       ) : (
-          <Container maxWidth={"100ch"}>
-            <Stack spacing={9}>
-              <Heading
-                margin="0.5em 0 0"
-                size="lg"
-                textAlign={{ base: "center", md: "left" }}
-                pt={12}
-              >
-                Search TED
-              </Heading>
-              <SearchBar
-                onSubmitQuery={(query) => {
-                  return handleSearchSubmit(query)
-                }}
-              />
-              { getSearchMessage() }
-              { uniprot_items?.length && (
-                <>
+        <Container maxWidth={"100ch"}>
+          <Stack spacing={9}>
+            <Heading
+              margin="0.5em 0 0"
+              size="lg"
+              textAlign={{ base: "center", md: "left" }}
+              pt={12}
+            >
+              Search TED
+            </Heading>
+            <SearchBar
+              onSubmitQuery={(query) => {
+                return handleSearchSubmit(query)
+              }}
+            />
+            {getSearchMessage()}
+            {uniprot_items?.length && (
+              <>
                 <TableContainer>
                   <Table size={{ base: "sm", md: "md" }}>
                     <Thead>
@@ -201,9 +209,7 @@ function Search() {
                               as={RouterLink}
                               to={`/uniprot/${item.uniprot_acc}`}
                             >
-                              <Button variant="primary">
-                              Go
-                              </Button>
+                              <Button variant="primary">Go</Button>
                             </Link>
                           </Td>
                         </Tr>
@@ -211,10 +217,10 @@ function Search() {
                     </Tbody>
                   </Table>
                 </TableContainer>
-                </>
-              )}
-            </Stack>
-          </Container>
+              </>
+            )}
+          </Stack>
+        </Container>
       )}
     </>
   )

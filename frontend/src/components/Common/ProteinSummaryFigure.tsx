@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 
 import { DomainColours } from "./DomainColors"
 
-import { DomainAnnotation } from "./models"
+import type { DomainAnnotation } from "./models"
 
 export interface ProteinSummaryFigureProps {
   width: number
@@ -13,7 +13,13 @@ export interface ProteinSummaryFigureProps {
 }
 
 function ProteinSummaryFigure(props: ProteinSummaryFigureProps) {
-  const { width, height, totalResidues, domainAnnotations, highlightedDomainId } = props
+  const {
+    width,
+    height,
+    totalResidues,
+    domainAnnotations,
+    highlightedDomainId,
+  } = props
 
   const margin = 8
   const strokeWidth = 2
@@ -27,31 +33,41 @@ function ProteinSummaryFigure(props: ProteinSummaryFigureProps) {
       width={width}
       height={height}
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="Protein summary figure"
+      role="img"
     >
-      <rect width={width - margin} height={height - margin} x={margin/2} y={margin/2} fill={bgFill} />
-      
+      <rect
+        width={width - margin}
+        height={height - margin}
+        x={margin / 2}
+        y={margin / 2}
+        fill={bgFill}
+      />
+
       {domainAnnotations.map((dom, dom_index) => {
         const dom_col = DomainColours[dom_index % DomainColours.length]
         return dom.segments.map((seg, seg_index) => {
-
           const resw = (width - margin) / totalResidues
           const segres = seg.end - seg.start + 1
           const segw = resw * segres
           const x = resw * seg.start
-          const highlighted = highlightedDomainId && highlightedDomainId == dom.id
+          const highlighted =
+            highlightedDomainId && highlightedDomainId === dom.id
           return (
             <rect
               key={`dom${dom_index}-seg${seg_index}`}
               width={segw}
               height={height - margin}
-              x={margin/2 + x}
-              y={margin/2}
+              x={margin / 2 + x}
+              y={margin / 2}
               strokeWidth={strokeWidth}
               stroke={highlighted ? stroke : "none"}
               fillOpacity={highlighted ? 1.0 : 0.75}
               fill={dom_col}
             >
-              <title>{`Domain ${dom_index + 1}: ` + dom.segments.map((seg) => `${seg.start}-${seg.end}`).join(', ')}</title>
+              <title>{`Domain ${dom_index + 1}: ${dom.segments
+                .map((seg) => `${seg.start}-${seg.end}`)
+                .join(", ")}`}</title>
             </rect>
           )
         })

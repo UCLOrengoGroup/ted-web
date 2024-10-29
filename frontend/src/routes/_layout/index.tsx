@@ -2,8 +2,6 @@
 
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 
-import Carousel from "../../components/Common/Carousel"
-import logoImg from "../../assets/images/ted_logo.png"
 import {
   Box,
   Button,
@@ -11,14 +9,16 @@ import {
   Flex,
   Heading,
   Icon,
-  Image,
   type IconProps,
+  Image,
   Link,
   Stack,
   Text,
   createIcon,
   useColorModeValue,
 } from "@chakra-ui/react"
+import logoImg from "../../assets/images/ted_logo.png"
+import Carousel from "../../components/Common/Carousel"
 
 export const Route = createFileRoute("/_layout/")({
   component: Dashboard,
@@ -35,7 +35,12 @@ function Dashboard() {
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Box>
-            <Image src={logoImg} alt="TED Logo" height={"100px"} objectFit={"contain"}/>
+            <Image
+              src={logoImg}
+              alt="TED Logo"
+              height={"100px"}
+              objectFit={"contain"}
+            />
           </Box>
           <Heading
             lineHeight={1.1}
@@ -51,14 +56,21 @@ function Dashboard() {
             <Link href="https://alphafold.ebi.ac.uk">AlphaFold Database</Link>.
             TED describes nearly 365 million domains, over 100 million more than
             detectable by sequence-based methods. Nearly 77% of TED domains
-            share similarities to known superfamilies in <Link href="https://www.cathdb.info">CATH</Link>, 
-            greatly expanding the set of known protein structural domains.
+            share similarities to known superfamilies in{" "}
+            <Link href="https://www.cathdb.info">CATH</Link>, greatly expanding
+            the set of known protein structural domains.
           </Text>
           <Text color={"gray.700"}>
-            TED is built and maintained by the Structural Bioinformatics groups of 
-            {" "}<Link href="http://www0.cs.ucl.ac.uk/staff/d.jones/">Prof. David Jones</Link>{" "}
-            and {" "}<Link href="https://www.ucl.ac.uk/orengo-group/">Prof. Christine Orengo</Link>{" "}
-            at University College London, UK. 
+            TED is built and maintained by the Structural Bioinformatics groups
+            of{" "}
+            <Link href="http://www0.cs.ucl.ac.uk/staff/d.jones/">
+              Prof. David Jones
+            </Link>{" "}
+            and{" "}
+            <Link href="https://www.ucl.ac.uk/orengo-group/">
+              Prof. Christine Orengo
+            </Link>{" "}
+            at University College London, UK.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -69,8 +81,7 @@ function Dashboard() {
               size={"lg"}
               fontWeight={"normal"}
               px={6}
-              colorScheme={"red"}
-              bg={"red.400"}
+              colorScheme={"teal"}
               _hover={{ bg: "red.500" }}
             >
               <Link as={RouterLink} to={"/search"}>
