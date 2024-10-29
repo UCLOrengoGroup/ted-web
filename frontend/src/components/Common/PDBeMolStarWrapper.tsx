@@ -25,6 +25,8 @@ const PDBeMolStarWrapper: React.FC<PDBeMolStarWrapperProps> = ({
 
   // In debug mode of react's strict mode, this code will
   // be called twice in a row, which might result in unexpected behavior.
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies(a): following biome advice breaks molstar
   useEffect(() => {
     function init() {
       const url = `https://alphafold.ebi.ac.uk/files/${afdb}.cif`
@@ -84,7 +86,7 @@ const PDBeMolStarWrapper: React.FC<PDBeMolStarWrapperProps> = ({
       }
     }
     init()
-  }, [afdb, onInit, parent.current, domainAnnotations])
+  }, [])
 
   return <div ref={parent} style={{ width: 640, height: 480 }} />
 }
