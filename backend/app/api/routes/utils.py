@@ -35,6 +35,11 @@ def test_email(email_to: EmailStr) -> Message:
     return Message(message="Test email sent")
 
 
+@router.get("/health-check/")
+async def health_check() -> bool:
+    return True
+
+
 def uniprot_exists_in_afdb(uniprot_acc):
     """
     Check if the uniprot accession is in AFDB database.
