@@ -1,4 +1,5 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
+# FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
+FROM python:3.10
 
 WORKDIR /app/
 
@@ -26,3 +27,5 @@ COPY ./prestart.sh /app/
 COPY ./tests-start.sh /app/
 
 COPY ./app /app/app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--workers", "8"]
