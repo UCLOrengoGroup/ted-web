@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), TanStackRouterVite()],
   resolve: {
     alias: {
-      'Molstar': 'molstar/lib'
-    }
-  }
+      Molstar: "molstar/lib",
+    },
+  },
 })

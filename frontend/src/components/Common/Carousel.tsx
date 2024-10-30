@@ -121,10 +121,7 @@ export default function Carousel() {
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
-          <Box
-            key={index}
-            position="relative"
-          >
+          <Box key={index} position="relative">
             {/* This is the block you need to change, to customize the caption */}
             <Stack
               spacing={3}
@@ -134,11 +131,8 @@ export default function Carousel() {
               backgroundImage={`url(${card.image})`}
               height="600px"
             >
-              <Container size="container.lg"
-                  w={"full"}
-                  maxW={"lg"}
-                >
-                <Box 
+              <Container size="container.lg" w={"full"} maxW={"lg"}>
+                <Box
                   backdropFilter={"auto"}
                   backdropBlur={"30px"}
                   padding={6}
@@ -151,11 +145,7 @@ export default function Carousel() {
                   >
                     {card.title}
                   </Heading>
-                  <Text
-                    fontSize={{ base: "sm", lg: "md" }}
-                  >
-                    {card.text}
-                  </Text>
+                  <Text fontSize={{ base: "sm", lg: "md" }}>{card.text}</Text>
                 </Box>
               </Container>
             </Stack>

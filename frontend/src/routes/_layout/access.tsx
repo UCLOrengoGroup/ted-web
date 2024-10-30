@@ -19,9 +19,10 @@ function Api() {
             Programmatic access API endpoints
           </Heading>
           <Text>
-          Welcome to the interactive documentation page for The Encyclopaedia of Domains 
-          Application Programming Interface (API). The API provides a convenient way for 
-          developers to programmatically access metadata related to TED annotations.
+            Welcome to the interactive documentation page for The Encyclopaedia
+            of Domains Application Programming Interface (API). The API provides
+            a convenient way for developers to programmatically access metadata
+            related to TED annotations.
           </Text>
           <SwaggerUI url={`${API_BASE_URL}/api/v1/openapi.json`} />
         </Stack>

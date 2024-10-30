@@ -1,8 +1,8 @@
 import { Flex, Spinner, Stack } from "@chakra-ui/react"
 import { Outlet, createFileRoute } from "@tanstack/react-router"
 
-import Topbar from "../components/Common/Topbar"
 import Footer from "../components/Common/Footer"
+import Topbar from "../components/Common/Topbar"
 
 export const Route = createFileRoute("/_layout")({
   component: Layout,

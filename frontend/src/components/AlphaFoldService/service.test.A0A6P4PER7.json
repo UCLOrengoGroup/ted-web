@@ -39,9 +39,7 @@
             "identifier": "A0A6P4PER7",
             "identifier_category": "UNIPROT",
             "description": "probable disease resistance protein At1g58602",
-            "chain_ids": [
-              "A"
-            ]
+            "chain_ids": ["A"]
           }
         ]
       }

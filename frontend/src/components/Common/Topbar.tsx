@@ -53,7 +53,11 @@ const Topbar: React.FC = () => {
 
   return (
     <>
-      <Box color={useColorModeValue("white", "white")} bg={useColorModeValue("purple.700", "purple.800")} px={4}>
+      <Box
+        color={useColorModeValue("white", "white")}
+        bg={useColorModeValue("purple.700", "purple.800")}
+        px={4}
+      >
         <Container>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
@@ -66,7 +70,12 @@ const Topbar: React.FC = () => {
             <HStack spacing={8} alignItems={"center"}>
               <Box boxSize={"m"}>
                 <Link href={"/"}>
-                  <Image src={logoImg} alt="TED Logo" objectFit="cover" height={"40px"} />
+                  <Image
+                    src={logoImg}
+                    alt="TED Logo"
+                    objectFit="cover"
+                    height={"40px"}
+                  />
                 </Link>
               </Box>
               <HStack

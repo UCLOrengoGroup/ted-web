@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { ExternalLinkIcon } from "@chakra-ui/icons"
+import { DownloadIcon, QuestionIcon, ViewIcon } from "@chakra-ui/icons"
 import {
   Badge,
   Box,
@@ -23,51 +24,62 @@ import {
   Tooltip,
   Tr,
 } from "@chakra-ui/react"
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { ViewIcon, DownloadIcon, QuestionIcon } from '@chakra-ui/icons'
 import { createFileRoute } from "@tanstack/react-router"
+import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 
-import { type ApiError, UniprotService, DomainSummaryPublicWithInteractions } from "../../../client"
+import {
+  type ApiError,
+  type DomainSummaryPublicWithInteractions,
+  UniprotService,
+} from "../../../client"
 import useCustomToast from "../../../hooks/useCustomToast"
 
+import type { PDBeMolstarPlugin } from "pdbe-molstar/lib"
 import PDBeMolStarWrapper from "../../../components/Common/PDBeMolStarWrapper"
-import { PDBeMolstarPlugin } from "pdbe-molstar/lib"
 
 export const Route = createFileRoute("/_layout/uniprot/$uniprotAcc")({
   component: UniprotAcc,
 })
 
-import { getQueryParamsFromChoppingString, getDomainAnnotationFromDomainSummary } from "../../../components/Utils/DomainSummary"
+import type { UniprotEntry } from "../../../client/models/UniprotEntry"
+import ProteinSummaryFigure, {
+  type ProteinSummaryFigureProps,
+} from "../../../components/Common/ProteinSummaryFigure"
+import type { UniprotData } from "../../../components/UniprotService/model"
 import UniprotEntryDataService from "../../../components/UniprotService/service"
-import { UniprotData } from "../../../components/UniprotService/model"
-import { UniprotEntry } from "../../../client/models/UniprotEntry"
-import classes from './$uniprotAcc.module.css'
-import ProteinSummaryFigure, { ProteinSummaryFigureProps } from "../../../components/Common/ProteinSummaryFigure"
+import {
+  getDomainAnnotationFromDomainSummary,
+  getQueryParamsFromChoppingString,
+} from "../../../components/Utils/DomainSummary"
+import classes from "./$uniprotAcc.module.css"
 
-import { 
+import AlphaFoldUniprotEntryDataService from "../../../components/AlphaFoldService/service"
+import {
+  get_chainparse_data_link,
+  get_domainsummary_data_link,
+  get_pae_color_scheme,
+  get_plddt_color_scheme,
+  render_cath_label,
+  ted_domain_to_afid,
   ted_domain_to_id,
   ted_pdb_file_url,
-  ted_domain_to_afid, 
-  render_cath_label, 
-  get_pae_color_scheme, 
-  get_plddt_color_scheme, 
-  get_chainparse_data_link, 
-  get_domainsummary_data_link 
 } from "../../../components/Utils/uniprotAccUtils"
-import AlphaFoldUniprotEntryDataService from "../../../components/AlphaFoldService/service"
-
 
 function UniprotAcc() {
   const showToast = useCustomToast()
   const { uniprotAcc } = Route.useParams()
-  const [ plugin, setPlugin ] = useState<PDBeMolstarPlugin | null>(null)
-  const [ highlightedDomainId, setHighlightedDomainId ] = useState<string | null>(null)
-  const [ selectedDomainId, setSelectedDomainId ] = useState<string | null>(null)
-  const [ uniprotEntry, setUniprotEntry ] = useState<UniprotData | null>(null)
-  const [ uniprotDidLoad, setUniprotDidLoad ] = useState<boolean>(false)
-  const [ afUniProtEntry, setAFUniprotEntry ] = useState<UniprotEntry | null>(null)
-  const [ afDidLoad, setAFDidLoad ] = useState<boolean>(false)
+  const [plugin, setPlugin] = useState<PDBeMolstarPlugin | null>(null)
+  const [highlightedDomainId, setHighlightedDomainId] = useState<string | null>(
+    null,
+  )
+  const [selectedDomainId, setSelectedDomainId] = useState<string | null>(null)
+  const [uniprotEntry, setUniprotEntry] = useState<UniprotData | null>(null)
+  const [uniprotDidLoad, setUniprotDidLoad] = useState<boolean>(false)
+  const [afUniProtEntry, setAFUniprotEntry] = useState<UniprotEntry | null>(
+    null,
+  )
+  const [afDidLoad, setAFDidLoad] = useState<boolean>(false)
   const domainSummaryResult = useQuery(["domainsummary", uniprotAcc], () => {
     return UniprotService.readUniprotSummary({
       uniprotAcc: uniprotAcc,
@@ -98,25 +110,29 @@ function UniprotAcc() {
   useEffect(() => {
     if (!uniprotDidLoad) {
       // console.log("useEffect.UPDATE: ", uniprotAcc)
-      UniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotData) => {
-        // console.log("uniprot.data: ", up_entry);
-        setUniprotEntry(up_entry);
-      }).catch((err) => {
-        console.error("Error fetching UniProt entry: ", err)
-      })
+      UniprotEntryDataService.get(uniprotAcc)
+        .then((up_entry: UniprotData) => {
+          // console.log("uniprot.data: ", up_entry);
+          setUniprotEntry(up_entry)
+        })
+        .catch((err) => {
+          console.error("Error fetching UniProt entry: ", err)
+        })
       setUniprotDidLoad(true)
     }
     if (!afDidLoad) {
       // console.log("useEffect.UPDATE: ", uniprotAcc)
-      AlphaFoldUniprotEntryDataService.get(uniprotAcc).then((up_entry: UniprotEntry) => {
-        // console.log("afuniprot.data: ", up_entry);
-        setAFUniprotEntry(up_entry);
-      }).catch((err) => {
-        console.error("Error fetching AF UniProt entry: ", err)
-      })
+      AlphaFoldUniprotEntryDataService.get(uniprotAcc)
+        .then((up_entry: UniprotEntry) => {
+          // console.log("afuniprot.data: ", up_entry);
+          setAFUniprotEntry(up_entry)
+        })
+        .catch((err) => {
+          console.error("Error fetching AF UniProt entry: ", err)
+        })
       setAFDidLoad(true)
     }
-  }, [uniprotAcc])
+  }, [uniprotAcc, uniprotDidLoad, afDidLoad])
 
   const selectChopping = (dom: DomainSummaryPublicWithInteractions) => {
     if (!plugin) return
@@ -124,7 +140,7 @@ function UniprotAcc() {
     setSelectedDomainId(dom.ted_id)
     plugin.visual.focus(params)
   }
-  
+
   const unselectChopping = () => {
     if (!plugin) return
     plugin.visual.reset({ camera: true })
@@ -156,8 +172,10 @@ function UniprotAcc() {
   let summaryFigure = null
   let structureFigure = null
   if (domain_summary_entries) {
-    const domain_annotations = domain_summary_entries.data.map((d) => getDomainAnnotationFromDomainSummary(d))
-    if (afUniProtEntry && afUniProtEntry.sequence_length) {
+    const domain_annotations = domain_summary_entries.data.map((d) =>
+      getDomainAnnotationFromDomainSummary(d),
+    )
+    if (afUniProtEntry?.sequence_length) {
       const opts: ProteinSummaryFigureProps = {
         width: 500,
         height: 30,
@@ -167,51 +185,76 @@ function UniprotAcc() {
       if (highlightedDomainId) {
         opts.highlightedDomainId = highlightedDomainId
       }
-      summaryFigure = <ProteinSummaryFigure {...opts} />  
+      summaryFigure = <ProteinSummaryFigure {...opts} />
     }
-    structureFigure = <PDBeMolStarWrapper 
-      afdb={afId} 
-      onInit={onInitPlugin}
-      domainAnnotations={domain_annotations}
-    />
+    structureFigure = (
+      <PDBeMolStarWrapper
+        afdb={afId}
+        onInit={onInitPlugin}
+        domainAnnotations={domain_annotations}
+      />
+    )
   }
 
   const infoTable = (
     <Flex>
-    <Box width="70%">
-      <dl>
-        <dt>Accession</dt>
-        <dd>{uniprotAcc}</dd>
-        {afUniProtEntry && (<>
-        <dt>Length</dt>
-        <dd>{afUniProtEntry.sequence_length} Residues</dd>
-        </>)}
-        {uniprotEntry ? (<>
-        <dt>Name</dt>
-        <dd>{uniprotEntry.proteinDescription.fullName}</dd>
-        <dt>Organism</dt>
-        <dd>{uniprotEntry.organism.scientificName}</dd>
-        <dt>Lineage</dt>
-        <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
-        </>) : (<Box pt="6">
-          No additional information available from UniProt API.</Box>
-        )}
-      </dl>
-    </Box>
-    <Box width="30%">
-      <Heading as="h4" size="md" pb="4">External links</Heading>
-      <List>
-        <ListItem>
-          <Link href={`https://alphafold.ebi.ac.uk/entry/${uniprotAcc}`} isExternal>AlphaFold DB <ExternalLinkIcon mx='2px' /></Link>
-        </ListItem>
-        <ListItem>
-          <Link href={`https://www.uniprot.org/uniprotkb/${uniprotAcc}/entry`} isExternal>UniProt-KB <ExternalLinkIcon mx='2px' /></Link>
-        </ListItem>
-        <ListItem>
-          <Link href={`https://www.ebi.ac.uk/interpro/search/text/${uniprotAcc}/`} isExternal>InterPro <ExternalLinkIcon mx='2px' /></Link>
-        </ListItem>
-      </List>
-    </Box>
+      <Box width="70%">
+        <dl>
+          <dt>Accession</dt>
+          <dd>{uniprotAcc}</dd>
+          {afUniProtEntry && (
+            <>
+              <dt>Length</dt>
+              <dd>{afUniProtEntry.sequence_length} Residues</dd>
+            </>
+          )}
+          {uniprotEntry ? (
+            <>
+              <dt>Name</dt>
+              <dd>{uniprotEntry.proteinDescription.fullName}</dd>
+              <dt>Organism</dt>
+              <dd>{uniprotEntry.organism.scientificName}</dd>
+              <dt>Lineage</dt>
+              <dd>{uniprotEntry.organism.lineage.join(" > ")}</dd>
+            </>
+          ) : (
+            <Box pt="6">
+              No additional information available from UniProt API.
+            </Box>
+          )}
+        </dl>
+      </Box>
+      <Box width="30%">
+        <Heading as="h4" size="md" pb="4">
+          External links
+        </Heading>
+        <List>
+          <ListItem>
+            <Link
+              href={`https://alphafold.ebi.ac.uk/entry/${uniprotAcc}`}
+              isExternal
+            >
+              AlphaFold DB <ExternalLinkIcon mx="2px" />
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              href={`https://www.uniprot.org/uniprotkb/${uniprotAcc}/entry`}
+              isExternal
+            >
+              UniProt-KB <ExternalLinkIcon mx="2px" />
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link
+              href={`https://www.ebi.ac.uk/interpro/search/text/${uniprotAcc}/`}
+              isExternal
+            >
+              InterPro <ExternalLinkIcon mx="2px" />
+            </Link>
+          </ListItem>
+        </List>
+      </Box>
     </Flex>
   )
 
@@ -238,21 +281,28 @@ function UniprotAcc() {
   return (
     <>
       <Container maxWidth={"120ch"}>
-        <Stack spacing={6} align='stretch' pt={12}>
+        <Stack spacing={6} align="stretch" pt={12}>
           <Box>
             <Heading as="h1" pb={4}>
               {af_chain_id ? (
-                <>{af_chain_id.uniprot_acc} {af_chain_id && <Text as="span" fontSize="md">(AlphaFold, fragment: {af_chain_id?.fragment}, version: {af_chain_id?.version})</Text>}</>
+                <>
+                  {af_chain_id.uniprot_acc}{" "}
+                  {af_chain_id && (
+                    <Text as="span" fontSize="md">
+                      (AlphaFold, fragment: {af_chain_id?.fragment}, version:{" "}
+                      {af_chain_id?.version})
+                    </Text>
+                  )}
+                </>
               ) : (
                 <>Loading...</>
-              )
-              }
+              )}
             </Heading>
             <Text fontSize="lg">
-            TED domains from AlphaFold structure prediction: {af_chain_id?.id}
+              TED domains from AlphaFold structure prediction: {af_chain_id?.id}
             </Text>
           </Box>
-            
+
           <Divider />
 
           <Box>
@@ -269,38 +319,39 @@ function UniprotAcc() {
           </Flex>
 
           <Divider />
-          
+
           <Box>
             <Heading as="h2" size="lg">
-              TED Consensus Domains <Badge p={2}>{domain_summary_entries.data.length}</Badge>
-
+              TED Consensus Domains{" "}
+              <Badge p={2}>{domain_summary_entries.data.length}</Badge>
               <Link px="6" href={get_domainsummary_data_link(uniprotAcc)}>
-                <IconButton 
-                    aria-label="Download Domain Summary Data"
-                    title="Download Domain Summary Data"
-                    icon={<DownloadIcon/>}>
-                </IconButton>
+                <IconButton
+                  aria-label="Download Domain Summary Data"
+                  title="Download Domain Summary Data"
+                  icon={<DownloadIcon />}
+                />
               </Link>
-
             </Heading>
             <Center>
-              <Box p="2em">
-                {summaryFigure}
-              </Box>
+              <Box p="2em">{summaryFigure}</Box>
             </Center>
 
             <TableContainer>
               <Table size={"sm"}>
                 <Thead>
                   <Tr>
-                    <Th></Th>
+                    <Th />
                     <Th>Domain</Th>
                     <Th>Boundaries</Th>
-                    <Th>CATH
-                      <Tooltip hasArrow label="Please note: the annotation of CATH labels in TED differs from the standard CATH protocol for 
+                    <Th>
+                      CATH
+                      <Tooltip
+                        hasArrow
+                        label="Please note: the annotation of CATH labels in TED differs from the standard CATH protocol for 
             superfamily assignment, which involves additional HMM-based protocols and manual curation 
-            for remote matches.">
-                        <QuestionIcon mx="1"/>
+            for remote matches."
+                      >
+                        <QuestionIcon mx="1" />
                       </Tooltip>
                     </Th>
                     <Th>Residues</Th>
@@ -313,44 +364,73 @@ function UniprotAcc() {
                 </Thead>
                 <Tbody>
                   {domain_summary_entries?.data.map((item) => (
-                    <Tr key={item.ted_id} 
-                        onMouseOver={() => highlightChopping(item)} 
-                        onMouseOut={() => unhighlightChopping()}
-                        onClick={() => toggleSelectChopping(item)}
-                        className={
-                          (selectedDomainId === item.ted_id ? classes.selected : "") + " " + 
-                          (highlightedDomainId === item.ted_id ? classes.highlighted : "")}
-                        >
-                      <Td><IconButton 
-                            aria-label="View Domain"
-                            colorScheme={highlightedDomainId === item.ted_id ? "blue" : "gray"}
-                            onClick={(e) => {e.preventDefault()}}
-                            icon={<ViewIcon/>} />
+                    <Tr
+                      key={item.ted_id}
+                      onMouseOver={() => highlightChopping(item)}
+                      onMouseOut={() => unhighlightChopping()}
+                      onClick={() => toggleSelectChopping(item)}
+                      className={`${
+                        selectedDomainId === item.ted_id ? classes.selected : ""
+                      } ${
+                        highlightedDomainId === item.ted_id
+                          ? classes.highlighted
+                          : ""
+                      }`}
+                    >
+                      <Td>
+                        <IconButton
+                          aria-label="View Domain"
+                          colorScheme={
+                            highlightedDomainId === item.ted_id
+                              ? "blue"
+                              : "gray"
+                          }
+                          onClick={(e) => {
+                            e.preventDefault()
+                          }}
+                          icon={<ViewIcon />}
+                        />
                       </Td>
                       <Td>{ted_domain_to_id(item.ted_id)}</Td>
                       <Td>{item.chopping}</Td>
                       <Td>{render_cath_label(item.cath_label)}</Td>
                       <Td>{item.nres_domain}</Td>
-                      <Td><Badge variant={get_plddt_color_scheme(item.plddt)}>{item.plddt.toFixed(1)}</Badge></Td>
+                      <Td>
+                        <Badge variant={get_plddt_color_scheme(item.plddt)}>
+                          {item.plddt.toFixed(1)}
+                        </Badge>
+                      </Td>
                       <Td>{item.packing_density.toFixed(1)}</Td>
                       <Td>{item.norm_rg.toFixed(3)}</Td>
                       <Td>
                         <List>
-
-                        { item.interactions?.map((interaction) => {
-                          const pair_id = interaction.ted_id1 === item.ted_id ? interaction.ted_id2 : interaction.ted_id1
-                          return(
-                            <ListItem>{ted_domain_to_id(pair_id)} <Badge colorScheme={get_pae_color_scheme(interaction.pae_score)}>{interaction.pae_score.toFixed(1)}</Badge></ListItem>
-                          )
-                        })}
+                          {item.interactions?.map((interaction) => {
+                            const pair_id =
+                              interaction.ted_id1 === item.ted_id
+                                ? interaction.ted_id2
+                                : interaction.ted_id1
+                            return (
+                              <ListItem>
+                                {ted_domain_to_id(pair_id)}{" "}
+                                <Badge
+                                  colorScheme={get_pae_color_scheme(
+                                    interaction.pae_score,
+                                  )}
+                                >
+                                  {interaction.pae_score.toFixed(1)}
+                                </Badge>
+                              </ListItem>
+                            )
+                          })}
                         </List>
                       </Td>
                       <Td>
                         <Link href={ted_pdb_file_url(item.ted_id)}>
-                              <IconButton 
-                                  aria-label="Download PDB"
-                                  title="Download PDB"
-                                  icon={<DownloadIcon/>}/>
+                          <IconButton
+                            aria-label="Download PDB"
+                            title="Download PDB"
+                            icon={<DownloadIcon />}
+                          />
                         </Link>
                       </Td>
                     </Tr>
@@ -364,15 +444,15 @@ function UniprotAcc() {
 
           <Box>
             <Heading as="h2" size="lg" pb="6">
-              TED Results <Badge p={2}>{chain_parse_entries?.data.length}</Badge>
-
+              TED Results{" "}
+              <Badge p={2}>{chain_parse_entries?.data.length}</Badge>
               <Link px="6" href={get_chainparse_data_link(uniprotAcc)}>
-                <IconButton 
-                    aria-label="Download results from individual methods"
-                    title="Download results from individual methods"
-                    icon={<DownloadIcon/>}/>
+                <IconButton
+                  aria-label="Download results from individual methods"
+                  title="Download results from individual methods"
+                  icon={<DownloadIcon />}
+                />
               </Link>
-
             </Heading>
 
             <TableContainer>
@@ -399,7 +479,7 @@ function UniprotAcc() {
         </Stack>
       </Container>
     </>
-    )
+  )
 }
 
 export default UniprotAcc
