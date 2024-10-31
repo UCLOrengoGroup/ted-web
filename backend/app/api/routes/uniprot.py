@@ -15,7 +15,7 @@ from app.models.db import (
 from app.transformers import create_uniprot_summary
 
 from app.exceptions import ExternalServiceError
-from .utils import uniprot_exists_in_afdb
+from ..afdb import uniprot_exists_in_afdb
 
 
 logger = logging.getLogger(__name__)
