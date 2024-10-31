@@ -126,6 +126,10 @@ services:
       args:
         INSTALL_DEV: ${INSTALL_DEV-false}
     platform: linux/amd64 # Patch for M1 Mac
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
@@ -155,6 +159,10 @@ services:
       args:
         - VITE_API_URL=https://${DOMAIN?Variable not set}
         - NODE_ENV=production
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
