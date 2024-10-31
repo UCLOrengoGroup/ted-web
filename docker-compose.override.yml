@@ -61,8 +61,8 @@ services:
       context: ./backend
       args:
         INSTALL_DEV: ${INSTALL_DEV-true}
-    # command: sleep infinity  # Infinite loop to keep container alive doing nothing
-    command: /start-reload.sh
+    # command: sleep infinity # Infinite loop to keep container alive doing nothing
+    # command: /start-reload.sh
 
   frontend:
     restart: "no"
