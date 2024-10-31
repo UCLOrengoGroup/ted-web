@@ -11,6 +11,7 @@ services:
       timeout: 10s
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
+      - ./backend/data/:/data
     env_file:
       - .env
     environment:
