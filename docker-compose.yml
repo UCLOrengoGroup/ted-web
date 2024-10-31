@@ -40,7 +40,7 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.entrypoints=https
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.tls=true
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.tls.certresolver=le
-      - traefik.http.services.${STACK_NAME?Variable not set}-adminer.loadbalancer.server.port=8080
+      - traefik.http.services.${STACK_NAME?Variable not set}-adminer.loadbalancer.server.port=8090
 
   prestart:
     image: "${DOCKER_IMAGE_BACKEND?Variable not set}:${TAG-latest}"
