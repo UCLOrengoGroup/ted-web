@@ -28,4 +28,4 @@ COPY ./tests-start.sh /app/
 
 COPY ./app /app/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--workers", "8"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
