@@ -1,6 +1,9 @@
 import { Search2Icon } from "@chakra-ui/icons"
 import {
+  Box,
   Button,
+  Card,
+  CardBody,
   Container,
   Flex,
   FormControl,
@@ -11,16 +14,11 @@ import {
   InputLeftElement,
   InputRightAddon,
   Link,
+  LinkBox,
+  LinkOverlay,
   Spinner,
   Stack,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
-  Tr,
 } from "@chakra-ui/react"
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 import React from "react"
@@ -33,6 +31,8 @@ import useCustomToast from "../../hooks/useCustomToast"
 export const Route = createFileRoute("/_layout/search")({
   component: Search,
 })
+
+import classes from "./search.module.css"
 
 interface SearchForm {
   query: string
@@ -122,6 +122,10 @@ function Search() {
     return ted_id.substring(0, ted_id.lastIndexOf("_"))
   }
 
+  function formatTaxName(tax_scientific_name: string) {
+    return tax_scientific_name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+  }
+
   const first_entry = domain_summary_entries?.data[0]
   const uniprot_items = domain_summary_entries
     ? first_entry
@@ -180,44 +184,29 @@ function Search() {
             />
             {getSearchMessage()}
             {uniprot_items?.length && (
-              <>
-                <TableContainer>
-                  <Table size={{ base: "sm", md: "md" }}>
-                    <Thead>
-                      <Tr>
-                        <Th>AlphaFold ID</Th>
-                        <Th>UniProt</Th>
-                        <Th>Taxonomy</Th>
-                        <Th>TED Domains</Th>
-                        <Th>Link</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      {uniprot_items.map((item) => (
-                        <Tr key={item.uniprot_acc}>
-                          <Td>{tedToAf(item.ted_id)}</Td>
-                          <Td>{item.uniprot_acc}</Td>
-                          <Td>
-                            <Stack>
-                              <Text>{item.tax_scientific_name}</Text>
-                              {/* <Text fontSize="xs">{item.tax_lineage.split(',').join(" > ")}</Text> */}
-                            </Stack>
-                          </Td>
-                          <Td>{ted_count}</Td>
-                          <Td>
-                            <Link
-                              as={RouterLink}
-                              to={`/uniprot/${item.uniprot_acc}`}
-                            >
-                              <Button variant="primary">Go</Button>
-                            </Link>
-                          </Td>
-                        </Tr>
-                      ))}
-                    </Tbody>
-                  </Table>
-                </TableContainer>
-              </>
+              <Stack gap="4">
+                {uniprot_items.map((item) => (
+                  <LinkBox>
+                    <Card>
+                      <CardBody>
+                        <Heading as="h3" size="sm" pb={4} color="blue.400" textDecoration="underline">
+                          <LinkOverlay as={RouterLink} to={`/uniprot/${item.uniprot_acc}`}>{tedToAf(item.ted_id)}</LinkOverlay>
+                        </Heading>
+                        <Stack gap="2">
+                          <Flex>
+                            <Box className={classes.dataKey}>TED Consensus Domains</Box>
+                            <Box className={classes.dataValue}>{ted_count}</Box>
+                          </Flex>
+                          <Flex>
+                            <Box className={classes.dataKey}>Source Organism</Box>
+                            <Box className={classes.dataValue}>{formatTaxName(item.tax_scientific_name)}</Box>
+                          </Flex>
+                        </Stack>
+                      </CardBody>
+                    </Card>
+                  </LinkBox>
+                ))}
+              </Stack>
             )}
           </Stack>
         </Container>
