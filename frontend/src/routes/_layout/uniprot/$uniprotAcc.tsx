@@ -397,11 +397,11 @@ function UniprotAcc() {
                       <Td>{item.nres_domain}</Td>
                       <Td>
                         <Badge variant={get_plddt_color_scheme(item.plddt)}>
-                          {item.plddt.toFixed(1)}
+                          {item.plddt ? item.plddt.toFixed(1) : '-'}
                         </Badge>
                       </Td>
-                      <Td>{item.packing_density.toFixed(1)}</Td>
-                      <Td>{item.norm_rg.toFixed(3)}</Td>
+                      <Td>{item.packing_density ? item.packing_density.toFixed(1) : '-'}</Td>
+                      <Td>{item.norm_rg ? item.norm_rg.toFixed(3) : '-'}</Td>
                       <Td>
                         <List>
                           {item.interactions?.map((interaction) => {
@@ -417,7 +417,7 @@ function UniprotAcc() {
                                     interaction.pae_score,
                                   )}
                                 >
-                                  {interaction.pae_score.toFixed(1)}
+                                  {interaction.pae_score ? interaction.pae_score.toFixed(1) : '-'}
                                 </Badge>
                               </ListItem>
                             )
