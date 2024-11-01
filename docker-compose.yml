@@ -172,20 +172,22 @@ services:
 
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.rule=Host(`${DOMAIN?Variable not set}`, `www.${DOMAIN?Variable not set}`)
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.entrypoints=https
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls=true
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls.certresolver=le
+      # IS: handling SSL further upstream
+      # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls=true
+      # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls.certresolver=le
 
+      # IS: do not redirect everything to www
       # Handle domain with and without "www" to redirect to only one
       # To disable www redirection remove the next line
-      - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.regex=^http(s)?://www.(${DOMAIN?Variable not set})/(.*)
+      # - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.regex=^http(s)?://www.(${DOMAIN?Variable not set})/(.*)
       # Redirect a domain with www to non-www
       # To disable it remove the next line
-      - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.replacement=http$${1}://${DOMAIN?Variable not set}/$${3}
+      # - traefik.http.middlewares.${STACK_NAME?Variable not set}-www-redirect.redirectregex.replacement=http$${1}://${DOMAIN?Variable not set}/$${3}
       # Middleware to redirect www, to disable it remove the next line
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.middlewares=${STACK_NAME?Variable not set}-www-redirect
+      # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.middlewares=${STACK_NAME?Variable not set}-www-redirect
       # Middleware to redirect www, and redirect HTTP to HTTPS
       # to disable www redirection remove the section: ${STACK_NAME?Variable not set}-www-redirect,
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=https-redirect,${STACK_NAME?Variable not set}-www-redirect
+      # - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=https-redirect,${STACK_NAME?Variable not set}-www-redirect
 
 volumes:
   app-db-data:
