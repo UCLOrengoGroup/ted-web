@@ -7,7 +7,7 @@ export default function Citation() {
     <Stack p="8">
       <Text>Please use the following citation when referencing this work:</Text>
       <Text>
-        <Link href="https://doi.org/10.1101/2024.03.18.585509">
+        <Link href="https://doi.org/10.1126/science.adq4946">
           Exploring structural diversity across the protein universe with The
           Encyclopedia of Domains
         </Link>
@@ -17,8 +17,10 @@ export default function Citation() {
         Wells, J., Orengo, C. and Jones, D. T.
       </Text>
       <Text fontSize={{ base: "sm" }}>
-        <Link href="https://doi.org/10.1101/2024.03.18.585509">
-          doi:10.1101/2024.03.18.585509
+        <Text as="span" fontStyle="italic">Science</Text> <Text as="span" fontWeight="600">386</Text>,
+        eadq4946 (2024).{" "}
+        <Link href="https://doi.org/10.1126/science.adq4946">
+          doi:10.1126/science.adq4946
         </Link>
       </Text>
     </Stack>
