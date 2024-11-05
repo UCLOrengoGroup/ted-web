@@ -1,4 +1,4 @@
-import { Box, Center,  Container, Image, Stack } from "@chakra-ui/react"
+import { Box,  Container, Image, Stack } from "@chakra-ui/react"
 import type React from "react"
 import Citation from "./Citation"
 
