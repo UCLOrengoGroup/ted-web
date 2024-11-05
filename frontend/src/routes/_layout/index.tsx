@@ -17,6 +17,7 @@ import {
   createIcon,
   useColorModeValue,
 } from "@chakra-ui/react"
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 import logoImg from "../../assets/images/ted_logo.png"
 import Carousel from "../../components/Common/Carousel"
 
@@ -78,8 +79,6 @@ function Dashboard() {
           >
             <Button
               rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
               px={6}
               colorScheme={"teal"}
               _hover={{ bg: "red.500" }}
@@ -90,13 +89,19 @@ function Dashboard() {
             </Button>
             <Button
               rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
               px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
             >
               <Link as={RouterLink} to={"/about"}>
                 About
+              </Link>
+            </Button>
+            <Button
+              rounded={"full"}
+              px={6}
+              >
+              <Link href={"https://www.science.org/stoken/author-tokens/ST-2226/full"}>
+                Full Access Science Article
+                <ExternalLinkIcon mx='2px' />
               </Link>
             </Button>
           </Stack>
