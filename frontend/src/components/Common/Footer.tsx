@@ -1,4 +1,4 @@
-import { Box, Center, Container, Image } from "@chakra-ui/react"
+import { Box, Center,  Container, Image, Stack } from "@chakra-ui/react"
 import type React from "react"
 import Citation from "./Citation"
 
@@ -9,10 +9,14 @@ const Footer: React.FC = () => {
     <Box pt={12}>
       <Box bgColor={"#eee"}>
         <Container maxW={"6xl"}>
-          <Center>
-            <Citation />
-            <Image src={ImgUCL} alt="UCL Logo" />
-          </Center>
+          <Stack direction={["column","row"]} spacing={2} align={"center"}>
+            <Box>
+              <Citation />
+            </Box>
+            <Box>
+              <Image src={ImgUCL} alt="UCL Logo" />
+            </Box>
+          </Stack>
         </Container>
       </Box>
     </Box>
