@@ -8,15 +8,16 @@ on:
 
 jobs:
   deploy:
+    environment: CS Production
     runs-on:
       - self-hosted
       - production
       - cs
     env:
       ENVIRONMENT: production
-      DOMAIN: ${{ secrets.DOMAIN_PRODUCTION_CS }}
-      STACK_NAME: ${{ secrets.STACK_NAME_PRODUCTION_CS }}
-      BACKEND_CORS_ORIGIN: ${{ secrets.BACKEND_CORS_ORIGIN_PRODUCTION_CS }}
+      DOMAIN: ${{ secrets.DOMAIN }}
+      STACK_NAME: ${{ secrets.STACK_NAME }}
+      BACKEND_CORS_ORIGIN: ${{ secrets.BACKEND_CORS_ORIGIN }}
       DOCKER_IMAGE_BACKEND: ${{ secrets.DOCKER_IMAGE_BACKEND }}
       DOCKER_IMAGE_FRONTEND: ${{ secrets.DOCKER_IMAGE_FRONTEND }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -27,7 +28,7 @@ jobs:
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       EMAILS_FROM_EMAIL: ${{ secrets.EMAILS_FROM_EMAIL }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      POSTGRES_SERVER: ${{ secrets.POSTGRES_SERVER }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
