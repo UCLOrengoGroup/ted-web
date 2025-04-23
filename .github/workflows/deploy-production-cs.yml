@@ -36,5 +36,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: docker compose -f ${{ secrets.DOCKER_COMPOSE_FILE }} build
-      - run: docker compose -f ${{ secrets.DOCKER_COMPOSE_FILE }} up -d
+      - run: docker compose -f docker-compose.cs.yml build
+      - run: docker compose -f docker-compose.cs.yml up -d
