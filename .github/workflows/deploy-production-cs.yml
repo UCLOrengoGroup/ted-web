@@ -8,6 +8,7 @@ on:
 
 jobs:
   deploy:
+    timeout-minutes: 10
     environment: "CS Production"
     runs-on:
       - self-hosted
