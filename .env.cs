@@ -1,11 +1,11 @@
 # Domain
 # This would be set to the production domain with an env var on deployment
-DOMAIN=ted-dev.cathdb.info
+DOMAIN=ted-cs.cathdb.info
 # To test the local Traefik config
 # DOMAIN=localhost.tiangolo.com
 
 # Used by the backend to generate links in emails to the frontend
-FRONTEND_HOST=https://dashboard.ted-dev.cathdb.info
+FRONTEND_HOST=https://dashboard.ted-cs.cathdb.info
 # In staging and production, set this env var to the frontend host, e.g.
 # FRONTEND_HOST=https://dashboard.example.com
 
@@ -16,7 +16,7 @@ PROJECT_NAME="TED: The Encyclopedia of Domains"
 STACK_NAME=ted-web-prod-cs
 
 # Backend
-BACKEND_CORS_ORIGINS="http://localhost,http://localhost:5173,https://localhost,https://localhost:5173,http://localhost.tiangolo.com,https://ted-dev.cathdb.info"
+BACKEND_CORS_ORIGINS="http://localhost,http://localhost:5173,https://localhost,https://localhost:5173,http://localhost.tiangolo.com,https://ted-cs.cathdb.info"
 SECRET_KEY=
 FIRST_SUPERUSER=
 FIRST_SUPERUSER_PASSWORD=
