@@ -37,6 +37,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - run: env | perl -pe 's/^(.*?)=(.*?)/$1=$2/ge'
-      - run: cp .env.cs.yml .env
+      - run: cp .env.cs .env
       - run: docker compose -f docker-compose.cs.yml build
       - run: docker compose -f docker-compose.cs.yml up -d
