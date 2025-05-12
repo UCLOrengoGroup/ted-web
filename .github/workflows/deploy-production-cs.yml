@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    environment: CS Production
+    environment: "CS Production"
     runs-on:
       - self-hosted
       - production
@@ -36,5 +36,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - run: env | perl -pe 's/^(.*?)=(.*?)/$1=$2/ge'
+      - run: cp .env.cs.yml .env
       - run: docker compose -f docker-compose.cs.yml build
       - run: docker compose -f docker-compose.cs.yml up -d
