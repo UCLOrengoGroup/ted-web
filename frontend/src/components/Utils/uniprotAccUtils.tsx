@@ -4,9 +4,14 @@ import { AfChainId } from "../Common/models"
 
 const API_BASE_URL = import.meta.env.VITE_API_URL
 const CATH_BASE_URL = "https://www.cathdb.info/"
+const ALPHAFOLDDB_BASE_URL = "https://alphafold.ebi.ac.uk/"
 
 export function ted_pdb_file_url(ted_id: string): string {
   return `${API_BASE_URL}/api/v1/files/${ted_id}.pdb`
+}
+
+export function af_pdb_file_url(af_id: string): string {
+  return `${ALPHAFOLDDB_BASE_URL}/files/${af_id}.pdb`
 }
 
 export function ted_domain_to_id(ted_domain: string): string {
