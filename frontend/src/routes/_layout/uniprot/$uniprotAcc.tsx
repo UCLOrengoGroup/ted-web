@@ -64,6 +64,7 @@ import {
   ted_domain_to_afid,
   ted_domain_to_id,
   ted_pdb_file_url,
+  af_pdb_file_url,
 } from "../../../components/Utils/uniprotAccUtils"
 
 function UniprotAcc() {
@@ -300,6 +301,22 @@ function UniprotAcc() {
             </Heading>
             <Text fontSize="lg">
               TED domains from AlphaFold structure prediction: {af_chain_id?.id}
+              { af_chain_id && (
+                (
+                  <Link
+                    aria-label="Download PDB from AlphaFold DB"
+                    title="Download PDB from AlphaFold DB"
+                    href={af_pdb_file_url(af_chain_id.id)}
+                    isExternal
+                  >
+                    <IconButton
+                      aria-label="Download PDB"
+                      title="Download PDB"
+                      icon={<DownloadIcon />}
+                    />
+                  </Link>
+                ) 
+              )}
             </Text>
           </Box>
 

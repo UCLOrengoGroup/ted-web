@@ -114,8 +114,13 @@ function Search() {
   }
 
   function handleSearchSubmit(_search_query: string) {
+    const trimmed_query = _search_query.trim()
+    if (trimmed_query === "") {
+      showToast("Invalid search query", "Please enter a valid UniProt ID", "error")
+      return
+    }
     queryClient.invalidateQueries("search")
-    setSearchQuery(_search_query)
+    setSearchQuery(trimmed_query)
   }
 
   function tedToAf(ted_id: string) {
