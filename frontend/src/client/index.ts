@@ -77,5 +77,7 @@ export { $ValidationError } from './schemas/$ValidationError';
 
 export { FilesService } from './services/FilesService';
 export { LoginService } from './services/LoginService';
+export { ToolsService } from './services/ToolsService';
 export { UniprotService } from './services/UniprotService';
 export { UsersService } from './services/UsersService';
+export { UtilsService } from './services/UtilsService';
