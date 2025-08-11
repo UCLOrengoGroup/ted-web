@@ -10,6 +10,10 @@ export function ted_pdb_file_url(ted_id: string): string {
   return `${API_BASE_URL}/api/v1/files/${ted_id}.pdb`
 }
 
+export function ted_foldseek_search_url(ted_id: string): string {
+  return `${API_BASE_URL}/api/v1/tools/foldseek/${ted_id}`
+}
+
 export function af_pdb_file_url(af_id: string): string {
   return `${ALPHAFOLDDB_BASE_URL}/files/${af_id}.pdb`
 }
