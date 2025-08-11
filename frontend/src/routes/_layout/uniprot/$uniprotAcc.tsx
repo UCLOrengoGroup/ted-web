@@ -66,6 +66,7 @@ import {
   ted_pdb_file_url,
   af_pdb_file_url,
 } from "../../../components/Utils/uniprotAccUtils"
+import { FoldseekSearchButton } from "../../../components/Utils/FoldseekSearchButton"
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -377,6 +378,7 @@ function UniprotAcc() {
                     <Th>Globularity</Th>
                     <Th>Interactions</Th>
                     <Th>PDB</Th>
+                    <Th>FoldSeek</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -449,6 +451,9 @@ function UniprotAcc() {
                             icon={<DownloadIcon />}
                           />
                         </Link>
+                      </Td>
+                      <Td>
+                        <FoldseekSearchButton ted_id={item.ted_id} />
                       </Td>
                     </Tr>
                   ))}
