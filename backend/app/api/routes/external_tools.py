@@ -38,12 +38,13 @@ FOLDSEEK_SEARCH_DATABASES = [
 )
 def create_consensus_domain_foldseek_search_url(
     session: SessionDep,
-    ted_id: str,
-    foldseek_api_base: str = FOLDSEEK_SEARCH_API_BASE,
+    ted_id: str
 ) -> str:
     """
     Create a link to search consensus domain against FoldSeek.
     """
+
+    foldseek_api_base = FOLDSEEK_SEARCH_API_BASE
 
     foldseek_api_ticket_url = f"{foldseek_api_base}/ticket"
     foldseek_api_queue_url = f"{foldseek_api_base}/queue"
