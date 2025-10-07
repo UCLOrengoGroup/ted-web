@@ -2,8 +2,12 @@ import axios from "axios"
 
 import type { UniprotEntry } from "../../client/models/UniprotEntry"
 
+const AFDB_API_BASE_URL = "https://alphafold.ebi.ac.uk/"
+const AFDB_VERSION_LATEST = "6"
+
+
 const http = axios.create({
-  baseURL: "https://alphafold.ebi.ac.uk/api/uniprot/summary/",
+  baseURL: `${AFDB_API_BASE_URL}/api/uniprot/summary/`,
   headers: {
     "Content-type": "application/json",
   },
@@ -20,8 +24,16 @@ const get = (id: any): Promise<UniprotEntry> => {
   })
 }
 
+const getCifUrl = (afdb_id: string) => {
+  const afdb_id_with_latest_version = afdb_id.replace(/_v\d+/, `_v${AFDB_VERSION_LATEST}`)
+  return `${AFDB_API_BASE_URL}/files/${afdb_id_with_latest_version}.cif`
+}
+
 const AlphaFoldUniprotEntryDataService = {
   get,
+  getCifUrl,
+  AFDB_API_BASE_URL,
+  AFDB_VERSION_LATEST,
 }
 
 export default AlphaFoldUniprotEntryDataService
