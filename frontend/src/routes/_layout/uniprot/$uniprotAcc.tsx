@@ -54,7 +54,7 @@ import {
 } from "../../../components/Utils/DomainSummary"
 import classes from "./$uniprotAcc.module.css"
 
-import AlphaFoldUniprotEntryDataService from "../../../components/AlphaFoldService/service"
+import AlphaFoldService from "../../../components/AlphaFoldService/service"
 import {
   get_chainparse_data_link,
   get_domainsummary_data_link,
@@ -66,6 +66,7 @@ import {
   ted_pdb_file_url,
   af_pdb_file_url,
 } from "../../../components/Utils/uniprotAccUtils"
+
 
 function UniprotAcc() {
   const showToast = useCustomToast()
@@ -97,7 +98,9 @@ function UniprotAcc() {
   const domain_summary_entries = domainSummaryResult.data
   const chain_parse_entries = chainParseResult.data
 
-  const afId = `AF-${uniprotAcc}-F1-model_v4`
+  // const afIdTED = `AF-${uniprotAcc}-F1-model_v4`
+  const afIdAFDB = `AF-${uniprotAcc}-F1-model_v${AlphaFoldService.AFDB_VERSION_LATEST}`
+
 
   if (domainSummaryResult.isError) {
     const errDetail = (domainSummaryResult.error as ApiError).body?.detail
@@ -123,7 +126,7 @@ function UniprotAcc() {
     }
     if (!afDidLoad) {
       // console.log("useEffect.UPDATE: ", uniprotAcc)
-      AlphaFoldUniprotEntryDataService.get(uniprotAcc)
+      AlphaFoldService.get(uniprotAcc)
         .then((up_entry: UniprotEntry) => {
           // console.log("afuniprot.data: ", up_entry);
           setAFUniprotEntry(up_entry)
@@ -190,7 +193,7 @@ function UniprotAcc() {
     }
     structureFigure = (
       <PDBeMolStarWrapper
-        afdb={afId}
+        afdb={afIdAFDB}
         onInit={onInitPlugin}
         domainAnnotations={domain_annotations}
       />
@@ -300,13 +303,13 @@ function UniprotAcc() {
               )}
             </Heading>
             <Text fontSize="lg">
-              TED domains from AlphaFold structure prediction: {af_chain_id?.id}
+              TED domains from AlphaFold structure prediction: {af_chain_id?.id} {" "}
               { af_chain_id && (
                 (
                   <Link
                     aria-label="Download PDB from AlphaFold DB"
                     title="Download PDB from AlphaFold DB"
-                    href={af_pdb_file_url(af_chain_id.id)}
+                    href={af_pdb_file_url(afIdAFDB)}
                     isExternal
                   >
                     <IconButton
