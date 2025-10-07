@@ -10,6 +10,8 @@ import type { DomainAnnotation } from "./models"
 
 import "molstar/lib/mol-plugin-ui/skin/light.scss"
 
+const AFDB_VERSION_LATEST = "6"
+
 interface PDBeMolStarWrapperProps {
   afdb: string
   onInit: (instance: PDBeMolstarPlugin) => void
@@ -29,7 +31,17 @@ const PDBeMolStarWrapper: React.FC<PDBeMolStarWrapperProps> = ({
   // biome-ignore lint/correctness/useExhaustiveDependencies(a): following biome advice breaks molstar
   useEffect(() => {
     function init() {
-      const url = `https://alphafold.ebi.ac.uk/files/${afdb}.cif`
+
+      // HACK: the TED database has annotations that refer to v4 of AFDB, however
+      // AFDB no longer provide the v4 files. Until we replace the TED annotations,
+      // we will just have to replace the version with the latest one. 
+      const afdbWithLatestVersion = afdb.replace(/v\d+$/, `v${AFDB_VERSION_LATEST}`)
+
+      if (afdb !== afdbWithLatestVersion) {
+        console.warn(`AFDB version in TED id ${afdb} replaced with latest version ${afdbWithLatestVersion}`)
+      }
+
+      const url = `https://alphafold.ebi.ac.uk/files/${afdbWithLatestVersion}.cif`
 
       const pluginInstance = new PDBeMolstarPlugin()
 
