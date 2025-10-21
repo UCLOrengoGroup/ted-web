@@ -2,6 +2,7 @@
 
 import { Link as RouterLink, createFileRoute } from "@tanstack/react-router"
 
+import { ExternalLinkIcon } from "@chakra-ui/icons"
 import {
   Box,
   Button,
@@ -16,7 +17,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { ExternalLinkIcon } from '@chakra-ui/icons'
 import logoImg from "../../assets/images/ted_logo.png"
 import Carousel from "../../components/Common/Carousel"
 
@@ -86,21 +86,19 @@ function Dashboard() {
                 Search
               </Link>
             </Button>
-            <Button
-              rounded={"full"}
-              px={6}
-            >
+            <Button rounded={"full"} px={6}>
               <Link as={RouterLink} to={"/about"}>
                 About
               </Link>
             </Button>
-            <Button
-              rounded={"full"}
-              px={6}
+            <Button rounded={"full"} px={6}>
+              <Link
+                href={
+                  "https://www.science.org/stoken/author-tokens/ST-2226/full"
+                }
               >
-              <Link href={"https://www.science.org/stoken/author-tokens/ST-2226/full"}>
                 Full Access Science Article
-                <ExternalLinkIcon mx='2px' />
+                <ExternalLinkIcon mx="2px" />
               </Link>
             </Button>
           </Stack>
