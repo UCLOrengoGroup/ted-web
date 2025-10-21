@@ -98,6 +98,35 @@ function About() {
             </UnorderedList>
           </Text>
 
+          <Heading size="m">Domain segmentation methods</Heading>
+          <Text>
+            TED integrates predictions from multiple domain parsing methods.
+            Please cite the following resources where applicable:
+            <UnorderedList>
+              <ListItem>
+                <Link href="https://academic.oup.com/bioinformatics/article/40/5/btae296/7667299">
+                  Chainsaw: protein domain segmentation with fully convolutional
+                  neural networks
+                </Link>
+                . Bioinformatics (2024). doi:10.1093/bioinformatics/btae296
+              </ListItem>
+              <ListItem>
+                <Link href="https://www.nature.com/articles/s41467-023-43934-4">
+                  Merizo: a rapid and accurate protein domain segmentation
+                  method using invariant point attention
+                </Link>
+                . Nature Communications (2023). doi:10.1038/s41467-023-43934-4
+              </ListItem>
+              <ListItem>
+                <Link href="https://academic.oup.com/bioinformatics/article/39/2/btad070/7025502">
+                  UniDoc: A unified approach to protein domain parsing with
+                  inter-residue distance matrix
+                </Link>
+                . Bioinformatics (2023). doi:10.1093/bioinformatics/btad070
+              </ListItem>
+            </UnorderedList>
+          </Text>
+
           <Heading size="m">Funding</Heading>
           <Text>
             TED is funded by BBSRC grant BB/T019409/1 (A.M.L. and D.T.J.),
