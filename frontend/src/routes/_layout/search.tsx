@@ -116,7 +116,11 @@ function Search() {
   function handleSearchSubmit(_search_query: string) {
     const trimmed_query = _search_query.trim()
     if (trimmed_query === "") {
-      showToast("Invalid search query", "Please enter a valid UniProt ID", "error")
+      showToast(
+        "Invalid search query",
+        "Please enter a valid UniProt ID",
+        "error",
+      )
       return
     }
     queryClient.invalidateQueries("search")
@@ -128,7 +132,10 @@ function Search() {
   }
 
   function formatTaxName(tax_scientific_name: string) {
-    return tax_scientific_name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+    return tax_scientific_name
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
   }
 
   const first_entry = domain_summary_entries?.data[0]
@@ -194,17 +201,34 @@ function Search() {
                   <LinkBox>
                     <Card>
                       <CardBody>
-                        <Heading as="h3" size="sm" pb={4} color="blue.400" textDecoration="underline">
-                          <LinkOverlay as={RouterLink} to={`/uniprot/${item.uniprot_acc}`}>{tedToAf(item.ted_id)}</LinkOverlay>
+                        <Heading
+                          as="h3"
+                          size="sm"
+                          pb={4}
+                          color="blue.400"
+                          textDecoration="underline"
+                        >
+                          <LinkOverlay
+                            as={RouterLink}
+                            to={`/uniprot/${item.uniprot_acc}`}
+                          >
+                            {tedToAf(item.ted_id)}
+                          </LinkOverlay>
                         </Heading>
                         <Stack gap="2">
                           <Flex>
-                            <Box className={classes.dataKey}>TED Consensus Domains</Box>
+                            <Box className={classes.dataKey}>
+                              TED Consensus Domains
+                            </Box>
                             <Box className={classes.dataValue}>{ted_count}</Box>
                           </Flex>
                           <Flex>
-                            <Box className={classes.dataKey}>Source Organism</Box>
-                            <Box className={classes.dataValue}>{formatTaxName(item.tax_scientific_name)}</Box>
+                            <Box className={classes.dataKey}>
+                              Source Organism
+                            </Box>
+                            <Box className={classes.dataValue}>
+                              {formatTaxName(item.tax_scientific_name)}
+                            </Box>
                           </Flex>
                         </Stack>
                       </CardBody>
