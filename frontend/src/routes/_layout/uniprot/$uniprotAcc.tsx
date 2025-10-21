@@ -56,6 +56,7 @@ import classes from "./$uniprotAcc.module.css"
 
 import AlphaFoldService from "../../../components/AlphaFoldService/service"
 import {
+  af_pdb_file_url,
   get_chainparse_data_link,
   get_domainsummary_data_link,
   get_pae_color_scheme,
@@ -64,7 +65,6 @@ import {
   ted_domain_to_afid,
   ted_domain_to_id,
   ted_pdb_file_url,
-  af_pdb_file_url,
 } from "../../../components/Utils/uniprotAccUtils"
 
 
@@ -171,6 +171,43 @@ function UniprotAcc() {
 
   const onInitPlugin = (instance: PDBeMolstarPlugin) => {
     setPlugin(instance)
+  }
+
+  const METHOD_CITATIONS: Record<
+    string,
+    { label: string; url: string; tooltip: string }
+  > = {
+    chainsaw: {
+      label: "Chainsaw",
+      url: "https://academic.oup.com/bioinformatics/article/40/5/btae296/7667299",
+      tooltip:
+        "Chainsaw: protein domain segmentation with fully convolutional neural networks (Bioinformatics, 2024)",
+    },
+    merizo: {
+      label: "Merizo",
+      url: "https://www.nature.com/articles/s41467-023-43934-4",
+      tooltip:
+        "Merizo: a rapid and accurate protein domain segmentation method using invariant point attention (Nat. Commun., 2023)",
+    },
+    "unidoc-ndr": {
+      label: "UniDoc",
+      url: "https://academic.oup.com/bioinformatics/article/39/2/btad070/7025502",
+      tooltip:
+        "UniDoc: A unified approach to protein domain parsing with inter-residue distance matrix (Bioinformatics, 2023)",
+    },
+  }
+
+  const renderMethodCell = (method: string) => {
+    const key = method.toLowerCase()
+    const meta = METHOD_CITATIONS[key]
+    if (!meta) return <>{method}</>
+    return (
+      <Tooltip hasArrow label={meta.tooltip}>
+        <Link href={meta.url} isExternal>
+          {meta.label} <ExternalLinkIcon mx="2px" />
+        </Link>
+      </Tooltip>
+    )
   }
 
   let summaryFigure = null
@@ -417,11 +454,15 @@ function UniprotAcc() {
                       <Td>{item.nres_domain}</Td>
                       <Td>
                         <Badge variant={get_plddt_color_scheme(item.plddt)}>
-                          {item.plddt ? item.plddt.toFixed(1) : '-'}
+                          {item.plddt ? item.plddt.toFixed(1) : "-"}
                         </Badge>
                       </Td>
-                      <Td>{item.packing_density ? item.packing_density.toFixed(1) : '-'}</Td>
-                      <Td>{item.norm_rg ? item.norm_rg.toFixed(3) : '-'}</Td>
+                      <Td>
+                        {item.packing_density
+                          ? item.packing_density.toFixed(1)
+                          : "-"}
+                      </Td>
+                      <Td>{item.norm_rg ? item.norm_rg.toFixed(3) : "-"}</Td>
                       <Td>
                         <List>
                           {item.interactions?.map((interaction) => {
@@ -437,7 +478,9 @@ function UniprotAcc() {
                                     interaction.pae_score,
                                   )}
                                 >
-                                  {interaction.pae_score ? interaction.pae_score.toFixed(1) : '-'}
+                                  {interaction.pae_score
+                                    ? interaction.pae_score.toFixed(1)
+                                    : "-"}
                                 </Badge>
                               </ListItem>
                             )
@@ -487,7 +530,7 @@ function UniprotAcc() {
                 <Tbody>
                   {chain_parse_entries?.data.map((item) => (
                     <Tr key={item.id}>
-                      <Td>{item.method}</Td>
+                      <Td>{renderMethodCell(item.method)}</Td>
                       <Td>{item.num_domains}</Td>
                       <Td>{item.chopping}</Td>
                     </Tr>

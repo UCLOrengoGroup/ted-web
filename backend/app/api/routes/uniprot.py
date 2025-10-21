@@ -52,7 +52,7 @@ def read_uniprot_summary(
 
 
 @router.get("/3dbeacons/summary/{uniprot_acc}", response_model=UniprotSummary)
-def read_uniprot_summary(
+def read_uniprot_3dbeacons_summary(
     session: SessionDep, uniprot_acc: str, skip: int = 0, limit: int = 100
 ) -> Any:
     """

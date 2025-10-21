@@ -17,8 +17,13 @@ export default function Citation() {
         Wells, J., Orengo, C. and Jones, D. T.
       </Text>
       <Text fontSize={{ base: "sm" }}>
-        <Text as="span" fontStyle="italic">Science</Text> <Text as="span" fontWeight="600">386</Text>,
-        eadq4946 (2024).{" "}
+        <Text as="span" fontStyle="italic">
+          Science
+        </Text>{" "}
+        <Text as="span" fontWeight="600">
+          386
+        </Text>
+        , eadq4946 (2024).{" "}
         <Link href="https://doi.org/10.1126/science.adq4946">
           doi:10.1126/science.adq4946
         </Link>

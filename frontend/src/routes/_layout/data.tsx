@@ -61,6 +61,22 @@ function Data() {
               - code for this website.
             </ListItem>
           </UnorderedList>
+
+          <Heading size="m">Domain segmentation methods</Heading>
+          <UnorderedList>
+            <ListItem>
+              Chainsaw — deep learning domain segmentation: {" "}
+              <Link href="https://github.com/JudeWells/chainsaw">GitHub</Link>
+            </ListItem>
+            <ListItem>
+              Merizo — invariant point attention–based segmentation: {" "}
+              <Link href="https://github.com/psipred/Merizo">GitHub</Link>
+            </ListItem>
+            <ListItem>
+              UniDoc (NDR) — distance-matrix–based parsing: {" "}
+              <Link href="http://yanglab.nankai.edu.cn/UniDoc/">Download page</Link>
+            </ListItem>
+          </UnorderedList>
         </Stack>
       </Container>
     </>
