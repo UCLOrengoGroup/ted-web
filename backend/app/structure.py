@@ -6,21 +6,26 @@ import requests
 
 from app.models.chopping import ChoppingNumeric
 from app.models.db import DomainSummary
+from app.models.utils import af_id_to_latest_version
 
 logger = logging.getLogger(__name__)
+
 
 
 def fetch_pdb_content_from_af(af_id: str) -> str:
     """
     Fetch PDB data from AlphaFold.
     """
-    pdb_url = f"https://alphafold.ebi.ac.uk/files/{af_id}.pdb"
+
+    af_id_latest_version = af_id_to_latest_version(af_id)
+
+    pdb_url = f"https://alphafold.ebi.ac.uk/files/{af_id_latest_version}.pdb"
 
     logger.info(f"GET: {pdb_url}")
     pdb_content = requests.get(pdb_url).content.decode("utf-8")
     if "ATOM" not in pdb_content:
         raise ValueError(
-            f"No ATOM records found in PDB content for {af_id} from AlphaFold"
+            f"No ATOM records found in PDB content for {af_id_latest_version} from AlphaFold"
         )
     return pdb_content
 

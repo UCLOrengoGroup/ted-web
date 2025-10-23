@@ -7,6 +7,7 @@ LOG = logging.getLogger(__name__)
 
 AFDB_ENTRY_URL = "https://alphafold.ebi.ac.uk/api/uniprot/summary/{uniprot_acc}.json"
 
+AFDB_LATEST_VERSION = "6"
 
 def uniprot_exists_in_afdb(uniprot_acc):
     """
