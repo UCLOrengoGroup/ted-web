@@ -73,7 +73,7 @@ function Data() {
               — invariant point attention–based segmentation.
             </ListItem>
             <ListItem>
-              <Link href="http://yanglab.nankai.edu.cn/UniDoc/">UniDoc</Link> 
+              <Link href="https://yanglab.qd.sdu.edu.cn/UniDoc/">UniDoc</Link> 
               — distance-matrix–based parsing.
             </ListItem>
           </UnorderedList>
