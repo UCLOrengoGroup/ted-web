@@ -38,6 +38,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Configure Traefik HTTP middleware
+        if: env.TRAEFIK_DISABLE_HTTPS_REDIRECT != ''
+        run: echo "TRAEFIK_HTTP_MIDDLEWARES=${STACK_NAME}-www-redirect" >> "$GITHUB_ENV"
       - run: cp .env.cs .env
       - run: docker compose -f docker-compose.cs.yml build
       - run: docker compose -f docker-compose.cs.yml up -d
