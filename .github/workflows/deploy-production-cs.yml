@@ -34,6 +34,7 @@ jobs:
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      TRAEFIK_DISABLE_HTTPS_REDIRECT: ${{ vars.TRAEFIK_DISABLE_HTTPS_REDIRECT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
