@@ -15,8 +15,6 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-http.rule=Host(`adminer.${DOMAIN?Variable not set}`)
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-http.entrypoints=http
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-http.middlewares=https-redirect
-      # Set TRAEFIK_DISABLE_HTTPS_REDIRECT (to any non-empty value) to drop the http->https redirect
-      - ${TRAEFIK_DISABLE_HTTPS_REDIRECT:+traefik.http.routers.${STACK_NAME?Variable not set}-adminer-http.middlewares=}
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.rule=Host(`adminer.${DOMAIN?Variable not set}`)
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.entrypoints=https
       - traefik.http.routers.${STACK_NAME?Variable not set}-adminer-https.tls=true
@@ -114,9 +112,7 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-backend-https.entrypoints=https
       - traefik.http.routers.${STACK_NAME?Variable not set}-backend-https.tls=true
       - traefik.http.routers.${STACK_NAME?Variable not set}-backend-https.tls.certresolver=le
-      - traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.middlewares=https-redirect,${STACK_NAME?Variable not set}-www-redirect
-      # Set TRAEFIK_DISABLE_HTTPS_REDIRECT (to any non-empty value) to drop the http->https redirect
-      - ${TRAEFIK_DISABLE_HTTPS_REDIRECT:+traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.middlewares=${STACK_NAME?Variable not set}-www-redirect}
+      - traefik.http.routers.${STACK_NAME?Variable not set}-backend-http.middlewares=${TRAEFIK_HTTP_MIDDLEWARES:-https-redirect,${STACK_NAME?Variable not set}-www-redirect}
       - traefik.http.routers.${STACK_NAME?Variable not set}-backend-https.middlewares=${STACK_NAME?Variable not set}-www-redirect
 
   frontend:
@@ -159,9 +155,7 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.middlewares=${STACK_NAME?Variable not set}-www-redirect
       # Middleware to redirect www, and redirect HTTP to HTTPS
       # to disable www redirection remove the section: ${STACK_NAME?Variable not set}-www-redirect,
-      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=https-redirect,${STACK_NAME?Variable not set}-www-redirect
-      # Set TRAEFIK_DISABLE_HTTPS_REDIRECT (to any non-empty value) to drop the http->https redirect
-      - ${TRAEFIK_DISABLE_HTTPS_REDIRECT:+traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=${STACK_NAME?Variable not set}-www-redirect}
+      - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=${TRAEFIK_HTTP_MIDDLEWARES:-https-redirect,${STACK_NAME?Variable not set}-www-redirect}
 
 volumes:
   app-db-data:
